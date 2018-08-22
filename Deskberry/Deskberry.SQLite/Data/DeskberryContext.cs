@@ -9,17 +9,21 @@ namespace Deskberry.SQLite.Data
     public class DeskberryContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Avatar> Avatars { get; set; }
 
         public DeskberryContext(DbContextOptions<DeskberryContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Account>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<Account>()
+                .HasOne(x => x.Avatar)
+                .WithMany(y => y.Accounts)
+                .HasForeignKey(x => x.AvatarId);
 
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=deskberry.db");
+            modelBuilder.Entity<Avatar>()
+                .HasKey(x => x.Id);
         }
     }
 }
