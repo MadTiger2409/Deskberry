@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Deskberry.SQLite.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +32,22 @@ namespace Deskberry.UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            MigrateDatabase();
+        }
+
+        /// <summary>
+        /// Invoked when the application is launched normally by the end user.
+        /// Database migration is performed if necessary.
+        /// </summary>
+        private void MigrateDatabase()
+        {
+            var databaseFactory = new DeskberryContextDbFactory();
+            var db = databaseFactory.CreateDbContext();
+            if (db.Database.GetPendingMigrations().Any() == true)
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>
