@@ -10,6 +10,7 @@ namespace Deskberry.SQLite.Data
     {
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Avatar> Avatars { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
 
         public DeskberryContext(DbContextOptions<DeskberryContext> options) : base(options) { }
 
@@ -24,6 +25,13 @@ namespace Deskberry.SQLite.Data
 
             modelBuilder.Entity<Avatar>()
                 .HasKey(x => x.Id);
+
+            modelBuilder.Entity<Favorite>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<Favorite>()
+                .HasOne(x => x.Account)
+                .WithMany(y => y.Favorites)
+                .HasForeignKey(x => x.AccountId);
         }
     }
 }

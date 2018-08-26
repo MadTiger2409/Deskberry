@@ -14,5 +14,6 @@ namespace Deskberry.SQLite.Models
 
         public int AvatarId { get; protected set; }
         public Avatar Avatar { get; set; }
+        public List<Favorite> Favorites { get; set; }
     }
 }

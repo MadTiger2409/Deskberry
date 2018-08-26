@@ -14,7 +14,7 @@ namespace Deskberry.SQLite.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.1-rtm-30846");
+                .HasAnnotation("ProductVersion", "2.1.2-rtm-30932");
 
             modelBuilder.Entity("Deskberry.SQLite.Models.Account", b =>
                 {
@@ -50,11 +50,39 @@ namespace Deskberry.SQLite.Migrations
                     b.ToTable("Avatars");
                 });
 
+            modelBuilder.Entity("Deskberry.SQLite.Models.Favorite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccountId");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("Title");
+
+                    b.Property<string>("Uri");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Favorites");
+                });
+
             modelBuilder.Entity("Deskberry.SQLite.Models.Account", b =>
                 {
                     b.HasOne("Deskberry.SQLite.Models.Avatar", "Avatar")
                         .WithMany("Accounts")
                         .HasForeignKey("AvatarId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Deskberry.SQLite.Models.Favorite", b =>
+                {
+                    b.HasOne("Deskberry.SQLite.Models.Account", "Account")
+                        .WithMany("Favorites")
+                        .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
