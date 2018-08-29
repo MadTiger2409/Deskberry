@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Deskberry.SQLite.Models.Base
+{
+    public class ModelBase
+    {
+        public int Id { get; protected set; }
+        public DateTime CreatedAt { get; protected set; }
+    }
+}

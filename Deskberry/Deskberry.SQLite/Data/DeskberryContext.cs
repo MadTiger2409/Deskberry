@@ -32,6 +32,13 @@ namespace Deskberry.SQLite.Data
                 .HasOne(x => x.Account)
                 .WithMany(y => y.Favorites)
                 .HasForeignKey(x => x.AccountId);
+
+            modelBuilder.Entity<Note>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<Note>()
+                .HasOne(x => x.Account)
+                .WithMany(y => y.Notes)
+                .HasForeignKey(x => x.AccountId);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Deskberry.SQLite.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
                     Content = table.Column<byte[]>(nullable: true)
                 },
                 constraints: table =>
@@ -26,10 +27,10 @@ namespace Deskberry.SQLite.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
                     Login = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<byte[]>(nullable: true),
                     Salt = table.Column<byte[]>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
                     AvatarId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -49,9 +50,9 @@ namespace Deskberry.SQLite.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Uri = table.Column<string>(nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
                     AccountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -59,6 +60,28 @@ namespace Deskberry.SQLite.Migrations
                     table.PrimaryKey("PK_Favorites", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Favorites_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Note",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true),
+                    AccountId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Note", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Note_Accounts_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
@@ -74,12 +97,20 @@ namespace Deskberry.SQLite.Migrations
                 name: "IX_Favorites_AccountId",
                 table: "Favorites",
                 column: "AccountId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Note_AccountId",
+                table: "Note",
+                column: "AccountId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Favorites");
+
+            migrationBuilder.DropTable(
+                name: "Note");
 
             migrationBuilder.DropTable(
                 name: "Accounts");

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Deskberry.SQLite.Migrations
 {
     [DbContext(typeof(DeskberryContext))]
-    [Migration("20180826191208_InitialMigration")]
+    [Migration("20180829184952_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,6 +47,8 @@ namespace Deskberry.SQLite.Migrations
 
                     b.Property<byte[]>("Content");
 
+                    b.Property<DateTime>("CreatedAt");
+
                     b.HasKey("Id");
 
                     b.ToTable("Avatars");
@@ -72,6 +74,26 @@ namespace Deskberry.SQLite.Migrations
                     b.ToTable("Favorites");
                 });
 
+            modelBuilder.Entity("Deskberry.SQLite.Models.Note", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("AccountId");
+
+                    b.Property<string>("Content");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Note");
+                });
+
             modelBuilder.Entity("Deskberry.SQLite.Models.Account", b =>
                 {
                     b.HasOne("Deskberry.SQLite.Models.Avatar", "Avatar")
@@ -84,6 +106,14 @@ namespace Deskberry.SQLite.Migrations
                 {
                     b.HasOne("Deskberry.SQLite.Models.Account", "Account")
                         .WithMany("Favorites")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Deskberry.SQLite.Models.Note", b =>
+                {
+                    b.HasOne("Deskberry.SQLite.Models.Account", "Account")
+                        .WithMany("Notes")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
