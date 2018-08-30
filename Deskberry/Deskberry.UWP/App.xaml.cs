@@ -1,4 +1,6 @@
 ﻿using Deskberry.SQLite.Data;
+using Deskberry.UWP.IoC;
+using Deskberry.UWP.Views;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -33,6 +35,7 @@ namespace Deskberry.UWP
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
+            MainContainer.RegisterService();
             MigrateDatabase();
         }
 
