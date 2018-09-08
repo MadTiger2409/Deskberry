@@ -1,9 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Deskberry.SQLite.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Deskberry.UWP.IoC
 {
@@ -14,6 +12,10 @@ namespace Deskberry.UWP.IoC
         public static void RegisterService()
         {
             var services = new ServiceCollection();
+
+            services.AddDbContext<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"));
+
+            Container = services.BuildServiceProvider();
         }
     }
 }

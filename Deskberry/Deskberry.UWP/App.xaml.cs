@@ -1,4 +1,5 @@
-﻿using Deskberry.SQLite.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Deskberry.SQLite.Data;
 using Deskberry.UWP.IoC;
 using Deskberry.UWP.Views;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace Deskberry.UWP
     /// </summary>
     sealed partial class App : Application
     {
+        private readonly DeskberryContext _Context;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -36,21 +39,18 @@ namespace Deskberry.UWP
             this.Suspending += OnSuspending;
 
             MainContainer.RegisterService();
-            MigrateDatabase();
+            _Context = MainContainer.Container.GetService<DeskberryContext>();
+            MigrateDatabase(_Context);
         }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.
         /// Database migration is performed if necessary.
         /// </summary>
-        private void MigrateDatabase()
+        private void MigrateDatabase(DeskberryContext db)
         {
-            var databaseFactory = new DeskberryContextDbFactory();
-            var db = databaseFactory.CreateDbContext();
             if (db.Database.GetPendingMigrations().Any() == true)
-            {
                 db.Database.Migrate();
-            }
         }
 
         /// <summary>

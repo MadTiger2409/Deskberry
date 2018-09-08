@@ -144,13 +144,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Deskberry.SQLite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Deskberry.SQLite\bin\Debug\netcoreapp2.0\Deskberry.SQLite.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\ViewModels\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
