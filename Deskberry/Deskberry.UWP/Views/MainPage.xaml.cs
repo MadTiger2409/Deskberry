@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Deskberry.UWP.IoC;
+using Deskberry.UWP.Views.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -22,9 +25,11 @@ namespace Deskberry.UWP.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
         public MainPage()
         {
             this.InitializeComponent();
+            DataContext = MainContainer.Container.GetService<MainPageViewModel>();
         }
     }
 }

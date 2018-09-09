@@ -15,5 +15,19 @@ namespace Deskberry.SQLite.Models
         public Avatar Avatar { get; set; }
         public List<Favorite> Favorites { get; set; }
         public List<Note> Notes { get; set; }
+
+        public Account() { }
+
+        public Account(string login, byte[] passwordHash, byte[] salt)
+        {
+            Login = login;
+            PasswordHash = passwordHash;
+            Salt = salt;
+        }
+
+        public Account(string login, byte[] passwordHash, byte[] salt, int avatarId) : this(login, passwordHash, salt)
+        {
+            AvatarId = avatarId;
+        }
     }
 }
