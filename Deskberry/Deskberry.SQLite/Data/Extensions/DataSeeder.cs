@@ -1,4 +1,5 @@
-﻿using Deskberry.SQLite.Extensions.Security;
+﻿using Deskberry.SQLite.Extensions;
+using Deskberry.SQLite.Extensions.Security;
 using Deskberry.SQLite.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,13 @@ namespace Deskberry.SQLite.Data.Extensions
             context.Database.EnsureCreated();
             if (!context.Avatars.Any())
             {
-                context.Avatars.Add(new Avatar());
+                var avatarRoot = new AvatarRoot();
+
+                context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Dog)));
+                context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Cats)));
+                context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Bird)));
+                context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Wolf)));
+
                 context.SaveChanges();
             }
 
