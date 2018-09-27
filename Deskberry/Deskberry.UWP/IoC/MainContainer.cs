@@ -1,6 +1,6 @@
 ﻿using Deskberry.SQLite.Data;
 using Deskberry.UWP.Views;
-using Deskberry.UWP.Views.ViewModels;
+using Deskberry.UWP.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;

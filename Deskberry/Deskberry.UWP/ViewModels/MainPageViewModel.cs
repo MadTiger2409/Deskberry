@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Deskberry.UWP.Views.ViewModels
+namespace Deskberry.UWP.ViewModels
 {
     class MainPageViewModel
     {

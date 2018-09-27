@@ -1,5 +1,5 @@
 ﻿using Deskberry.UWP.IoC;
-using Deskberry.UWP.Views.ViewModels;
+using Deskberry.UWP.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
