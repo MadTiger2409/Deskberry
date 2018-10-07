@@ -6,11 +6,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
     xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
+    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
     mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="accountDataTemplate">
+                <StackPanel>
+                    <controls:ImageEx
+                        Width="150"
+                        Height="150"
+                        IsCacheEnabled="True"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Source="ms-appx:///Assets/Avatars/Wolf.jpg"
+                        PlaceholderSource="ms-appx:///Assets/Avatars/Wolf.jpg"
+                        CornerRadius="999"
+                        Margin="0,1,0,0"/>
+                    <TextBlock Text="{Binding Login}"
+                               TextWrapping="NoWrap"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,4"/>
+                </StackPanel>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Page.Resources>
+    
     <Page.Background>
         <ImageBrush ImageSource="ms-appx:///Assets/Wallpapers/RaspberryPi.jpg"
                     Stretch="UniformToFill"/>
     </Page.Background>
+
+    <Page.DataContext>
+        <viewModels:MainPageViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -25,6 +53,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <ListView Grid.Column="0"
+                  Grid.Row="2"
+                  Background="Transparent"
+                  ItemsSource="{Binding Accounts}"
+                  ItemTemplate="{StaticResource accountDataTemplate}">
+        </ListView>
+        
         <Grid Grid.Column="1"
               Grid.Row="1"
               CornerRadius="20"
@@ -40,7 +75,7 @@
             </Grid.RowDefinitions>
 
             <Viewbox Grid.Row="0">
-                <controls:RoundImageEx
+                <controls:ImageEx
                     IsCacheEnabled="True"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
