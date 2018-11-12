@@ -95,7 +95,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\Base64ToImageConverter.cs" />
     <Compile Include="IoC\MainContainer.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\Interfaces\IAccountService.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

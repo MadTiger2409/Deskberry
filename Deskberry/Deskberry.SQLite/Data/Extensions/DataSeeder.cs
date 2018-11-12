@@ -13,11 +13,13 @@ namespace Deskberry.SQLite.Data.Extensions
         public static void Initialize(DeskberryContext context)
         {
             context.Database.EnsureCreated();
+
+            var avatarRoot = new AvatarRoot();
+            var avatar = new Avatar(avatarRoot.ToByteArray(avatarRoot.Dog));
+
             if (!context.Avatars.Any())
             {
-                var avatarRoot = new AvatarRoot();
-
-                context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Dog)));
+                context.Avatars.Add(avatar);
                 context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Cats)));
                 context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Bird)));
                 context.Avatars.Add(new Avatar(avatarRoot.ToByteArray(avatarRoot.Wolf)));
@@ -33,7 +35,7 @@ namespace Deskberry.SQLite.Data.Extensions
 
                 passwordManager.CalculatePasswordHash(password, out passwordHash, out passwordSalt);
 
-                context.Accounts.Add(new Account("Admin", passwordHash, passwordSalt, 1));
+                context.Accounts.Add(new Account("Admin", passwordHash, passwordSalt, avatar));
                 context.SaveChanges();
             }
         }

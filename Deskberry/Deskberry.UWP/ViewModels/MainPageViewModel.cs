@@ -6,6 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Deskberry.SQLite.Models;
+using Deskberry.UWP.Commands;
+using Deskberry.UWP.Services;
+using Deskberry.UWP.Services.Interfaces;
+using Windows.ApplicationModel;
 
 namespace Deskberry.UWP.ViewModels
 {
@@ -16,8 +20,9 @@ namespace Deskberry.UWP.ViewModels
         #endregion
 
         #region Members
-        private Account _selectedAccount;
-        private bool _isLoginEnabled;
+        private IAccountService _accountService;
+        public Account _selectedAccount;
+        public bool _isLoginEnabled;
         #endregion
 
         #region Properties
@@ -37,9 +42,28 @@ namespace Deskberry.UWP.ViewModels
         }
         #endregion
 
-        public MainPageViewModel()
-        {
+        public MainPageViewModel() { }
 
+        public MainPageViewModel(IAccountService accountService)
+        {
+            _accountService = accountService;
+            Accounts = LoadAccounts();
+            SelectedAccount = Accounts.FirstOrDefault();
         }
+
+        #region PrivateMethods
+        private ObservableCollection<Account> LoadAccounts()
+        {
+            var accountsCollection = new ObservableCollection<Account>();
+            var accounts = _accountService.GetAccountsAssync().GetAwaiter().GetResult();
+
+            foreach (var account in accounts)
+            {
+                accountsCollection.Add(account);
+            }
+
+            return accountsCollection;
+        }
+        #endregion
     }
 }

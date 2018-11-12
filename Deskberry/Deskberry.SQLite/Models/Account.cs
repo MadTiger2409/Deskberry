@@ -25,9 +25,10 @@ namespace Deskberry.SQLite.Models
             Salt = salt;
         }
 
-        public Account(string login, byte[] passwordHash, byte[] salt, int avatarId) : this(login, passwordHash, salt)
+        public Account(string login, byte[] passwordHash, byte[] salt, Avatar avatar) : this(login, passwordHash, salt)
         {
-            AvatarId = avatarId;
+            Avatar = avatar;
+            AvatarId = avatar.Id;
         }
     }
 }

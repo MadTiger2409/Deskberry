@@ -7,25 +7,29 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
     xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:viewModels="using:Deskberry.UWP.ViewModels"
+    xmlns:converters="using:Deskberry.UWP.Converters"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
+            <converters:Base64ToImageConverter x:Key="Base64ToImageConverter"/>
             <DataTemplate x:Key="accountDataTemplate">
-                <StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Bottom">
                     <controls:ImageEx
-                        Width="150"
-                        Height="150"
+                        Width="60"
+                        Height="60"
                         IsCacheEnabled="True"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
-                        Source="ms-appx:///Assets/Avatars/Wolf.jpg"
-                        PlaceholderSource="ms-appx:///Assets/Avatars/Wolf.jpg"
+                        Source="{Binding Path=Avatar.Content, Mode=OneWay,
+                                Converter={StaticResource Base64ToImageConverter}}"
                         CornerRadius="999"
                         Margin="0,1,0,0"/>
-                    <TextBlock Text="{Binding Login}"
-                               TextWrapping="NoWrap"
-                               HorizontalAlignment="Center"
-                               Margin="0,0,0,4"/>
+                    <Viewbox>
+                        <TextBlock Text="{Binding Path=Login, Mode=OneWay}"
+                                   TextWrapping="NoWrap"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Margin="8,0,0,0"/>
+                    </Viewbox>
                 </StackPanel>
             </DataTemplate>
         </ResourceDictionary>
@@ -56,8 +60,15 @@
         <ListView Grid.Column="0"
                   Grid.Row="2"
                   Background="Transparent"
+                  Margin="0,0,0,5"
                   ItemsSource="{Binding Accounts}"
+                  SelectedItem="{Binding SelectedAccount, Mode=TwoWay}"
                   ItemTemplate="{StaticResource accountDataTemplate}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsStackPanel VerticalAlignment="Bottom"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
         </ListView>
         
         <Grid Grid.Column="1"
@@ -79,14 +90,14 @@
                     IsCacheEnabled="True"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
-                    Source="ms-appx:///Assets/Avatars/Wolf.jpg"
+                    Source="{Binding Path=SelectedAccount.Avatar.Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}"
                     PlaceholderSource="ms-appx:///Assets/Avatars/Wolf.jpg"
                     CornerRadius="999"
                     Margin="0,1,0,0"/>
             </Viewbox>
 
             <Viewbox Grid.Row="1">
-                <TextBlock Text="Admin"
+                <TextBlock Text="{Binding Path=SelectedAccount.Login,Mode=OneWay}"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,4"/>
             </Viewbox>
