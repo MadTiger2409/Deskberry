@@ -26,6 +26,7 @@ namespace Deskberry.UWP.IoC
 
             #region Services
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<INavigationService, NavigationService>();
             #endregion
 
             Container = services.BuildServiceProvider();
