@@ -97,13 +97,14 @@
             </Viewbox>
 
             <Viewbox Grid.Row="1">
-                <TextBlock Text="{Binding Path=SelectedAccount.Login,Mode=OneWay}"
+                <TextBlock Text="{Binding Path=SelectedAccount.Login, Mode=OneWay}"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,4"/>
             </Viewbox>
 
             <Viewbox Grid.Row="2">
-                <PasswordBox PlaceholderText="Password"
+                <PasswordBox Password="{Binding Path=Password, Mode=TwoWay}"
+                             PlaceholderText="Password"
                              IsTextScaleFactorEnabled="False"
                              MinWidth="200"
                              Margin="0,0,0,4"/>
@@ -112,7 +113,8 @@
 
         <Viewbox Grid.Column="1"
                  Grid.Row="2">
-            <Button Content="Login"
+            <Button Command="{Binding LoginCommand}"
+                    Content="Login"
                     Margin="30"
                     Background="#BFed3a0e"/>
         </Viewbox>

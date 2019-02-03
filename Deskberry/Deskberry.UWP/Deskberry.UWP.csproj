@@ -102,6 +102,9 @@
     <Compile Include="Services\Interfaces\IAccountService.cs" />
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Views\DesktopPage.xaml.cs">
+      <DependentUpon>DesktopPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\DesktopPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
