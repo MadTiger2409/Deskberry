@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Deskberry.SQLite.Models;
 using Deskberry.UWP.Commands;
+using Deskberry.UWP.Extensions;
 using Deskberry.UWP.Services;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
@@ -96,6 +97,7 @@ namespace Deskberry.UWP.ViewModels
             var areValid = await _accountService.AreCredentialsValid(SelectedAccount, Password);
             if (areValid == true)
             {
+                Session.Set(SelectedAccount.Id, SelectedAccount.Login);
                 _navigationService.NavigateTo(typeof(DesktopPage));
             }
         }
