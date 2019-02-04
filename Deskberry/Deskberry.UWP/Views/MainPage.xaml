@@ -54,7 +54,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -70,11 +70,11 @@
                 </ItemsPanelTemplate>
             </ListView.ItemsPanel>
         </ListView>
-        
+
         <Grid Grid.Column="1"
               Grid.Row="1"
               CornerRadius="20"
-              BorderBrush="Black"
+              BorderBrush="White"
               BorderThickness="2">
             <Grid.Background>
                 <media:BackdropBlurBrush Amount="6"/>
@@ -93,7 +93,7 @@
                     Source="{Binding Path=SelectedAccount.Avatar.Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}"
                     PlaceholderSource="ms-appx:///Assets/Avatars/Wolf.jpg"
                     CornerRadius="999"
-                    Margin="0,1,0,0"/>
+                    Margin="0,40,0,10"/>
             </Viewbox>
 
             <Viewbox Grid.Row="1">
@@ -103,20 +103,19 @@
             </Viewbox>
 
             <Viewbox Grid.Row="2">
-                <PasswordBox Password="{Binding Path=Password, Mode=TwoWay}"
-                             PlaceholderText="Password"
-                             IsTextScaleFactorEnabled="False"
-                             MinWidth="200"
-                             Margin="0,0,0,4"/>
+                <StackPanel Orientation="Horizontal"
+                            Margin="20,0,20,5">
+                    <PasswordBox Password="{Binding Path=Password, Mode=TwoWay}"
+                                 PlaceholderText="Password"
+                                 IsTextScaleFactorEnabled="False"
+                                 MinWidth="200"/>
+                    <Button Command="{Binding LoginCommand}"
+                            Content="Login"
+                            Background="#BFed3a0e"
+                            Margin="10,0,0,0"/>
+                </StackPanel>
             </Viewbox>
         </Grid>
-
-        <Viewbox Grid.Column="1"
-                 Grid.Row="2">
-            <Button Command="{Binding LoginCommand}"
-                    Content="Login"
-                    Margin="30"
-                    Background="#BFed3a0e"/>
-        </Viewbox>
+        
     </Grid>
 </Page>
