@@ -58,6 +58,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <Grid.Background>
+            <media:BackdropBlurBrush Amount="6"/>
+        </Grid.Background>
+
         <ListView Grid.Column="0"
                   Grid.Row="2"
                   Background="Transparent"
@@ -74,45 +78,43 @@
         <Grid Grid.Column="1"
               Grid.Row="1"
               CornerRadius="20"
-              BorderBrush="White"
-              BorderThickness="2">
-            <Grid.Background>
-                <media:BackdropBlurBrush Amount="6"/>
-            </Grid.Background>
+              BorderBrush="Transparent"
+              BorderThickness="2"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Viewbox Grid.Row="0">
+            <Viewbox Grid.Row="0"
+                     MaxHeight="150">
                 <controls:ImageEx
                     IsCacheEnabled="True"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     Source="{Binding Path=SelectedAccount.Avatar.Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}"
                     PlaceholderSource="ms-appx:///Assets/Avatars/Wolf.jpg"
-                    CornerRadius="999"
-                    Margin="0,40,0,10"/>
+                    CornerRadius="999"/>
             </Viewbox>
 
-            <Viewbox Grid.Row="1">
+            <Viewbox Grid.Row="1"
+                     MaxHeight="50">
                 <TextBlock Text="{Binding Path=SelectedAccount.Login, Mode=OneWay}"
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,4"/>
+                           HorizontalAlignment="Center"/>
             </Viewbox>
 
-            <Viewbox Grid.Row="2">
-                <StackPanel Orientation="Horizontal"
-                            Margin="20,0,20,10">
+            <Viewbox Grid.Row="2"
+                     MaxHeight="40">
+                <StackPanel Orientation="Horizontal">
                     <PasswordBox Password="{Binding Path=Password, Mode=TwoWay}"
                                  PlaceholderText="Password"
                                  IsTextScaleFactorEnabled="False"
                                  MinWidth="200"/>
                     <Button Command="{Binding LoginCommand}"
                             Content="Login"
-                            Background="#BFed3a0e"
-                            Margin="10,0,0,0"/>
+                            Background="#BFed3a0e"/>
                 </StackPanel>
             </Viewbox>
         </Grid>

@@ -5,11 +5,29 @@
     xmlns:local="using:Deskberry.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
-    <Viewbox>
-        <TextBlock Text="Logged in"
-                   Padding="2"/>
-    </Viewbox>
+    <Page.Background>
+        <ImageBrush ImageSource="ms-appx:///Assets/Wallpapers/RaspberryPi.jpg"
+                    Stretch="UniformToFill"/>
+    </Page.Background>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="0"/>
+
+        <Grid Grid.Row="1"
+              Background="Black"
+              Opacity="0.5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+    </Grid>
 </Page>
