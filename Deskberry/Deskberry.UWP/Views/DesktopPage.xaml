@@ -18,16 +18,37 @@
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
+        <!-- Desktop -->
         <Frame Grid.Row="0"/>
 
+        <!-- Taskbar -->
         <Grid Grid.Row="1"
               Background="Black"
               Opacity="0.5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
+
+            <!-- Start's menu -->
+            <Button Grid.Column="0"
+                    Width="50"
+                    Height="50"
+                    Content="Start"
+                    Background="Transparent"
+                    BorderBrush="Black"
+                    BorderThickness="1"/>
+            
+            <!-- Task's bar applications -->
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"/>
+            
+            <!-- DateTime info -->
+            <TextBlock Grid.Column="2"
+                       Width="150"
+                       Height="50"
+                       Text="15:00"/>
         </Grid>
     </Grid>
 </Page>

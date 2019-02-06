@@ -24,7 +24,14 @@ namespace Deskberry.UWP.Services
         }
 
         public async Task<bool> AreCredentialsValid(Account account, string password)
-            => await Task.FromResult(_passwordManager.VerifyPasswordHash(password, account.PasswordHash, account.Salt));
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                return false;
+            }
+
+            return await Task.FromResult(_passwordManager.VerifyPasswordHash(password, account.PasswordHash, account.Salt));
+        }
 
         public async Task<Account> GetAccountAsync(int id)
             => await _context.Accounts.GetById(id).SingleOrDefaultAsync();
