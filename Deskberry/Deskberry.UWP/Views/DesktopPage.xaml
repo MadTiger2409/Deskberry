@@ -6,7 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Raspberry.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Calculator.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Page.Background>
         <ImageBrush ImageSource="ms-appx:///Assets/Wallpapers/RaspberryPi.jpg"
                     Stretch="UniformToFill"/>
@@ -15,7 +22,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <!-- Desktop -->
@@ -23,8 +30,8 @@
 
         <!-- Taskbar -->
         <Grid Grid.Row="1"
-              Background="Black"
-              Opacity="0.5">
+              Background= "{ThemeResource SystemControlAcrylicElementBrush}"
+              Opacity="0.8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
@@ -32,23 +39,53 @@
             </Grid.ColumnDefinitions>
 
             <!-- Start's menu -->
-            <Button Grid.Column="0"
-                    Width="50"
-                    Height="50"
-                    Content="Start"
-                    Background="Transparent"
-                    BorderBrush="Black"
-                    BorderThickness="1"/>
-            
+            <Viewbox Grid.Column="0"
+                     MaxHeight="50"
+                     MaxWidth="60">
+                <Button Background="Transparent"
+                        Margin="0">
+                    <Button.Content>
+                        <Path Data="{StaticResource RaspberryGeometry}"
+                              Stroke="Black"
+                              MinHeight="32"
+                              MinWidth="32"/>
+                    </Button.Content>
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel Orientation="Vertical">
+                                <Button Content="App"/>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+            </Viewbox>
+
             <!-- Task's bar applications -->
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal"/>
             
             <!-- DateTime info -->
-            <TextBlock Grid.Column="2"
-                       Width="150"
-                       Height="50"
-                       Text="15:00"/>
+            <Viewbox Grid.Column="2"
+                     MaxHeight="50"
+                     MaxWidth="150">
+                <Button Background="Transparent">
+                    <StackPanel Orientation="Vertical"
+                            Margin="3">
+                        <TextBlock Text="15:00"
+                               HorizontalAlignment="Center"/>
+                        <TextBlock Text="12.12.2012"
+                               HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Button.Flyout>
+                        <Flyout>
+                            <CalendarView/>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                
+            </Viewbox>
+            
         </Grid>
     </Grid>
 </Page>
