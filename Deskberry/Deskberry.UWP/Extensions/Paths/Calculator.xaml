@@ -2,16 +2,22 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Deskberry.UWP.Extensions.Paths">
-    <Canvas x:Key="CalculatorGeometry">
-        <Path Data="M50.586 0H9.414C7.807 0 6.5 1.308 6.5 2.914v54.172C6.5 58.692 7.807 60 9.414 60h41.172c1.607 0 2.914-1.308 2.914-2.914   V2.914C53.5 1.308 52.193 0 50.586 0z M51.5 57.086C51.5 57.59 51.09 58 50.586 58H9.414C8.91 58 8.5 57.59 8.5 57.086V2.914   C8.5 2.41 8.91 2 9.414 2h41.172C51.09 2 51.5 2.41 51.5 2.914V57.086z"/>
-        <Path Data="M11.5 55h11V44h-11V55z M13.5 46h7v7h-7V46z"/>
-        <Path Data="M24.5 55h11V44h-11V55z M26.5 46h7v7h-7V46z"/>
-        <Path Data="M37.5 55h11V31h-11V55z M39.5 33h7v20h-7V33z"/>
-        <Path Data="M11.5 42h11V31h-11V42z M13.5 33h7v7h-7V33z"/>
-        <Path Data="M24.5 42h11V31h-11V42z M26.5 33h7v7h-7V33z"/>
-        <Path Data="M11.5 29h11V18h-11V29z M13.5 20h7v7h-7V20z"/>
-        <Path Data="M24.5 29h11V18h-11V29z M26.5 20h7v7h-7V20z"/>
-        <Path Data="M37.5 29h11V18h-11V29z M39.5 20h7v7h-7V20z"/>
-        <Path Data="M11.5 15h37V5h-37V15z M13.5 7h33v6h-33V7z"/>
-    </Canvas>
+    <ControlTemplate x:Key="CalculatorGeometry">
+        <Canvas Canvas.Left="0" Canvas.Top="0" Width="32" Height="30">
+            <Canvas.RenderTransform>
+                <TranslateTransform X="0" Y="0"/>
+            </Canvas.RenderTransform>
+            <Rectangle Stroke="White" Canvas.Left="7" Canvas.Top="3" Width="18" Height="26" Name="XMLID_1594_"/>
+            <Polygon Stroke="White" Points="20.9,13 11,13.1 11,7.1 20.9,7 " Name="XMLID_1593_" FillRule="NonZero"/>
+            <Rectangle Stroke="White" Canvas.Left="10" Canvas.Top="16" Width="2" Height="2" Name="XMLID_1592_"/>
+            <Rectangle Stroke="White" Canvas.Left="15" Canvas.Top="16" Width="2" Height="2" Name="XMLID_1591_"/>
+            <Rectangle Stroke="White" Canvas.Left="20" Canvas.Top="16" Width="2" Height="2" Name="XMLID_96_"/>
+            <Rectangle Stroke="White" Canvas.Left="10" Canvas.Top="20" Width="2" Height="2" Name="XMLID_99_"/>
+            <Rectangle Stroke="White" Canvas.Left="15" Canvas.Top="20" Width="2" Height="2" Name="XMLID_98_"/>
+            <Rectangle Stroke="White" Canvas.Left="20" Canvas.Top="20" Width="2" Height="2" Name="XMLID_97_"/>
+            <Rectangle Stroke="White" Canvas.Left="10" Canvas.Top="24" Width="2" Height="2" Name="XMLID_102_"/>
+            <Rectangle Stroke="White" Canvas.Left="15" Canvas.Top="24" Width="2" Height="2" Name="XMLID_101_"/>
+            <Rectangle Stroke="White" Canvas.Left="20" Canvas.Top="24" Width="2" Height="2" Name="XMLID_100_"/>
+        </Canvas>
+    </ControlTemplate>
 </ResourceDictionary>

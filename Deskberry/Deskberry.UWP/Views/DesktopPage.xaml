@@ -11,6 +11,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Raspberry.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Calculator.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Note.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Settings.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -38,7 +40,7 @@
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Start's menu -->
+            <!-- Start's menu button -->
             <Viewbox Grid.Column="0"
                      MaxHeight="50"
                      MaxWidth="60">
@@ -46,15 +48,79 @@
                         Margin="0">
                     <Button.Content>
                         <Path Data="{StaticResource RaspberryGeometry}"
-                              Stroke="Black"
+                              Stroke="White"
+                              StrokeThickness="0.5"
                               MinHeight="32"
                               MinWidth="32"/>
                     </Button.Content>
                     <Button.Flyout>
+                        <!-- Start's menu -->
                         <Flyout>
-                            <StackPanel Orientation="Vertical">
-                                <Button Content="App"/>
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0"
+                                            VerticalAlignment="Bottom">
+                                    <Button Height="30"
+                                            Background="Transparent">
+                                        <Button.Content>
+                                            <Viewbox>
+                                                <Path Data="{StaticResource SettingsGeometry}"
+                                                      Fill="#FFFFFFFF"
+                                                      RenderTransformOrigin="0.5,0.5">
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0"/>
+                                                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                            </Viewbox>
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1"
+                                            Margin="12,0,0,0"
+                                            VerticalAlignment="Bottom">
+                                    <!-- Calculator's button -->
+                                    <Button HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left"
+                                            MaxHeight="30"
+                                            Margin="0,2,0,2"
+                                            Background="Transparent">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Viewbox MaxHeight="30" MaxWidth="30">
+                                                <ContentControl Template="{StaticResource CalculatorGeometry}"/>
+                                            </Viewbox>
+                                            <TextBlock Margin="4,0,0,0"
+                                                       Text="Calculator"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <!-- Note's button -->
+                                    <Button HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left"
+                                            MaxHeight="30"
+                                            Margin="0,2,0,2"
+                                            Background="Transparent">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Viewbox MaxHeight="26" MaxWidth="30">
+                                                <ContentControl Template="{StaticResource NoteGeometry}"/>
+                                            </Viewbox>
+                                            <TextBlock Margin="4,0,0,0"
+                                                       Text="Notes"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
@@ -64,7 +130,7 @@
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal"/>
             
-            <!-- DateTime info -->
+            <!-- DateTime's info button -->
             <Viewbox Grid.Column="2"
                      MaxHeight="50"
                      MaxWidth="150">
