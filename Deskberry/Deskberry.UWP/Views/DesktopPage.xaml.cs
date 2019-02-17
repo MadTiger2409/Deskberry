@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +23,22 @@ namespace Deskberry.UWP.Views
     /// </summary>
     public sealed partial class DesktopPage : Page
     {
+        Task DateTimeTask;
+
         public DesktopPage()
         {
             this.InitializeComponent();
+            DateTimeTask = UpdateDateAndTimeAsync();
+        }
+
+        private async Task UpdateDateAndTimeAsync()
+        {
+            while (true)
+            {
+                timeTextBlock.Text = DateTime.Now.ToString("HH:mm");
+                dateTextBlock.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                await Task.Delay(TimeSpan.FromSeconds(0.1));
+            }
         }
     }
 }

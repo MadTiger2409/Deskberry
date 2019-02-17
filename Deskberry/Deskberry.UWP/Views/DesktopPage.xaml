@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Calculator.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Note.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Settings.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Power.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -43,13 +44,14 @@
             <!-- Start's menu button -->
             <Viewbox Grid.Column="0"
                      MaxHeight="50"
-                     MaxWidth="60">
+                     MaxWidth="60"
+                     ToolTipService.ToolTip="Menu">
                 <Button Background="Transparent"
                         Margin="0">
                     <Button.Content>
                         <Path Data="{StaticResource RaspberryGeometry}"
-                              Stroke="White"
-                              StrokeThickness="0.5"
+                              Fill="White"
+                              StrokeThickness="0.3"
                               MinHeight="32"
                               MinWidth="32"/>
                     </Button.Content>
@@ -62,10 +64,14 @@
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
 
+                                <!-- System options buttons -->
                                 <StackPanel Grid.Column="0"
                                             VerticalAlignment="Bottom">
+                                    <!-- Settings button -->
                                     <Button Height="30"
-                                            Background="Transparent">
+                                            Background="Transparent"
+                                            ToolTipService.ToolTip="Settings"
+                                            Margin="0,4,0,0">
                                         <Button.Content>
                                             <Viewbox>
                                                 <Path Data="{StaticResource SettingsGeometry}"
@@ -83,11 +89,50 @@
                                             </Viewbox>
                                         </Button.Content>
                                     </Button>
+                                    
+                                    <!-- Power button -->
+                                    <Button Height="30"
+                                            Background="Transparent"
+                                            ToolTipService.ToolTip="Power"
+                                            Margin="0,8,0,0">
+                                        <Viewbox>
+                                                <Path Data="{StaticResource PowerGeometry}"
+                                                      Fill="#FFFFFFFF"
+                                                      RenderTransformOrigin="0.5,0.5">
+                                                    <Path.RenderTransform>
+                                                        <TransformGroup>
+                                                            <TransformGroup.Children>
+                                                                <RotateTransform Angle="0"/>
+                                                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                                            </TransformGroup.Children>
+                                                        </TransformGroup>
+                                                    </Path.RenderTransform>
+                                                </Path>
+                                        </Viewbox>
+
+                                        <Button.Flyout>
+                                            <Flyout>
+                                                <StackPanel>
+                                                    <Button Content="Shut down"
+                                                            Background="Transparent"
+                                                            Margin="0,4,0,0"
+                                                            HorizontalAlignment="Stretch"/>
+                                                    <Button Content="Restart"
+                                                            Background="Transparent"
+                                                            Margin="0,4,0,0"
+                                                            HorizontalAlignment="Stretch"/>
+                                                </StackPanel>
+                                            </Flyout>
+                                        </Button.Flyout>
+                                    </Button>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1"
-                                            Margin="12,0,0,0"
-                                            VerticalAlignment="Bottom">
+                                            Padding="6,0,0,0"
+                                            Margin="6,0,0,0"
+                                            VerticalAlignment="Bottom"
+                                            BorderThickness="1,0,0,0"
+                                            BorderBrush="LightGray">
                                     <!-- Calculator's button -->
                                     <Button HorizontalAlignment="Stretch"
                                             HorizontalContentAlignment="Left"
@@ -96,7 +141,9 @@
                                             Background="Transparent">
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox MaxHeight="30" MaxWidth="30">
-                                                <ContentControl Template="{StaticResource CalculatorGeometry}"/>
+                                                <Path Data="{StaticResource CalculatorGeometry}"
+                                                      Fill="#FFFFFFFF"
+                                                      StrokeThickness="0.5"/>
                                             </Viewbox>
                                             <TextBlock Margin="4,0,0,0"
                                                        Text="Calculator"
@@ -112,7 +159,9 @@
                                             Background="Transparent">
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox MaxHeight="26" MaxWidth="30">
-                                                <ContentControl Template="{StaticResource NoteGeometry}"/>
+                                                <Path Data="{StaticResource NoteGeometry}"
+                                                      Fill="#FFFFFFFF"
+                                                      StrokeThickness="0.5"/>
                                             </Viewbox>
                                             <TextBlock Margin="4,0,0,0"
                                                        Text="Notes"
@@ -136,11 +185,13 @@
                      MaxWidth="150">
                 <Button Background="Transparent">
                     <StackPanel Orientation="Vertical"
-                            Margin="3">
-                        <TextBlock Text="15:00"
-                               HorizontalAlignment="Center"/>
-                        <TextBlock Text="12.12.2012"
-                               HorizontalAlignment="Center"/>
+                                Margin="3">
+                        <TextBlock Name="timeTextBlock"
+                                   Text="15:00"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Name="dateTextBlock"
+                                   Text="12.12.2012"
+                                   HorizontalAlignment="Center"/>
                     </StackPanel>
 
                     <Button.Flyout>
