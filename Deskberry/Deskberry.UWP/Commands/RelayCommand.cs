@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Deskberry.UWP.Commands
 {
-    class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         Action _TargetExecuteMethod;
         Func<bool> _TargetCanExecuteMethod;

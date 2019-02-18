@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Deskberry.UWP.IoC;
+using Deskberry.UWP.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,11 +26,23 @@ namespace Deskberry.UWP.Views
     /// </summary>
     public sealed partial class DesktopPage : Page
     {
+        public Frame NavigationFrame
+        {
+            get { return DesktopFrame; }
+            set { DesktopFrame = value; }
+        }
+
         Task DateTimeTask;
 
         public DesktopPage()
         {
             this.InitializeComponent();
+            DataContext = MainContainer.Container.GetService<DesktopPageViewModel>();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
             DateTimeTask = UpdateDateAndTimeAsync();
         }
 

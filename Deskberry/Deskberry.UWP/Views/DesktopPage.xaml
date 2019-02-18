@@ -5,6 +5,7 @@
     xmlns:local="using:Deskberry.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
@@ -14,14 +15,20 @@
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Note.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Settings.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Power.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Globe.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+    
     <Page.Background>
         <ImageBrush ImageSource="ms-appx:///Assets/Wallpapers/RaspberryPi.jpg"
                     Stretch="UniformToFill"/>
     </Page.Background>
-    
+
+    <Page.DataContext>
+        <viewModels:DesktopPageViewModel/>
+    </Page.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -29,7 +36,7 @@
         </Grid.RowDefinitions>
 
         <!-- Desktop -->
-        <Frame Grid.Row="0"/>
+        <Frame Grid.Row="0" x:Name="DesktopFrame"/>
 
         <!-- Taskbar -->
         <Grid Grid.Row="1"
@@ -38,6 +45,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
 
@@ -133,19 +141,40 @@
                                             VerticalAlignment="Bottom"
                                             BorderThickness="1,0,0,0"
                                             BorderBrush="LightGray">
+
+                                    <!-- Browser button -->
+                                    <Button HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Left"
+                                            MaxHeight="30"
+                                            Margin="0,2,0,2"
+                                            Background="Transparent"
+                                            Command="{Binding OpenBrowerCommand}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Viewbox MaxHeight="30" MaxWidth="16" HorizontalAlignment="Left">
+                                                <Path Data="{StaticResource GlobeGeometry}"
+                                                      Fill="#FFFFFFFF"
+                                                      StrokeThickness="0.5"/>
+                                            </Viewbox>
+                                            <TextBlock Margin="4,0,0,0"
+                                                       Text="Browser"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Button>
+
                                     <!-- Calculator's button -->
                                     <Button HorizontalAlignment="Stretch"
                                             HorizontalContentAlignment="Left"
                                             MaxHeight="30"
                                             Margin="0,2,0,2"
-                                            Background="Transparent">
+                                            Background="Transparent"
+                                            Command="{Binding OpenNotesCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox MaxHeight="30" MaxWidth="30">
                                                 <Path Data="{StaticResource CalculatorGeometry}"
                                                       Fill="#FFFFFFFF"
                                                       StrokeThickness="0.5"/>
                                             </Viewbox>
-                                            <TextBlock Margin="4,0,0,0"
+                                            <TextBlock Margin="6,0,0,0"
                                                        Text="Calculator"
                                                        VerticalAlignment="Center"/>
                                         </StackPanel>
@@ -163,7 +192,7 @@
                                                       Fill="#FFFFFFFF"
                                                       StrokeThickness="0.5"/>
                                             </Viewbox>
-                                            <TextBlock Margin="4,0,0,0"
+                                            <TextBlock Margin="6,0,0,0"
                                                        Text="Notes"
                                                        VerticalAlignment="Center"/>
                                         </StackPanel>
@@ -200,9 +229,16 @@
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                
             </Viewbox>
             
+            <!-- Back to desktop button -->
+            <Button Grid.Column="3"
+                    Width="10"
+                    VerticalAlignment="Stretch"
+                    Background="White"
+                    Opacity="0.1"
+                    ToolTipService.ToolTip="Desktop"
+                    Command="{Binding ClearDesktopWinddowCommand}"/>
         </Grid>
     </Grid>
 </Page>

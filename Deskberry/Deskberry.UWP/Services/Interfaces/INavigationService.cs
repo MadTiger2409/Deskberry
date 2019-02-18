@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Deskberry.UWP.Services.Interfaces
 {
-    interface INavigationService
+    public interface INavigationService
     {
         void NavigateTo(Type viewType);
+        void NavigateToSubApp(Type viewType);
+        void ClearSubAppsWindow();
         void NavigateBack();
     }
 }

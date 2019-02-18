@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Deskberry.UWP.Services.Interfaces;
+using Deskberry.UWP.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -16,6 +17,20 @@ namespace Deskberry.UWP.Services
         {
             Frame rootFrame = Window.Current.Content as Frame;
             rootFrame.Navigate(viewType, null, new SuppressNavigationTransitionInfo());
+        }
+
+        public void NavigateToSubApp(Type viewType)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            var desktopPage = rootFrame.Content as DesktopPage;
+            desktopPage.NavigationFrame.Navigate(viewType);
+        }
+
+        public void ClearSubAppsWindow()
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            var desktopPage = rootFrame.Content as DesktopPage;
+            desktopPage.NavigationFrame.Content = null;
         }
 
         public void NavigateBack()
