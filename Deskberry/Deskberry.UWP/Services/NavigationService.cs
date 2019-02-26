@@ -16,14 +16,14 @@ namespace Deskberry.UWP.Services
         public void NavigateTo(Type viewType)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-            rootFrame.Navigate(viewType, null, new SuppressNavigationTransitionInfo());
+            rootFrame.Navigate(viewType, null);
         }
 
         public void NavigateToSubApp(Type viewType)
         {
             Frame rootFrame = Window.Current.Content as Frame;
             var desktopPage = rootFrame.Content as DesktopPage;
-            desktopPage.NavigationFrame.Navigate(viewType);
+            desktopPage.NavigationFrame.Navigate(viewType, null, new DrillInNavigationTransitionInfo());
         }
 
         public void ClearSubAppsWindow()

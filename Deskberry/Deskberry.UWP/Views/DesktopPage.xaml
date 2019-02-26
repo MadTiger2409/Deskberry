@@ -167,7 +167,7 @@
                                             MaxHeight="30"
                                             Margin="0,2,0,2"
                                             Background="Transparent"
-                                            Command="{Binding OpenNotesCommand}">
+                                            Command="{Binding OpenCalculatorCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox MaxHeight="30" MaxWidth="30">
                                                 <Path Data="{StaticResource CalculatorGeometry}"
@@ -185,7 +185,8 @@
                                             HorizontalContentAlignment="Left"
                                             MaxHeight="30"
                                             Margin="0,2,0,2"
-                                            Background="Transparent">
+                                            Background="Transparent"
+                                            Command="{Binding OpenNotesCommand}">
                                         <StackPanel Orientation="Horizontal">
                                             <Viewbox MaxHeight="26" MaxWidth="30">
                                                 <Path Data="{StaticResource NoteGeometry}"

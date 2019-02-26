@@ -22,6 +22,7 @@ namespace Deskberry.UWP.ViewModels
         #region Commands
         public RelayCommand OpenBrowerCommand { get; private set; }
         public RelayCommand OpenNotesCommand { get; private set; }
+        public RelayCommand OpenCalculatorCommand { get; private set; }
         public RelayCommand ClearDesktopWinddowCommand { get; private set; }
         #endregion
 
@@ -33,6 +34,7 @@ namespace Deskberry.UWP.ViewModels
 
             OpenBrowerCommand = new RelayCommand(() => OpenBrowser());
             OpenNotesCommand = new RelayCommand(() => OpenNotes());
+            OpenCalculatorCommand = new RelayCommand(() => OpenCalculator());
             ClearDesktopWinddowCommand = new RelayCommand(() => ClearDesktopWindow());
         }
 
@@ -45,6 +47,11 @@ namespace Deskberry.UWP.ViewModels
         private void OpenNotes()
         {
             _navigationService.NavigateToSubApp(typeof(NotesPage));
+        }
+
+        private void OpenCalculator()
+        {
+            _navigationService.NavigateToSubApp(typeof(CalculatorPage));
         }
 
         private void ClearDesktopWindow()

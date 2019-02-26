@@ -5,12 +5,77 @@
     xmlns:local="using:Deskberry.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="DarkViolet">
+    Background="#212223"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Close.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
-    <Viewbox HorizontalAlignment="Center"
-             VerticalAlignment="Center"
-             MaxHeight="50">
-        <TextBlock Text="Notes"/>
-    </Viewbox>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0"
+                   Grid.Row="0"
+                   Text="Super Notes"
+                   FontWeight="ExtraBold"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Margin="8,0,0,0"/>
+
+        <Button Grid.Column="1"
+                Grid.Row="0"
+                Background="DarkRed"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                BorderBrush="DarkGray"
+                BorderThickness="1"
+                Margin="0,2,3,2">
+            <Viewbox>
+                <Path Data="{StaticResource CloseGeometry}"
+                      Fill="#FFFFFFFF"
+                      Stroke="Black"
+                      RenderTransformOrigin="0.5,0.5">
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <TransformGroup.Children>
+                                <RotateTransform Angle="0"/>
+                                <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                            </TransformGroup.Children>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Viewbox>
+        </Button>
+
+        <NavigationView Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        PaneTitle="Notes"
+                        IsSettingsVisible="False"
+                        IsBackButtonVisible="Collapsed"
+                        AlwaysShowHeader="False">
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox QueryIcon="Find"/>
+            </NavigationView.AutoSuggestBox>
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="All notes" Icon="List"/>
+                <NavigationViewItem Content="Add note" Icon="Add"/>
+            </NavigationView.MenuItems>
+
+            <ScrollViewer>
+                <Frame Background="White"/>
+            </ScrollViewer>
+        </NavigationView>
+    </Grid>
 </Page>
