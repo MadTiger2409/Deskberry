@@ -24,7 +24,7 @@ namespace Deskberry.UWP.ViewModels
         #region Fields
         public Account _selectedAccount;
         public string _password;
-        public bool _isLoginEnabled;
+        public bool _isWarningVisible;
         #endregion
 
         #region Injected
@@ -48,6 +48,7 @@ namespace Deskberry.UWP.ViewModels
                     return;
 
                 _selectedAccount = value;
+                IsWarningVisible = false;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedAccount)));
             }
         }
@@ -64,6 +65,19 @@ namespace Deskberry.UWP.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
             }
         }
+
+        public bool IsWarningVisible
+        {
+            get { return _isWarningVisible; }
+            set
+            {
+                if (value == _isWarningVisible)
+                    return;
+
+                _isWarningVisible = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsWarningVisible)));
+            }
+        }
         #endregion
 
         public MainPageViewModel() { }
@@ -76,6 +90,7 @@ namespace Deskberry.UWP.ViewModels
             LoginCommand = new RelayCommand(() => Login());
             Accounts = LoadAccounts();
             SelectedAccount = Accounts.FirstOrDefault();
+            IsWarningVisible = false;
         }
 
         #region PrivateMethods
@@ -94,10 +109,10 @@ namespace Deskberry.UWP.ViewModels
 
         private async void Login()
         {
-            var areValid = await _accountService.AreCredentialsValid(SelectedAccount, Password);
-            if (areValid == true)
+            var canLogin = await _accountService.CanLogIn(SelectedAccount, Password);
+            IsWarningVisible = !canLogin;
+            if (canLogin == true)
             {
-                Session.Set(SelectedAccount.Id, SelectedAccount.Login);
                 _navigationService.NavigateTo(typeof(DesktopPage));
             }
         }

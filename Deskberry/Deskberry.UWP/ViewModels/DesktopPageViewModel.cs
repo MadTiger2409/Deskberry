@@ -18,24 +18,29 @@ namespace Deskberry.UWP.ViewModels
 
         #region Injected
         private INavigationService _navigationService;
+        private IAccountService _accountService;
         #endregion
+
         #region Commands
         public RelayCommand OpenBrowerCommand { get; private set; }
         public RelayCommand OpenNotesCommand { get; private set; }
         public RelayCommand OpenCalculatorCommand { get; private set; }
         public RelayCommand ClearDesktopWinddowCommand { get; private set; }
+        public RelayCommand LogOutCommand { get; private set; }
         #endregion
 
         public DesktopPageViewModel() { }
 
-        public DesktopPageViewModel(INavigationService navigationService)
+        public DesktopPageViewModel(INavigationService navigationService, IAccountService accountService)
         {
             _navigationService = navigationService;
+            _accountService = accountService;
 
             OpenBrowerCommand = new RelayCommand(() => OpenBrowser());
             OpenNotesCommand = new RelayCommand(() => OpenNotes());
             OpenCalculatorCommand = new RelayCommand(() => OpenCalculator());
             ClearDesktopWinddowCommand = new RelayCommand(() => ClearDesktopWindow());
+            LogOutCommand = new RelayCommand(() => LogOut());
         }
 
         #region PrivateMethods
@@ -57,6 +62,12 @@ namespace Deskberry.UWP.ViewModels
         private void ClearDesktopWindow()
         {
             _navigationService.ClearSubAppsWindow();
+        }
+
+        private void LogOut()
+        {
+            _accountService.LogOut();
+            _navigationService.NavigateBack();
         }
         #endregion
     }

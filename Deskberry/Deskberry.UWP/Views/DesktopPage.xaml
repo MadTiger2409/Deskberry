@@ -19,6 +19,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <EdgeUIThemeTransition Edge="Right"/>
+        </TransitionCollection>
+    </Page.Transitions>
     
     <Page.Background>
         <ImageBrush ImageSource="ms-appx:///Assets/Wallpapers/RaspberryPi.jpg"
@@ -36,7 +42,8 @@
         </Grid.RowDefinitions>
 
         <!-- Desktop -->
-        <Frame Grid.Row="0" x:Name="DesktopFrame"/>
+        <Frame Grid.Row="0"
+               x:Name="DesktopFrame"/>
 
         <!-- Taskbar -->
         <Grid Grid.Row="1"
@@ -129,6 +136,11 @@
                                                             Background="Transparent"
                                                             Margin="0,4,0,0"
                                                             HorizontalAlignment="Stretch"/>
+                                                    <Button Content="Logout (temporary)"
+                                                            Background="Transparent"
+                                                            Margin="0,4,0,0"
+                                                            HorizontalAlignment="Stretch"
+                                                            Command="{Binding LogOutCommand}"/>
                                                 </StackPanel>
                                             </Flyout>
                                         </Button.Flyout>

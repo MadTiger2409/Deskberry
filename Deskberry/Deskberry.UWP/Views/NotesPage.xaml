@@ -5,20 +5,26 @@
     xmlns:local="using:Deskberry.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
     Background="#212223"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Extensions/Paths/Close.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Previous-Arrow.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
 
+    <Page.DataContext>
+        <viewModels:NotesViewModel/>
+    </Page.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -34,30 +40,60 @@
                    HorizontalAlignment="Left"
                    Margin="8,0,0,0"/>
 
-        <Button Grid.Column="1"
-                Grid.Row="0"
-                Background="DarkRed"
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="0">
+            <Button Background="DarkBlue"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="DarkGray"
+                    BorderThickness="1"
+                    Margin="2,2,3,2"
+                    Width="30"
+                    Command="{Binding NavigateBackCommand}">
+                <Viewbox>
+                    <Path Data="{StaticResource PreviousArrowGeometry}"
+                          Fill="#FFFFFFFF"
+                          Stroke="Black"
+                          StrokeThickness="0.6"
+                      RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0"/>
+                                    <ScaleTransform ScaleX="1.6" ScaleY="2.1"/>
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Viewbox>
+            </Button>
+
+            <Button Background="DarkRed"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 BorderBrush="DarkGray"
                 BorderThickness="1"
-                Margin="0,2,3,2">
-            <Viewbox>
-                <Path Data="{StaticResource CloseGeometry}"
+                Margin="2,2,1,2"
+                Width="30"
+                Command="{Binding CloseSubAppCommand}">
+                <Viewbox>
+                    <Path Data="{StaticResource CloseGeometry}"
                       Fill="#FFFFFFFF"
                       Stroke="Black"
                       RenderTransformOrigin="0.5,0.5">
-                    <Path.RenderTransform>
-                        <TransformGroup>
-                            <TransformGroup.Children>
-                                <RotateTransform Angle="0"/>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
-                            </TransformGroup.Children>
-                        </TransformGroup>
-                    </Path.RenderTransform>
-                </Path>
-            </Viewbox>
-        </Button>
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0"/>
+                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Viewbox>
+            </Button>
+        </StackPanel>
 
         <NavigationView Grid.Row="1"
                         Grid.ColumnSpan="2"

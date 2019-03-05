@@ -9,8 +9,9 @@ namespace Deskberry.UWP.Services.Interfaces
     public interface INavigationService
     {
         void NavigateTo(Type viewType);
-        void NavigateToSubApp(Type viewType);
-        void ClearSubAppsWindow();
         void NavigateBack();
+        void NavigateToSubApp(Type viewType);
+        void NavigateBackFromSubApp();
+        void ClearSubAppsWindow();
     }
 }

@@ -12,5 +12,7 @@ namespace Deskberry.UWP.Services.Interfaces
         Task<Account> GetAccountAsync(int id);
         Task<List<Account>> GetAccountsAssync();
         Task<bool> AreCredentialsValid(Account account, string password);
+        Task<bool> CanLogIn(Account account, string password);
+        void LogOut();
     }
 }

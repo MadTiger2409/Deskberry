@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Deskberry.UWP.IoC;
+using Deskberry.UWP.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,6 +28,7 @@ namespace Deskberry.UWP.Views
         public NotesPage()
         {
             this.InitializeComponent();
+            DataContext = MainContainer.Container.GetService<NotesViewModel>();
         }
     }
 }

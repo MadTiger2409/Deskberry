@@ -33,6 +33,21 @@ namespace Deskberry.UWP.Services
             desktopPage.NavigationFrame.Content = null;
         }
 
+        public void NavigateBackFromSubApp()
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            var desktopPage = rootFrame.Content as DesktopPage;
+
+            if (desktopPage.NavigationFrame.CanGoBack == true)
+            {
+                desktopPage.NavigationFrame.GoBack();
+            }
+            else
+            {
+                desktopPage.NavigationFrame.Content = null;
+            }
+        }
+
         public void NavigateBack()
         {
             Frame rootFrame = Window.Current.Content as Frame;

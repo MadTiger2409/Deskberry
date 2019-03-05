@@ -76,8 +76,8 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -106,40 +106,41 @@
         <!-- Login grid / login form -->
         <Grid Grid.Column="1"
               Grid.Row="1"
-              VerticalAlignment="Center"
+              VerticalAlignment="Top"
               HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Account's image -->
             <Viewbox Grid.Row="0"
-                     MaxHeight="150"
+                     MaxHeight="160"
                      VerticalAlignment="Bottom">
-                <controls:ImageEx
-                    IsCacheEnabled="True"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
-                    Source="{Binding Path=SelectedAccount.Avatar.Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}"
-                    PlaceholderSource="ms-appx:///Assets/Avatars/Wolf.jpg"
-                    CornerRadius="999"/>
+                <controls:ImageEx IsCacheEnabled="True"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Top"
+                                  Source="{Binding Path=SelectedAccount.Avatar.Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}"
+                                  PlaceholderSource="ms-appx:///Assets/Avatars/Wolf.jpg"
+                                  CornerRadius="999"/>
             </Viewbox>
 
             <!-- Account's login / name -->
             <Viewbox Grid.Row="1"
-                     MaxHeight="50">
+                         MaxHeight="50">
                 <TextBlock Text="{Binding Path=SelectedAccount.Login, Mode=OneWay}"
-                           HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"/>
             </Viewbox>
 
             <!-- Textbox for password -->
             <Viewbox Grid.Row="2"
-                     MaxHeight="40"
-                     Margin="0,4,0,0">
+                         MaxHeight="40"
+                         Margin="0,4,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <PasswordBox Password="{Binding Path=Password, Mode=TwoWay}"
+                    <PasswordBox x:Name="passwordBox"
+                                 Password="{Binding Path=Password, Mode=TwoWay}"
                                  PlaceholderText="Password"
                                  IsTextScaleFactorEnabled="False"
                                  MinWidth="200"/>
@@ -147,6 +148,14 @@
                             Content="Login"
                             Background="#BFed3a0e"/>
                 </StackPanel>
+            </Viewbox>
+
+            <!-- Wrong password message -->
+            <Viewbox Grid.Row="3"
+                         MaxHeight="20"
+                         Margin="0,12,0,0"
+                         Visibility="{Binding IsWarningVisible}">
+                <TextBlock Text="Incorrect password!"/>
             </Viewbox>
         </Grid>
     </Grid>

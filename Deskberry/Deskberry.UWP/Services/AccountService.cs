@@ -7,6 +7,7 @@ using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Data.Extensions.Queries;
 using Deskberry.SQLite.Extensions.Security;
 using Deskberry.SQLite.Models;
+using Deskberry.UWP.Extensions;
 using Deskberry.UWP.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +33,18 @@ namespace Deskberry.UWP.Services
 
             return await Task.FromResult(_passwordManager.VerifyPasswordHash(password, account.PasswordHash, account.Salt));
         }
+
+        public async Task<bool> CanLogIn(Account account, string password)
+        {
+            var areValid = await AreCredentialsValid(account, password);
+            if (areValid == true)
+            {
+                Session.Set(account.Id, account.Login);
+            }
+            return areValid;
+        }
+
+        public void LogOut() => Session.Clear();
 
         public async Task<Account> GetAccountAsync(int id)
             => await _context.Accounts.GetById(id).SingleOrDefaultAsync();

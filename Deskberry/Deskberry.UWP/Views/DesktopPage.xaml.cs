@@ -43,6 +43,7 @@ namespace Deskberry.UWP.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+
             DateTimeTask = UpdateDateAndTimeAsync();
         }
 
