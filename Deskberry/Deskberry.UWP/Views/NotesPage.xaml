@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Deskberry.UWP.ViewModels"
+    xmlns:notes="using:Deskberry.UWP.Views.Notes"
     Background="#212223"
     mc:Ignorable="d">
     <Page.Resources>
@@ -100,7 +101,7 @@
                         PaneTitle="Notes"
                         IsSettingsVisible="False"
                         IsBackButtonVisible="Collapsed"
-                        AlwaysShowHeader="False">
+                        Header="Add note">
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox QueryIcon="Find"/>
             </NavigationView.AutoSuggestBox>
@@ -110,7 +111,9 @@
             </NavigationView.MenuItems>
 
             <ScrollViewer>
-                <Frame Background="White"/>
+                <Frame Background="White">
+                    <notes:AddNotePage/>
+                </Frame>
             </ScrollViewer>
         </NavigationView>
     </Grid>
