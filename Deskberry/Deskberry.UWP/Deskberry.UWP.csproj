@@ -231,6 +231,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\NotesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BrowserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,12 +283,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Deskberry.SQLite">
-      <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
-    </Reference>
+    <Folder Include="ViewModels\Notes\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\Notes\" />
+    <ProjectReference Include="..\Deskberry.SQLite\Deskberry.SQLite.csproj">
+      <Project>{9b621801-9cbf-4b64-b41b-0fbf2f7b1bf1}</Project>
+      <Name>Deskberry.SQLite</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

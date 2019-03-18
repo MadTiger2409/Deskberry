@@ -47,7 +47,7 @@
 
         <!-- Taskbar -->
         <Grid Grid.Row="1"
-              Background= "{ThemeResource SystemControlAcrylicElementBrush}"
+              Background="{ThemeResource SystemControlAcrylicElementBrush}"
               Opacity="0.8">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
