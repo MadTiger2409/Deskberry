@@ -13,18 +13,18 @@ namespace Deskberry.UWP.Views
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
         public MainPage()
         {
             this.InitializeComponent();
             DataContext = MainContainer.Container.GetService<MainPageViewModel>();
         }
 
-        //protected override void OnNavigatedTo(NavigationEventArgs e)
-        //{
-        //    base.OnNavigatedTo(e);
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
 
-        //    passwordBox.
-        //}
+            passwordBox.Password = "";
+            passwordBox.PlaceholderText = "Password";
+        }
     }
 }
