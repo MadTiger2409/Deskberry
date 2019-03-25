@@ -69,7 +69,6 @@ namespace Deskberry.UWP
                 {
                     //TODO: Load state from previously suspended application
                 }
-
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
@@ -82,7 +81,6 @@ namespace Deskberry.UWP
                     // configuring the new page by passing required information as a navigation
                     // parameter
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
-                    
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
