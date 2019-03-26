@@ -40,8 +40,7 @@ namespace Deskberry.UWP
         /// </summary>
         private void MigrateDatabase(DeskberryContext db)
         {
-            if (db.Database.GetPendingMigrations().Any() == true)
-                db.Database.Migrate();
+            db.Database.Migrate();
         }
 
         /// <summary>
@@ -52,7 +51,6 @@ namespace Deskberry.UWP
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             MigrateDatabase(_Context);
-            DataSeeder.Initialize(_Context);
 
             Frame rootFrame = Window.Current.Content as Frame;
 

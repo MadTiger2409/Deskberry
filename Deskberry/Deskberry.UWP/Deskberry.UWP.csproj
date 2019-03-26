@@ -286,10 +286,10 @@
     <Folder Include="ViewModels\Notes\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Deskberry.SQLite\Deskberry.SQLite.csproj">
-      <Project>{9b621801-9cbf-4b64-b41b-0fbf2f7b1bf1}</Project>
-      <Name>Deskberry.SQLite</Name>
-    </ProjectReference>
+    <Reference Include="Deskberry.SQLite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

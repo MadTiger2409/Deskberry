@@ -8,5 +8,10 @@ namespace Deskberry.SQLite.Models.Base
     {
         public int Id { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
+
+        public ModelBase()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
     }
 }

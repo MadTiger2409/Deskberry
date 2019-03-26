@@ -1,4 +1,5 @@
-﻿using Deskberry.SQLite.Models;
+﻿using Deskberry.SQLite.Extensions;
+using Deskberry.SQLite.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,25 @@ namespace Deskberry.SQLite.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Avatar>()
+                .HasKey(x => x.Id);
+            modelBuilder.Entity<Avatar>()
+                .HasData(new
+                {
+                    Id = 1,
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.Dog),
+                    CreatedAt = DateTime.UtcNow
+                });
+
             modelBuilder.Entity<Account>()
                 .HasKey(x => x.Id);
             modelBuilder.Entity<Account>()
                 .HasOne(x => x.Avatar)
                 .WithMany(y => y.Accounts)
                 .HasForeignKey(x => x.AvatarId);
-
-            modelBuilder.Entity<Avatar>()
-                .HasKey(x => x.Id);
+            modelBuilder.Entity<Account>()
+                .HasData(new Account("Admin", "admin", 1, 1));
 
             modelBuilder.Entity<Favorite>()
                 .HasKey(x => x.Id);

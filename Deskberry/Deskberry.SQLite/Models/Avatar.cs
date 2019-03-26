@@ -10,11 +10,17 @@ namespace Deskberry.SQLite.Models
         public byte[] Content { get; protected set; }
         public List<Account> Accounts { get; set; }
 
-        public Avatar() { }
+        public Avatar() : base() { }
 
-        public Avatar(byte[] content)
+        public Avatar(byte[] content) : base()
         {
             Content = content;
+        }
+
+        public Avatar(byte[] content, int id) : base()
+        {
+            Content = content;
+            Id = id;
         }
     }
 }
