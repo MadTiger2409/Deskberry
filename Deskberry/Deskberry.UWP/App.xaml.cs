@@ -5,9 +5,11 @@ using Deskberry.UWP.Views;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.IO;
 using System.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -40,7 +42,12 @@ namespace Deskberry.UWP
         /// </summary>
         private void MigrateDatabase(DeskberryContext db)
         {
-            db.Database.Migrate();
+            var localPath = ApplicationData.Current.LocalFolder.Path + @"\deskberry.db";
+            var fInfo = new FileInfo(localPath);
+            if (!fInfo.Exists)
+            {
+                db.Database.Migrate();
+            }
         }
 
         /// <summary>

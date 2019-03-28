@@ -19,9 +19,9 @@ namespace Deskberry.UWP.Views
             DataContext = MainContainer.Container.GetService<MainPageViewModel>();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
+            base.OnNavigatedFrom(e);
 
             passwordBox.Password = "";
             passwordBox.PlaceholderText = "Password";
