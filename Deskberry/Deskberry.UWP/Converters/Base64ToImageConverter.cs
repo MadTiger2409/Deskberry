@@ -32,7 +32,7 @@ namespace Deskberry.UWP.Converters
                     writer.WriteBytes(imageBytes);
                     await writer.StoreAsync();
 
-                    //! Don't awaint this!
+                    //! Don't await this!
                     //! If you do that, it will cause exception!
                     image.SetSourceAsync(randomAccessStream);
                 }
