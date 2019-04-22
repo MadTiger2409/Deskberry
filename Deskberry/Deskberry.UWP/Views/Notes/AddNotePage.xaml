@@ -22,20 +22,31 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel HorizontalAlignment="Center">
+        <StackPanel Grid.Column="1"
+                    Grid.Row="0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch">
             <TextBlock Text="Title"/>
             <TextBox Margin="0,10,0,10"/>
+        </StackPanel>
 
+        <StackPanel Grid.Column="1"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch">
             <TextBlock Text="Content"/>
             <RichEditBox MinHeight="100"
                          Margin="0,0,0,10"/>
-            <StackPanel Orientation="Horizontal"
-                            HorizontalAlignment="Right">
-                <Button Content="Cancel"
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"
+                    Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Content="Cancel"
                             Margin="0,0,5,0"/>
-                <Button Content="Accept"
+            <Button Content="Accept"
                             Background="DarkBlue"/>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
