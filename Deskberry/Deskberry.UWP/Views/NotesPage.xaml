@@ -29,12 +29,14 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Column="0"
-                   Grid.Row="0"
+                Grid.Row="0"
+                BorderThickness="0,0,0,0.3"
+                BorderBrush="DarkGray"
                 Background="{ThemeResource SystemControlAcrylicElementBrush}">
             <TextBlock Text="Super Notes"
                        FontWeight="ExtraBold"
@@ -49,25 +51,23 @@
                     Grid.Column="1"
                     Grid.Row="0"
                     Background="{ThemeResource SystemControlAcrylicElementBrush}">
-            <Button Background="DarkBlue"
+            <Button Background="Transparent"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     BorderBrush="DarkGray"
-                    BorderThickness="1"
-                    Margin="2,2,3,2"
-                    Width="30"
+                    BorderThickness="0.2,0,0,0.3"
+                    Width="40"
                     Command="{Binding NavigateBackCommand}">
                 <Viewbox>
                     <Path Data="{StaticResource PreviousArrowGeometry}"
-                          Fill="#FFFFFFFF"
-                          Stroke="Black"
-                          StrokeThickness="0.6"
-                      RenderTransformOrigin="0.5,0.5">
+                          Fill="Transparent"
+                          Stroke="LightGray"
+                      RenderTransformOrigin="0.6,0.5">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <TransformGroup.Children>
                                     <RotateTransform Angle="0"/>
-                                    <ScaleTransform ScaleX="1.6" ScaleY="2.1"/>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
                                 </TransformGroup.Children>
                             </TransformGroup>
                         </Path.RenderTransform>
@@ -75,24 +75,24 @@
                 </Viewbox>
             </Button>
 
-            <Button Background="DarkRed"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                BorderBrush="DarkGray"
-                BorderThickness="1"
-                Margin="2,2,1,2"
-                Width="30"
-                Command="{Binding CloseSubAppCommand}">
+            <Button Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="DarkGray"
+                    BorderThickness="0.2,0,0,0.3"
+                    Width="40"
+                    Command="{Binding CloseSubAppCommand}">
                 <Viewbox>
                     <Path Data="{StaticResource CloseGeometry}"
-                      Fill="#FFFFFFFF"
-                      Stroke="Black"
-                      RenderTransformOrigin="0.5,0.5">
+                          Fill="Transparent"
+                          Stroke="LightGray"
+                          StrokeThickness="2"
+                          RenderTransformOrigin="0.5,0.4">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <TransformGroup.Children>
                                     <RotateTransform Angle="0"/>
-                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
                                 </TransformGroup.Children>
                             </TransformGroup>
                         </Path.RenderTransform>

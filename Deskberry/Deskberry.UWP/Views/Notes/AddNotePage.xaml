@@ -5,8 +5,13 @@
     xmlns:local="using:Deskberry.UWP.Views.Notes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:Deskberry.UWP.ViewModels.Notes"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <viewModels:AddNotePageViewModel/>
+    </Page.DataContext>
 
     <Grid Margin="20" Background="#181818">
         <Grid.ColumnDefinitions>
@@ -25,19 +30,21 @@
         <StackPanel Grid.Column="1"
                     Grid.Row="0">
             <TextBlock Text="Title"
-                       FontSize="20"
+                       FontSize="30"
                        Margin="0,0,0,5"/>
-            <TextBox Background="Transparent"/>
+            <TextBox Background="Transparent"
+                     PlaceholderText="Put the note title here."/>
         </StackPanel>
 
         <TextBlock Grid.Column="1"
                    Grid.Row="1"
                    Text="Content"
-                   FontSize="20"
+                   FontSize="30"
                    Padding="0,16,0,0"/>
 
         <RichEditBox Grid.Column="1"
                      Grid.Row="2"
+                     PlaceholderText="Put the note content here."
                      Margin="0,5,0,10"
                      Background="Transparent"
                      VerticalAlignment="Stretch"/>
@@ -45,13 +52,17 @@
         <StackPanel Grid.Column="1"
                     Grid.Row="3"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <Button Content="Cancel"
-                    FontSize="16"
-                    Margin="0,0,5,0"/>
-            <Button Content="Accept"
-                    FontSize="16"
-                    Background="DarkBlue"/>
+                    HorizontalAlignment="Right"
+                    Margin="0,6,0,16">
+            <Button Content="Reset"
+                    MinWidth="70"
+                    FontSize="20"
+                    Margin="0,0,10,0"
+                    Background="Gray"/>
+            <Button Content="Add"
+                    MinWidth="70"
+                    FontSize="20"
+                    Background="#870e0e"/>
         </StackPanel>
     </Grid>
 </Page>

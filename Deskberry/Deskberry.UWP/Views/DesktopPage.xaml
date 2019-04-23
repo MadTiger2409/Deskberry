@@ -47,6 +47,8 @@
 
         <!-- Taskbar -->
         <Grid Grid.Row="1"
+              BorderBrush="#870e0e"
+              BorderThickness="0,0.5,0,0"
               Background="{ThemeResource SystemControlAcrylicElementBrush}"
               Opacity="0.8">
             <Grid.ColumnDefinitions>
