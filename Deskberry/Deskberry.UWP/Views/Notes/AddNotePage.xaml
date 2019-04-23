@@ -8,12 +8,10 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Margin="20"
-          Padding="10"
-          Background="#111111">
+    <Grid Margin="20" Background="#181818">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -25,21 +23,23 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="1"
-                    Grid.Row="0"
-                    Margin="0,0,0,10"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
-            <TextBlock Text="Title"/>
-            <TextBox/>
+                    Grid.Row="0">
+            <TextBlock Text="Title"
+                       FontSize="20"
+                       Margin="0,0,0,5"/>
+            <TextBox Background="Transparent"/>
         </StackPanel>
 
         <TextBlock Grid.Column="1"
                    Grid.Row="1"
-                   Text="Content"/>
+                   Text="Content"
+                   FontSize="20"
+                   Padding="0,16,0,0"/>
 
         <RichEditBox Grid.Column="1"
                      Grid.Row="2"
-                     Margin="0,0,0,10"
+                     Margin="0,5,0,10"
+                     Background="Transparent"
                      VerticalAlignment="Stretch"/>
 
         <StackPanel Grid.Column="1"
@@ -47,9 +47,11 @@
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
             <Button Content="Cancel"
-                            Margin="0,0,5,0"/>
+                    FontSize="16"
+                    Margin="0,0,5,0"/>
             <Button Content="Accept"
-                            Background="DarkBlue"/>
+                    FontSize="16"
+                    Background="DarkBlue"/>
         </StackPanel>
     </Grid>
 </Page>
