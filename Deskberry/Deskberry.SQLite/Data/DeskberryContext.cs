@@ -12,6 +12,7 @@ namespace Deskberry.SQLite.Data
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Avatar> Avatars { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
+        public DbSet<Note> Notes { get; set; }
 
         public DeskberryContext(DbContextOptions<DeskberryContext> options) : base(options) { }
 

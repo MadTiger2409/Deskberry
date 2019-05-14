@@ -104,6 +104,7 @@
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\Interfaces\INoteService.cs" />
     <Compile Include="Services\NavigationService.cs" />
+    <Compile Include="Services\NoteService.cs" />
     <Compile Include="ViewModels\DesktopPageViewModel.cs" />
     <Compile Include="ViewModels\NotesViewModel.cs" />
     <Compile Include="ViewModels\Notes\AddNotePageViewModel.cs" />
@@ -285,15 +286,16 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Deskberry.SQLite">
-      <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Deskberry.Tools\Deskberry.Tools.csproj">
       <Project>{FE6305C1-FD11-4955-9F85-4A6BBE5128AC}</Project>
       <Name>Deskberry.Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Deskberry.SQLite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Deskberry.SQLite\bin\Release\netstandard2.0\Deskberry.SQLite.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

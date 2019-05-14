@@ -29,6 +29,7 @@ namespace Deskberry.Tools.IoC
             #region Services
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<INavigationService, NavigationService>();
+            services.AddScoped<INoteService, NoteService>();
             #endregion
 
             Container = services.BuildServiceProvider();

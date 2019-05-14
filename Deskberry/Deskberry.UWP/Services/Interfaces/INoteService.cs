@@ -12,7 +12,7 @@ namespace Deskberry.UWP.Services.Interfaces
     {
         Task AddAsync(CreateNote command, int userId);
         Task<Note> GetAsync(int id);
-        Task<IEnumerable<Note>> GetAllAsync(int userId);
+        Task<List<Note>> GetAllAsync(int userId);
         Task UpdateAsync(UpdateNote command);
         Task DeleteAsync(int id);
     }
