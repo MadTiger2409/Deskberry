@@ -24,7 +24,7 @@ namespace Deskberry.UWP.Services
             _passwordManager = new PasswordManager();
         }
 
-        public async Task<bool> AreCredentialsValid(Account account, string password)
+        public async Task<bool> AreCredentialsValidAsync(Account account, string password)
         {
             if (string.IsNullOrEmpty(password))
             {
@@ -34,9 +34,9 @@ namespace Deskberry.UWP.Services
             return await Task.FromResult(_passwordManager.VerifyPasswordHash(password, account.PasswordHash, account.Salt));
         }
 
-        public async Task<bool> CanLogIn(Account account, string password)
+        public async Task<bool> CanLogInAsync(Account account, string password)
         {
-            var areValid = await AreCredentialsValid(account, password);
+            var areValid = await AreCredentialsValidAsync(account, password);
             if (areValid == true)
             {
                 Session.Set(account.Id, account.Login);
@@ -46,10 +46,10 @@ namespace Deskberry.UWP.Services
 
         public void LogOut() => Session.Clear();
 
-        public async Task<Account> GetAccountAsync(int id)
+        public async Task<Account> GetAsync(int id)
             => await _context.Accounts.GetById(id).SingleOrDefaultAsync();
 
-        public async Task<List<Account>> GetAccountsAssync()
+        public async Task<List<Account>> GetAsync()
             => await _context.Accounts.Include(x => x.Avatar).ToListAsync();
     }
 }

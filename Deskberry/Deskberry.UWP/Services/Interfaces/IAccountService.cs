@@ -9,10 +9,10 @@ namespace Deskberry.UWP.Services.Interfaces
 {
     public interface IAccountService
     {
-        Task<Account> GetAccountAsync(int id);
-        Task<List<Account>> GetAccountsAssync();
-        Task<bool> AreCredentialsValid(Account account, string password);
-        Task<bool> CanLogIn(Account account, string password);
+        Task<Account> GetAsync(int id);
+        Task<List<Account>> GetAsync();
+        Task<bool> AreCredentialsValidAsync(Account account, string password);
+        Task<bool> CanLogInAsync(Account account, string password);
         void LogOut();
     }
 }

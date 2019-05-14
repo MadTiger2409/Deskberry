@@ -97,7 +97,7 @@ namespace Deskberry.UWP.ViewModels
         private ObservableCollection<Account> LoadAccounts()
         {
             var accountsCollection = new ObservableCollection<Account>();
-            var accounts = _accountService.GetAccountsAssync().GetAwaiter().GetResult();
+            var accounts = _accountService.GetAsync().GetAwaiter().GetResult();
 
             foreach (var account in accounts)
             {
@@ -109,7 +109,7 @@ namespace Deskberry.UWP.ViewModels
 
         private async void Login()
         {
-            var canLogin = await _accountService.CanLogIn(SelectedAccount, Password);
+            var canLogin = await _accountService.CanLogInAsync(SelectedAccount, Password);
             IsWarningVisible = !canLogin;
             if (canLogin == true)
             {

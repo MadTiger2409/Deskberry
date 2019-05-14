@@ -6,7 +6,7 @@ using Deskberry.UWP.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Deskberry.UWP.IoC
+namespace Deskberry.Tools.IoC
 {
     public static class MainContainer
     {
