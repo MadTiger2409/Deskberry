@@ -17,6 +17,11 @@ namespace Deskberry.SQLite.Models
             Content = content;
         }
 
+        /// <summary>
+        /// Constructor used to populate database with avatar
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="id"></param>
         public Avatar(byte[] content, int id) : base()
         {
             Content = content;

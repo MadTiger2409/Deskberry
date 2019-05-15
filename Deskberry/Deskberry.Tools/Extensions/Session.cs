@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Deskberry.UWP.Extensions
+﻿namespace Deskberry.Tools.Extensions
 {
     public static class Session
     {

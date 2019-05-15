@@ -10,12 +10,12 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Raspberry.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Calculator.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Note.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Settings.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Power.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Globe.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Raspberry.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Calculator.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Note.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Settings.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Power.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Globe.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>

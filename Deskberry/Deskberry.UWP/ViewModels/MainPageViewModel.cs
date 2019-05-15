@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Deskberry.SQLite.Models;
+using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
-using Deskberry.UWP.Extensions;
-using Deskberry.UWP.Services;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
-using Windows.ApplicationModel;
 
 namespace Deskberry.UWP.ViewModels
 {

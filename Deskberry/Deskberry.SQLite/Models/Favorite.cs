@@ -12,5 +12,19 @@ namespace Deskberry.SQLite.Models
 
         public int AccountId { get; protected set; }
         public Account Account { get; set; }
+
+        public Favorite() : base() { }
+
+        public Favorite(string title, string uri) : base()
+        {
+            Title = title;
+            Uri = uri;
+        }
+
+        public void Update(string title, string uri)
+        {
+            Title = title;
+            Uri = uri;
+        }
     }
 }

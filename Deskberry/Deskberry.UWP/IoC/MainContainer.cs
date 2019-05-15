@@ -1,12 +1,14 @@
 ﻿using System;
 using Deskberry.SQLite.Data;
+using Deskberry.Tools.Services;
+using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Services;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Deskberry.Tools.IoC
+namespace Deskberry.UWP.IoC
 {
     public static class MainContainer
     {

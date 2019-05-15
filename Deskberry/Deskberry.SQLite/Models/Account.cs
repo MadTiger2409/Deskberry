@@ -20,6 +20,13 @@ namespace Deskberry.SQLite.Models
 
         public Account() : base() { }
 
+        /// <summary>
+        /// Constructor used to popule database with the account
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="password"></param>
+        /// <param name="id"></param>
+        /// <param name="avatarId"></param>
         public Account(string login, string password, int id, int avatarId) : base()
         {
             var manager = new PasswordManager();

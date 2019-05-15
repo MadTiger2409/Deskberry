@@ -12,5 +12,19 @@ namespace Deskberry.SQLite.Models
 
         public int AccountId { get; protected set; }
         public Account Account { get; set; }
+
+        public Note() : base() { }
+
+        public Note(string title, string content) : base()
+        {
+            Title = title;
+            Content = content;
+        }
+
+        public void Update(string title, string content)
+        {
+            Title = title;
+            Content = content;
+        }
     }
 }

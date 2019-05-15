@@ -12,8 +12,8 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Close.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Extensions/Paths/Previous-Arrow.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
