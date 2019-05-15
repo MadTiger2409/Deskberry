@@ -2,12 +2,7 @@
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Deskberry.UWP.ViewModels
 {
