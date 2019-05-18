@@ -1,6 +1,9 @@
-﻿using Deskberry.Tools.Services.Interfaces;
+﻿using Deskberry.Tools.CommandObjects.Note;
+using Deskberry.Tools.Extensions;
+using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Deskberry.UWP.ViewModels.Notes
 {
@@ -12,6 +15,7 @@ namespace Deskberry.UWP.ViewModels.Notes
 
         #region Injected
         private INoteService _noteService;
+        private IAccountService _accountService;
         #endregion
 
         #region Commands
@@ -19,11 +23,28 @@ namespace Deskberry.UWP.ViewModels.Notes
         public RelayCommand CancelCommand { get; private set; }
         #endregion
 
+        #region Properties
+        public CreateNote NoteForm { get; set; }
+        #endregion
+
         public AddNotePageViewModel() { }
 
-        public AddNotePageViewModel(INoteService noteService)
+        public AddNotePageViewModel(INoteService noteService, IAccountService accountService)
         {
             _noteService = noteService;
+            _accountService = accountService;
+
+            NoteForm = new CreateNote();
+
+            AddCommand = new RelayCommand(async () => await AddNoteAsync());
         }
+
+        #region PrivateMethods
+        private async Task AddNoteAsync()
+        {
+            var account = await _accountService.GetAsync(Session.Id);
+            await _noteService.AddAsync(NoteForm, account);
+        }
+        #endregion
     }
 }

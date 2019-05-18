@@ -5,6 +5,7 @@ using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Services;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.ViewModels;
+using Deskberry.UWP.ViewModels.Notes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,6 +27,7 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<MainPageViewModel>();
             services.AddScoped<DesktopPageViewModel>();
             services.AddScoped<NotesViewModel>();
+            services.AddScoped<AddNotePageViewModel>();
             #endregion
 
             #region Services
