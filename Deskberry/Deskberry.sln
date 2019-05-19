@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deskberry.UWP", "Deskberry.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deskberry.Tools", "Deskberry.Tools\Deskberry.Tools.csproj", "{FE6305C1-FD11-4955-9F85-4A6BBE5128AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deskberry.Tools.Tests", "Deskberry.Tools.Tests\Deskberry.Tools.Tests.csproj", "{1BD81913-EC87-4E73-B0A5-801094B18999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deskberry.Tools.Tests", "Deskberry.Tools.Tests\Deskberry.Tools.Tests.csproj", "{1BD81913-EC87-4E73-B0A5-801094B18999}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deskberry.SQLite.Tests", "Deskberry.SQLite.Tests\Deskberry.SQLite.Tests.csproj", "{A113B681-0ED4-4669-B9E9-C1957725E2A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deskberry.SQLite.Tests", "Deskberry.SQLite.Tests\Deskberry.SQLite.Tests.csproj", "{A113B681-0ED4-4669-B9E9-C1957725E2A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
