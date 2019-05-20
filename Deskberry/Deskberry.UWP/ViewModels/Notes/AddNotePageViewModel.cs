@@ -44,9 +44,6 @@ namespace Deskberry.UWP.ViewModels.Notes
         {
             var account = await _accountService.GetAsync(Session.Id);
 
-            //TODO Need to remove this and implement converter
-            NoteForm.Description = "";
-
             await _noteService.AddAsync(NoteForm, account);
         }
         #endregion

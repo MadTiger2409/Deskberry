@@ -43,12 +43,15 @@
                    FontSize="30"
                    Padding="0,16,0,0"/>
 
-        <RichEditBox Grid.Column="1"
-                     Grid.Row="2"
-                     PlaceholderText="Put the note content here."
-                     Margin="0,5,0,10"
-                     Background="Transparent"
-                     VerticalAlignment="Stretch"/>
+        <TextBox Grid.Column="1"
+                 Grid.Row="2"
+                 Text="{Binding NoteForm.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PlaceholderText="Put the note content here."
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Margin="0,5,0,10"
+                 Background="Transparent"
+                 VerticalAlignment="Stretch"/>
 
         <StackPanel Grid.Column="1"
                     Grid.Row="3"
