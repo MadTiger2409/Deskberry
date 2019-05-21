@@ -2,6 +2,7 @@
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
@@ -20,7 +21,7 @@ namespace Deskberry.UWP.ViewModels.Notes
 
         #region Commands
         public RelayCommand AddCommand { get; private set; }
-        public RelayCommand CancelCommand { get; private set; }
+        public RelayCommand ResetCommand { get; private set; }
         #endregion
 
         #region Properties
@@ -37,6 +38,7 @@ namespace Deskberry.UWP.ViewModels.Notes
             NoteForm = new CreateNote();
 
             AddCommand = new RelayCommand(async () => await AddNoteAsync());
+            ResetCommand = new RelayCommand(async () => await ResetNoteFormAsync());
         }
 
         #region PrivateMethods
@@ -45,6 +47,12 @@ namespace Deskberry.UWP.ViewModels.Notes
             var account = await _accountService.GetAsync(Session.Id);
 
             await _noteService.AddAsync(NoteForm, account);
+            await ResetNoteFormAsync();
+        }
+
+        private async Task ResetNoteFormAsync()
+        {
+            await NoteForm.ClearAsync();
         }
         #endregion
     }

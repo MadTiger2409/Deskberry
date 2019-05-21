@@ -62,7 +62,8 @@
                     MinWidth="70"
                     FontSize="20"
                     Margin="0,0,10,0"
-                    Background="Gray"/>
+                    Background="Gray"
+                    Command="{Binding ResetCommand}"/>
             <Button Content="Add"
                     MinWidth="70"
                     FontSize="20"

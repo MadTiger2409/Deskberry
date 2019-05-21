@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Deskberry.Tools.CommandObjects.Note
 {
@@ -35,6 +36,12 @@ namespace Deskberry.Tools.CommandObjects.Note
                 _description = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
             }
+        }
+
+        public async Task ClearAsync()
+        {
+            await Task.FromResult(Title = null);
+            await Task.FromResult(Description = null);
         }
     }
 }
