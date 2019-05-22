@@ -30,6 +30,7 @@ namespace Deskberry.UWP.Services
         {
             Frame rootFrame = Window.Current.Content as Frame;
             var desktopPage = rootFrame.Content as DesktopPage;
+            desktopPage.NavigationFrame.BackStack.Clear();
             desktopPage.NavigationFrame.Content = null;
         }
 

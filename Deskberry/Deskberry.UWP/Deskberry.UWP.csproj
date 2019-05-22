@@ -96,7 +96,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Converters\Base64ToImageConverter.cs" />
     <Compile Include="IoC\MainContainer.cs" />
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
@@ -281,18 +280,17 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Deskberry.Tools\Deskberry.Tools.csproj">
-      <Project>{fe6305c1-fd11-4955-9f85-4a6bbe5128ac}</Project>
-      <Name>Deskberry.Tools</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Deskberry.SQLite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Deskberry.Tools\Deskberry.Tools.csproj">
+      <Project>{ed494184-0cd0-42bd-ac92-7fdb231b4cc4}</Project>
+      <Name>Deskberry.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -7,7 +7,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" 
     xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:viewModels="using:Deskberry.UWP.ViewModels"
-    xmlns:converters="using:Deskberry.UWP.Converters"
+    xmlns:converters="using:Deskberry.Tools.Converters"
     mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>

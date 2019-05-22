@@ -7,7 +7,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace Deskberry.UWP.Converters
+namespace Deskberry.Tools.Converters
 {
     public class Base64ToImageConverter : IValueConverter
     {
