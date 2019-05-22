@@ -32,16 +32,25 @@ namespace Deskberry.UWP.ViewModels.Notes
 
         public AddNotePageViewModel(INoteService noteService, IAccountService accountService)
         {
-            _noteService = noteService;
-            _accountService = accountService;
+            InitializeDependencies(noteService, accountService);
+            InitializeCommands();
 
             NoteForm = new CreateNote();
+        }
 
+        #region PrivateMethods
+        private void InitializeDependencies(INoteService noteService, IAccountService accountService)
+        {
+            _noteService = noteService;
+            _accountService = accountService;
+        }
+
+        private void InitializeCommands()
+        {
             AddCommand = new RelayCommand(async () => await AddNoteAsync());
             ResetCommand = new RelayCommand(async () => await ResetNoteFormAsync());
         }
 
-        #region PrivateMethods
         private async Task AddNoteAsync()
         {
             var account = await _accountService.GetAsync(Session.Id);
