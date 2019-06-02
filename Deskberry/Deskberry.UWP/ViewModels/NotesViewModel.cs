@@ -60,12 +60,16 @@ namespace Deskberry.UWP.ViewModels
 
             NoteMenuItems = InitializeMenuItems();
 
-            // Write a public method to initialize SelectedMenuItem
-            // and call it from OnNavigationTo event in NotesPage code behind
-
             CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
             NavigateBackCommand = new RelayCommand(() => NavigateBack());
         }
+
+        #region PublicMethods
+        public void SetMenuItemOnStart()
+        {
+            SelectedMenuItem = NoteMenuItems[1];
+        }
+        #endregion
 
         #region PrivateMethods
         private ObservableCollection<NoteMenuItem> InitializeMenuItems()

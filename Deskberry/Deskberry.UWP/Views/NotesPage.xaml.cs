@@ -36,5 +36,11 @@ namespace Deskberry.UWP.Views
             this.InitializeComponent();
             DataContext = MainContainer.Container.GetService<NotesViewModel>();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var viewModel = DataContext as NotesViewModel;
+            viewModel.SetMenuItemOnStart();
+        }
     }
 }
