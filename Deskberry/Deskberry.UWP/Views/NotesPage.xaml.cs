@@ -25,6 +25,12 @@ namespace Deskberry.UWP.Views
     /// </summary>
     public sealed partial class NotesPage : Page
     {
+        public Frame NavigationFrame
+        {
+            get { return ContentFrame; }
+            set { ContentFrame = value; }
+        }
+
         public NotesPage()
         {
             this.InitializeComponent();

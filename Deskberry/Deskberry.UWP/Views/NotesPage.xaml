@@ -14,6 +14,17 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml"/>
+
+                <ResourceDictionary>
+                    <DataTemplate x:Key="notesMenuTemplate">
+                        <NavigationViewItem Content="{Binding Path=Name, Mode=OneWay}"
+                                            Tag="{Binding Path=Tag, Mode=OneWay}">
+                            <NavigationViewItem.Icon>
+                                <SymbolIcon Symbol="{Binding Path=Glyph, Mode=OneWay}"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                    </DataTemplate>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -106,19 +117,20 @@
                         PaneTitle="Notes"
                         IsSettingsVisible="False"
                         IsBackButtonVisible="Collapsed"
-                        AlwaysShowHeader="False">
+                        AlwaysShowHeader="False"
+                        MenuItemsSource="{Binding NoteMenuItems}"
+                        SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}"
+                        MenuItemTemplate="{StaticResource notesMenuTemplate}">
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox QueryIcon="Find"/>
             </NavigationView.AutoSuggestBox>
-            <NavigationView.MenuItems>
+            <!--<NavigationView.MenuItems>
                 <NavigationViewItem Content="All notes" Icon="List"/>
                 <NavigationViewItem Content="Add note" Icon="Add"/>
-            </NavigationView.MenuItems>
+            </NavigationView.MenuItems>-->
 
             <ScrollViewer>
-                <Frame Background="White">
-                    <notes:AddNotePage/>
-                </Frame>
+                <Frame x:Name="ContentFrame" Background="White"/>
             </ScrollViewer>
         </NavigationView>
     </Grid>
