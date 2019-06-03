@@ -90,13 +90,8 @@ namespace Deskberry.UWP.ViewModels
         #region PrivateMethods
         private ObservableCollection<Account> LoadAccounts()
         {
-            var accountsCollection = new ObservableCollection<Account>();
             var accounts = _accountService.GetAsync().GetAwaiter().GetResult();
-
-            foreach (var account in accounts)
-            {
-                accountsCollection.Add(account);
-            }
+            var accountsCollection = new ObservableCollection<Account>(accounts);
 
             return accountsCollection;
         }

@@ -67,7 +67,7 @@ namespace Deskberry.UWP.ViewModels
         #region PublicMethods
         public void SetMenuItemOnStart()
         {
-            SelectedMenuItem = NoteMenuItems[1];
+            SelectedMenuItem = NoteMenuItems.FirstOrDefault();
             _noteNavigationService.NavigateTo(SelectedMenuItem.Tag);
         }
         #endregion

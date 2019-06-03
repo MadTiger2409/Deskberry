@@ -104,6 +104,7 @@
     <Compile Include="ViewModels\DesktopPageViewModel.cs" />
     <Compile Include="ViewModels\NotesViewModel.cs" />
     <Compile Include="ViewModels\Notes\AddNotePageViewModel.cs" />
+    <Compile Include="ViewModels\Notes\AllNotesPageViewModel.cs" />
     <Compile Include="Views\BrowserPage.xaml.cs">
       <DependentUpon>BrowserPage.xaml</DependentUpon>
     </Compile>
@@ -123,6 +124,9 @@
     </Compile>
     <Compile Include="Views\Notes\AddNotePage.xaml.cs">
       <DependentUpon>AddNotePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Notes\AllNotesPage.xaml.cs">
+      <DependentUpon>AllNotesPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Notes\AddNotePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Notes\AllNotesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
