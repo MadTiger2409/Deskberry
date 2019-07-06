@@ -1,4 +1,5 @@
 ﻿<Page
+    x:Name="AllNotes"
     x:Class="Deskberry.UWP.Views.Notes.AllNotesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,6 +9,11 @@
     xmlns:viewModels="using:Deskberry.UWP.ViewModels.Notes"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <viewModels:AllNotesPageViewModel/>
+    </Page.DataContext>
+
     <Page.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="noteTemplate">
@@ -15,20 +21,21 @@
                               BorderThickness="1.2"
                               Background="Transparent"
                               Margin="0, 3, 0, 3">
-                    <StackPanel Margin="6">
-                        <TextBlock FontWeight="Bold"
+                    <StackPanel Margin="6" Orientation="Horizontal">
+                        <StackPanel Margin="6" Orientation="Vertical">
+                            <TextBlock FontWeight="Bold"
                                FontSize="20"
                                Text="{Binding Title, Mode=OneWay}"/>
-                        <TextBlock Text="{Binding Content, Mode=OneWay}"/>
+                            <TextBlock Text="{Binding Content, Mode=OneWay}"/>
+                        </StackPanel>
+                        <Button Content="Delete"
+                                CommandParameter="{Binding Id, Mode=OneWay}"
+                                Command="{Binding ViewModel.DeleteCommand, ElementName=AllNotes}"/>
                     </StackPanel>
                 </ListViewItem>
             </DataTemplate>
         </ResourceDictionary>
     </Page.Resources>
-
-    <Page.DataContext>
-        <viewModels:AllNotesPageViewModel/>
-    </Page.DataContext>
 
     <Grid Margin="20" Background="#181818">
         <Grid.ColumnDefinitions>

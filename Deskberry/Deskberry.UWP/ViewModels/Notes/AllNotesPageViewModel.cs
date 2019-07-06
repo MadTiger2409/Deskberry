@@ -1,8 +1,11 @@
 ﻿using Deskberry.SQLite.Models;
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
+using Deskberry.UWP.Commands;
+using Deskberry.UWP.Commands.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Deskberry.UWP.ViewModels.Notes
 {
@@ -16,6 +19,10 @@ namespace Deskberry.UWP.ViewModels.Notes
         private INoteService _noteService;
         #endregion
 
+        #region Commands
+        public RelayCommand<object> DeleteCommand { get; protected set; }
+        #endregion
+
         #region Properties
         public ObservableCollection<Note> Notes { get; set; }
         #endregion
@@ -26,6 +33,8 @@ namespace Deskberry.UWP.ViewModels.Notes
         {
             _noteService = noteService;
 
+            InitializeCommands();
+
             Notes = new ObservableCollection<Note>();
         }
 
@@ -35,6 +44,21 @@ namespace Deskberry.UWP.ViewModels.Notes
             var notes = _noteService.GetAllAsync(Session.Id).GetAwaiter().GetResult();
             var notesCollection = new ObservableCollection<Note>(notes);
             Notes = notesCollection;
+        }
+        #endregion
+
+        #region PrivateMethods
+        private void InitializeCommands()
+        {
+            DeleteCommand = new RelayCommand<object>(async x => await DeleteNoteAsync(x));
+        }
+
+        private async Task DeleteNoteAsync(object id)
+        {
+            var noteId = (int)id;
+
+            await _noteService.DeleteAsync(noteId);
+            RefreshNotesCollection();
         }
         #endregion
     }
