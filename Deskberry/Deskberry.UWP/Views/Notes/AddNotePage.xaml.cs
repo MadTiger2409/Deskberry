@@ -16,17 +16,7 @@ namespace Deskberry.UWP.Views.Notes
         public AddNotePage()
         {
             this.InitializeComponent();
-            this.DataContextChanged += (s, e) => { ViewModel = DataContext as AddNotePageViewModel; };
             DataContext = MainContainer.Container.GetService<AddNotePageViewModel>();
         }
-
-        public AddNotePageViewModel ViewModel
-        {
-            get { return (AddNotePageViewModel)GetValue(ViewModelProperty); }
-            set { SetValue(ViewModelProperty, value); }
-        }
-
-        public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(AddNotePageViewModel), typeof(AddNotePage), new PropertyMetadata(0));
     }
 }

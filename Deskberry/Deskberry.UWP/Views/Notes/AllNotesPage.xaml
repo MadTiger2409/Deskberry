@@ -29,8 +29,8 @@
                             <TextBlock Text="{Binding Content, Mode=OneWay}"/>
                         </StackPanel>
                         <Button Content="Delete"
-                                CommandParameter="{Binding Id, Mode=OneWay}"
-                                Command="{Binding ViewModel.DeleteCommand, ElementName=AllNotes}"/>
+                                Tag="{Binding Id}"
+                                Click="Button_Click_DeleteNote"/>
                     </StackPanel>
                 </ListViewItem>
             </DataTemplate>
@@ -58,9 +58,9 @@
         <ScrollViewer Grid.Row="1"
                       Grid.Column="1"
                       VerticalScrollBarVisibility="Auto">
-            <ListView ItemsSource="{Binding Notes, Mode=OneWay}"
+            <ListView x:Name="NotesListView"
+                      ItemsSource="{Binding Notes, Mode=TwoWay}"
                       ItemTemplate="{StaticResource noteTemplate}">
-                
             </ListView>
         </ScrollViewer>
     </Grid>

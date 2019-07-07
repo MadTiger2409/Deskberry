@@ -24,5 +24,17 @@ namespace Deskberry.UWP.Views.Notes
             var viewModel = DataContext as AllNotesPageViewModel;
             viewModel.RefreshNotesCollection();
         }
+
+        // A workaround for accessing parent's command
+        private void Button_Click_DeleteNote(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var viewModel = (AllNotesPageViewModel)DataContext;
+            var button = (Button)sender;
+
+            if (viewModel.DeleteCommand.CanExecute(button.Tag))
+                viewModel.DeleteCommand.Execute(button.Tag);
+
+            NotesListView.ItemsSource = viewModel.Notes;
+        }
     }
 }
