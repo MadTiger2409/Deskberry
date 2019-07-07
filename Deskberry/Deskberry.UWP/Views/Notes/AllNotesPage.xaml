@@ -21,14 +21,18 @@
                               BorderThickness="1.2"
                               Background="Transparent"
                               Margin="0, 3, 0, 3">
-                    <StackPanel Margin="6" Orientation="Horizontal">
-                        <StackPanel Margin="6" Orientation="Vertical">
+                    <StackPanel Margin="6" Orientation="Horizontal"
+                                HorizontalAlignment="Stretch">
+                        <StackPanel Margin="6" Orientation="Vertical"
+                                    HorizontalAlignment="Stretch">
                             <TextBlock FontWeight="Bold"
                                FontSize="20"
                                Text="{Binding Title, Mode=OneWay}"/>
                             <TextBlock Text="{Binding Content, Mode=OneWay}"/>
                         </StackPanel>
                         <Button Content="Delete"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
                                 Tag="{Binding Id}"
                                 Click="Button_Click_DeleteNote"/>
                     </StackPanel>
@@ -59,9 +63,9 @@
                       Grid.Column="1"
                       VerticalScrollBarVisibility="Auto">
             <ListView x:Name="NotesListView"
+                      SelectionChanged="NotesListView_SelectionChanged"
                       ItemsSource="{Binding Notes, Mode=TwoWay}"
-                      ItemTemplate="{StaticResource noteTemplate}">
-            </ListView>
+                      ItemTemplate="{StaticResource noteTemplate}"/>
         </ScrollViewer>
     </Grid>
 </Page>

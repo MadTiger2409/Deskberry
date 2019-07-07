@@ -36,5 +36,11 @@ namespace Deskberry.UWP.Views.Notes
 
             NotesListView.ItemsSource = viewModel.Notes;
         }
+
+        // Disables highlighting for selected item
+        private void NotesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            NotesListView.SelectedItem = null;
+        }
     }
 }
