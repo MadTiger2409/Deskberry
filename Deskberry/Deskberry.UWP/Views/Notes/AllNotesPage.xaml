@@ -21,21 +21,40 @@
                               BorderThickness="1.2"
                               Background="Transparent"
                               Margin="0, 3, 0, 3">
-                    <StackPanel Margin="6" Orientation="Horizontal"
-                                HorizontalAlignment="Stretch">
-                        <StackPanel Margin="6" Orientation="Vertical"
-                                    HorizontalAlignment="Stretch">
-                            <TextBlock FontWeight="Bold"
-                               FontSize="20"
-                               Text="{Binding Title, Mode=OneWay}"/>
-                            <TextBlock Text="{Binding Content, Mode=OneWay}"/>
+                    <Grid Margin="6">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   FontWeight="Bold"
+                                   FontSize="20"
+                                   Text="{Binding Title, Mode=OneWay}"/>
+                        <TextBlock Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="{Binding Content, Mode=OneWay}"/>
+
+                        <StackPanel Grid.Row="1"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Orientation="Horizontal">
+                            <Button Content="Edit"
+                                    Margin="0,0,6,0"
+                                    Tag="{Binding Id}"/>
+
+                            <Button Content="Delete"
+                                    Tag="{Binding Id}"
+                                    Click="Button_Click_DeleteNote"/>
                         </StackPanel>
-                        <Button Content="Delete"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Tag="{Binding Id}"
-                                Click="Button_Click_DeleteNote"/>
-                    </StackPanel>
+                    </Grid>
                 </ListViewItem>
             </DataTemplate>
         </ResourceDictionary>
@@ -65,7 +84,13 @@
             <ListView x:Name="NotesListView"
                       SelectionChanged="NotesListView_SelectionChanged"
                       ItemsSource="{Binding Notes, Mode=TwoWay}"
-                      ItemTemplate="{StaticResource noteTemplate}"/>
+                      ItemTemplate="{StaticResource noteTemplate}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
         </ScrollViewer>
     </Grid>
 </Page>
