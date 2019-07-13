@@ -21,10 +21,6 @@
                     <SolidColorBrush x:Key="ListViewItemBackgroundSelectedPointerOver"
                                      Color="#000000"
                                      Opacity="0.65"/>
-                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver"
-                                     Color="#BFed3a0e"/>
-                    <SolidColorBrush x:Key="ButtonBackgroundPressed"
-                                     Color="#9cc22f0e"/>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
 
@@ -146,8 +142,7 @@
                                  IsTextScaleFactorEnabled="False"
                                  MinWidth="200"/>
                     <Button Command="{Binding LoginCommand}"
-                            Content="Login"
-                            Background="#BFed3a0e"/>
+                            Content="Login"/>
                 </StackPanel>
             </Viewbox>
 
