@@ -141,8 +141,10 @@
                                  PlaceholderText="Password"
                                  IsTextScaleFactorEnabled="False"
                                  MinWidth="200"/>
-                    <Button Command="{Binding LoginCommand}"
-                            Content="Login"/>
+                    <Button Content="Login"
+                            Command="{Binding LoginCommand}"
+                            Background="{ThemeResource SystemAccentColor}"
+                            Style="{StaticResource ActionButton}"/>
                 </StackPanel>
             </Viewbox>
 

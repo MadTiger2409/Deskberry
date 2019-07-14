@@ -48,7 +48,8 @@
                                     Orientation="Horizontal">
                             <Button Content="Edit"
                                     Margin="0,0,6,0"
-                                    Tag="{Binding Id}"/>
+                                    Tag="{Binding Id}"
+                                    Style="{ThemeResource ActionButton}"/>
 
                             <Button Content="Delete"
                                     Tag="{Binding Id}"

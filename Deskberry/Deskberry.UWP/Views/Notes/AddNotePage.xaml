@@ -67,8 +67,8 @@
             <Button Content="Add"
                     MinWidth="70"
                     FontSize="20"
-                    Background="#870e0e"
-                    Command="{Binding AddCommand}"/>
+                    Command="{Binding AddCommand}"
+                    Style="{StaticResource ActionButton}"/>
         </StackPanel>
     </Grid>
 </Page>
