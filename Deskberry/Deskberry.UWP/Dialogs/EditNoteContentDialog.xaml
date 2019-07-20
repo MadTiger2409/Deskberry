@@ -1,0 +1,45 @@
+﻿<ContentDialog
+    x:Class="Deskberry.UWP.Dialogs.EditNoteContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Deskberry.UWP.Dialogs"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="{Binding Title, Mode=TwoWay}"
+    PrimaryButtonText="Apply"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+    <Grid MinHeight="350"
+          MinWidth="400">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Title"
+                       FontSize="30"
+                       Margin="0,0,0,5"/>
+            <TextBox Background="Transparent"
+                     PlaceholderText="Put the note title here."
+                     Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+
+        <TextBlock Grid.Row="1"
+                   Text="Content"
+                   FontSize="30"
+                   Padding="0,16,0,0"/>
+
+        <TextBox Grid.Row="2"
+                 Text="{Binding Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 PlaceholderText="Put the note content here."
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 Margin="0,5,0,10"
+                 Background="Transparent"
+                 VerticalAlignment="Stretch"/>
+    </Grid>
+</ContentDialog>

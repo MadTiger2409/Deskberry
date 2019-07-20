@@ -97,6 +97,10 @@
     </Compile>
     <Compile Include="Commands\Generic\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Dialogs\EditNoteContentDialog.xaml.cs">
+      <DependentUpon>EditNoteContentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="IoC\MainContainer.cs" />
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\Interfaces\INoteNavigationService.cs" />
@@ -232,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Paths\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\EditNoteContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

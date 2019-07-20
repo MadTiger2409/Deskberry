@@ -1,6 +1,8 @@
-﻿using Deskberry.UWP.IoC;
+﻿using Deskberry.UWP.Dialogs;
+using Deskberry.UWP.IoC;
 using Deskberry.UWP.ViewModels.Notes;
 using Microsoft.Extensions.DependencyInjection;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -26,7 +28,7 @@ namespace Deskberry.UWP.Views.Notes
         }
 
         // A workaround for accessing parent's command
-        private void Button_Click_DeleteNote(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void Button_Click_DeleteNote(object sender, RoutedEventArgs e)
         {
             var viewModel = (AllNotesPageViewModel)DataContext;
             var button = (Button)sender;
@@ -41,6 +43,15 @@ namespace Deskberry.UWP.Views.Notes
         private void NotesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NotesListView.SelectedItem = null;
+        }
+
+        private void Button_Click_EditNote(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (AllNotesPageViewModel)DataContext;
+            var button = (Button)sender;
+
+            if (viewModel.EditNoteCommand.CanExecute(button.Tag))
+                viewModel.EditNoteCommand.Execute(button.Tag);
         }
     }
 }

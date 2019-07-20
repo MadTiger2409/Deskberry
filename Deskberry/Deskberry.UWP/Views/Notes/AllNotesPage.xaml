@@ -49,6 +49,7 @@
                             <Button Content="Edit"
                                     Margin="0,0,6,0"
                                     Tag="{Binding Id}"
+                                    Click="Button_Click_EditNote"
                                     Style="{ThemeResource ActionButton}"/>
 
                             <Button Content="Delete"

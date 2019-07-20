@@ -123,6 +123,7 @@
     <Compile Include="CommandObjects\Note\CreateNote.cs" />
     <Compile Include="CommandObjects\Note\UpdateNote.cs" />
     <Compile Include="Converters\Base64ToImageConverter.cs" />
+    <Compile Include="Enums\DialogEnum.cs" />
     <Compile Include="Extensions\HelpModels\NoteMenuItem.cs" />
     <Compile Include="Extensions\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
