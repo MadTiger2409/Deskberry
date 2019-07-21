@@ -8,8 +8,8 @@ namespace Deskberry.Tools.CommandObjects.Note
 {
     public class CreateNote : INotifyPropertyChanged
     {
-        private string _title;
-        private string _description;
+        protected string _title;
+        protected string _description;
 
         public event PropertyChangedEventHandler PropertyChanged;
 

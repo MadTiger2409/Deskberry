@@ -8,6 +8,8 @@
     mc:Ignorable="d"
     Title="{Binding Title, Mode=TwoWay}"
     PrimaryButtonText="Apply"
+    PrimaryButtonStyle="{ThemeResource ActionButton}"
+    IsPrimaryButtonEnabled="True"
     SecondaryButtonText="Cancel"
     PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
     SecondaryButtonClick="ContentDialog_SecondaryButtonClick">

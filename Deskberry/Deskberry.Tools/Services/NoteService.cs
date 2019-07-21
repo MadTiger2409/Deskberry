@@ -42,7 +42,7 @@ namespace Deskberry.Tools.Services
         public async Task UpdateAsync(UpdateNote command)
         {
             var note = await GetAsync(command.Id);
-            note.Update(command.Title, command.Description);
+            note.Update(command.Title, command.Content);
 
             await _context.SaveChangesAsync();
         }

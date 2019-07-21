@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
+using Deskberry.Tools.CommandObjects.Note;
 
 namespace Deskberry.UWP.ViewModels.Notes
 {
@@ -71,9 +72,15 @@ namespace Deskberry.UWP.ViewModels.Notes
         {
             var noteId = (int)id;
 
-            var note = Notes.SingleOrDefault(x => x.Id == noteId);
-            var dialog = DialogHelper.GetContentDialog(DialogEnum.EditNoteDialog, note);
-            await Task.FromResult(dialog.ShowAsync());
+            var context = new UpdateNote(Notes.SingleOrDefault(x => x.Id == noteId));
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.EditNoteDialog, context);
+            var result = dialog.ShowAsync().GetResults();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                context = (UpdateNote)dialog.DataContext;
+                await _noteService.UpdateAsync(context);
+            }
         }
         #endregion
     }

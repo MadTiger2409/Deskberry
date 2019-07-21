@@ -1,11 +1,6 @@
-﻿using Deskberry.SQLite.Models;
+﻿using Deskberry.Tools.CommandObjects.Note;
 using Deskberry.Tools.Enums;
 using Deskberry.UWP.Dialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -24,7 +19,7 @@ namespace Deskberry.UWP.Helpers
                     {
                         Height = Window.Current.Bounds.Height,
                         Width = Window.Current.Bounds.Width,
-                        DataContext = (Note)dialogContent
+                        DataContext = (UpdateNote)dialogContent
                     };
                     break;
 
