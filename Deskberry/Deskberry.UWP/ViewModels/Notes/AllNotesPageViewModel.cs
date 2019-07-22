@@ -5,6 +5,7 @@ using Deskberry.Tools.Enums;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Commands.Generic;
 using Deskberry.UWP.Helpers;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -74,7 +75,7 @@ namespace Deskberry.UWP.ViewModels.Notes
 
             var context = new UpdateNote(Notes.SingleOrDefault(x => x.Id == noteId));
             var dialog = DialogHelper.GetContentDialog(DialogEnum.EditNoteDialog, context);
-            var result = dialog.ShowAsync().GetResults();
+            var result = await dialog.ShowAsync();
 
             if (result == ContentDialogResult.Primary)
             {

@@ -25,15 +25,5 @@ namespace Deskberry.UWP.Dialogs
             Height = Window.Current.Bounds.Height;
             Width = Window.Current.Bounds.Width;
         }
-
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
-            Hide();
-        }
-
-        private void ContentDialog_SecondaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
-            Hide();
-        }
     }
 }

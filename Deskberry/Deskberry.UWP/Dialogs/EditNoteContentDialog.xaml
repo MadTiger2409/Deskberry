@@ -10,9 +10,7 @@
     PrimaryButtonText="Apply"
     PrimaryButtonStyle="{ThemeResource ActionButton}"
     IsPrimaryButtonEnabled="True"
-    SecondaryButtonText="Cancel"
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
-    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+    SecondaryButtonText="Cancel">
     <Grid MinHeight="350"
           MinWidth="400">
         <Grid.RowDefinitions>
