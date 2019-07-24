@@ -8,6 +8,7 @@ namespace Deskberry.Tools.Enums
 {
     public enum DialogEnum
     {
-        EditNoteDialog = 1
+        EditNoteDialog = 0,
+        DeleteNoteDialog = 1
     }
 }

@@ -23,6 +23,13 @@ namespace Deskberry.UWP.Helpers
                     };
                     break;
 
+                case DialogEnum.DeleteNoteDialog:
+                    dialog = new DeleteNoteContentDialog
+                    {
+                        DataContext = dialogContent
+                    };
+                    break;
+
                 default:
                     dialog = new ContentDialog();
                     break;

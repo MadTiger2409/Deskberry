@@ -52,6 +52,12 @@ namespace Deskberry.UWP.ViewModels.Notes
             var notes = _noteService.GetAllAsync(Session.Id).GetAwaiter().GetResult();
             Notes = new ObservableCollection<Note>(notes);
         }
+
+        public async Task RefreshNotesCollectionAsync()
+        {
+            var notes = await _noteService.GetAllAsync(Session.Id);
+            Notes = new ObservableCollection<Note>(notes);
+        }
         #endregion
 
         #region PrivateMethods
@@ -65,8 +71,15 @@ namespace Deskberry.UWP.ViewModels.Notes
         {
             var noteId = (int)id;
 
-            await _noteService.DeleteAsync(noteId);
-            RefreshNotesCollection();
+            var context = Notes.Where(x => x.Id == noteId).Select(x => x.Title);
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.DeleteNoteDialog, context);
+            var resoult = await dialog.ShowAsync();
+
+            if (resoult == ContentDialogResult.Primary)
+            {
+                await _noteService.DeleteAsync(noteId);
+                Notes.Remove(Notes.Where(x => x.Id == noteId).SingleOrDefault());
+            }
         }
 
         private async Task EditNoteAsync(object id)
@@ -82,6 +95,8 @@ namespace Deskberry.UWP.ViewModels.Notes
                 context = (UpdateNote)dialog.DataContext;
                 await _noteService.UpdateAsync(context);
             }
+
+            RefreshNotesCollection();
         }
         #endregion
     }

@@ -97,6 +97,9 @@
     </Compile>
     <Compile Include="Commands\Generic\RelayCommand.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Dialogs\DeleteNoteContentDialog.xaml.cs">
+      <DependentUpon>DeleteNoteContentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\EditNoteContentDialog.xaml.cs">
       <DependentUpon>EditNoteContentDialog.xaml</DependentUpon>
     </Compile>
@@ -236,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Paths\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\DeleteNoteContentDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
