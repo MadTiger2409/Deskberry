@@ -50,12 +50,7 @@ namespace Deskberry.UWP.ViewModels.Notes
         public void RefreshNotesCollection()
         {
             var notes = _noteService.GetAllAsync(Session.Id).GetAwaiter().GetResult();
-            Notes = new ObservableCollection<Note>(notes);
-        }
 
-        public async Task RefreshNotesCollectionAsync()
-        {
-            var notes = await _noteService.GetAllAsync(Session.Id);
             Notes = new ObservableCollection<Note>(notes);
         }
         #endregion
@@ -95,8 +90,6 @@ namespace Deskberry.UWP.ViewModels.Notes
                 context = (UpdateNote)dialog.DataContext;
                 await _noteService.UpdateAsync(context);
             }
-
-            RefreshNotesCollection();
         }
         #endregion
     }
