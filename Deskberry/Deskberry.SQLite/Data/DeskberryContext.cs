@@ -18,7 +18,6 @@ namespace Deskberry.SQLite.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Avatar>()
                 .HasKey(x => x.Id);
             modelBuilder.Entity<Avatar>()
