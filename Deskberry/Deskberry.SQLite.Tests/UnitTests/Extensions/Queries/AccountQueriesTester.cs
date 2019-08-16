@@ -36,7 +36,6 @@ namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
             count = databaseFixture.Context.Accounts.Count();
 
             // Assert
-            //Assert.Equal(1, count);
             Assert.Equal(1, account.Id);
         }
 

@@ -13,7 +13,7 @@ namespace Deskberry.SQLite.Tests.Resources.Databases
         public InMemoryDatabaseFixture()
         {
             var options = new DbContextOptionsBuilder<DeskberryContext>()
-                .UseInMemoryDatabase(databaseName: "test_database")
+                .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
             Context = new DeskberryContext(options);
@@ -21,6 +21,7 @@ namespace Deskberry.SQLite.Tests.Resources.Databases
 
         public void Dispose()
         {
+            Context.Database.EnsureDeleted();
             Context.Dispose();
         }
     }
