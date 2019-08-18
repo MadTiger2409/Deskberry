@@ -14,19 +14,17 @@ namespace Deskberry.SQLite.Data
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Note> Notes { get; set; }
 
-        public DeskberryContext(DbContextOptions<DeskberryContext> options) : base(options) { }
+        private readonly bool isProductionDatabase;
+
+        public DeskberryContext(DbContextOptions<DeskberryContext> options, bool isProductionDatabase = true) : base(options)
+        {
+            this.isProductionDatabase = isProductionDatabase;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Avatar>()
                 .HasKey(x => x.Id);
-            modelBuilder.Entity<Avatar>()
-                .HasData(new
-                {
-                    Id = 1,
-                    Content = AvatarRoot.ToByteArray(AvatarRoot.Dog),
-                    CreatedAt = DateTime.UtcNow
-                });
 
             modelBuilder.Entity<Account>()
                 .HasKey(x => x.Id);
@@ -34,8 +32,6 @@ namespace Deskberry.SQLite.Data
                 .HasOne(x => x.Avatar)
                 .WithMany(y => y.Accounts)
                 .HasForeignKey(x => x.AvatarId);
-            modelBuilder.Entity<Account>()
-                .HasData(new Account("Admin", "admin", 1, 1));
 
             modelBuilder.Entity<Favorite>()
                 .HasKey(x => x.Id);
@@ -50,6 +46,20 @@ namespace Deskberry.SQLite.Data
                 .HasOne(x => x.Account)
                 .WithMany(y => y.Notes)
                 .HasForeignKey(x => x.AccountId);
+
+            if (isProductionDatabase)
+            {
+                modelBuilder.Entity<Avatar>()
+                .HasData(new
+                {
+                    Id = 1,
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.Dog),
+                    CreatedAt = DateTime.UtcNow
+                });
+
+                modelBuilder.Entity<Account>()
+                .HasData(new Account("Admin", "admin", 1, 1));
+            }
         }
     }
 }

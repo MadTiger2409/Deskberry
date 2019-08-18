@@ -11,13 +11,15 @@ using Xunit;
 namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
 {
     [Collection("Account Queries Tests")]
-    public class AccountQueriesTester : IClassFixture<InMemoryDatabaseFixture>
+    public class AccountQueriesTester : SQLiteDatabaseFixture
     {
-        InMemoryDatabaseFixture databaseFixture;
-
-        public AccountQueriesTester(InMemoryDatabaseFixture _databaseFixture)
+        private void PrepareDbContextWithOneAvatarAndOneUser(string login, byte[] passwordHash, byte[] passwordSalt)
         {
-            databaseFixture = _databaseFixture;
+            var avatar = new Avatar(new byte[] { 1, 57, 137, 75 });
+
+            DbContext.Avatars.Add(avatar);
+            DbContext.Accounts.Add(new Account(login, passwordHash, passwordSalt, avatar));
+            DbContext.SaveChanges();
         }
 
         [Theory]
@@ -28,14 +30,14 @@ namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
             Account account;
             int count;
 
-            databaseFixture.Context.Accounts.Add(new Account(login, passwordHash, passwordSalt));
-            databaseFixture.Context.SaveChanges();
+            PrepareDbContextWithOneAvatarAndOneUser(login, passwordHash, passwordSalt);
 
             // Act
-            account = databaseFixture.Context.Accounts.GetById(1).SingleOrDefault();
-            count = databaseFixture.Context.Accounts.Count();
+            account = DbContext.Accounts.GetById(1).SingleOrDefault();
+            count = DbContext.Accounts.Count();
 
             // Assert
+            Assert.Equal(1, count);
             Assert.Equal(1, account.Id);
         }
 
