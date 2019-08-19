@@ -13,12 +13,13 @@ namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
     [Collection("Account Queries Tests")]
     public class AccountQueriesTester : SQLiteDatabaseFixture
     {
-        private void PrepareDbContextWithOneAvatarAndOneUser(string login, byte[] passwordHash, byte[] passwordSalt)
+        private void PrepareDbContextWithOneAvatarAndOneUser(string login, byte[] passwordHash, byte[] passwordSalt, out Account account)
         {
             var avatar = new Avatar(new byte[] { 1, 57, 137, 75 });
+            account = new Account(login, passwordHash, passwordSalt, avatar);
 
             DbContext.Avatars.Add(avatar);
-            DbContext.Accounts.Add(new Account(login, passwordHash, passwordSalt, avatar));
+            DbContext.Accounts.Add(account);
             DbContext.SaveChanges();
         }
 
@@ -30,21 +31,28 @@ namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
             Account account;
             int count;
 
-            PrepareDbContextWithOneAvatarAndOneUser(login, passwordHash, passwordSalt);
+            PrepareDbContextWithOneAvatarAndOneUser(login, passwordHash, passwordSalt, out Account expectedAccount);
 
             // Act
-            account = DbContext.Accounts.GetById(1).SingleOrDefault();
+            account = DbContext.Accounts.GetById(expectedAccount.Id).SingleOrDefault();
             count = DbContext.Accounts.Count();
 
             // Assert
-            Assert.Equal(1, count);
-            Assert.Equal(1, account.Id);
+            Assert.Equal(expectedAccount.Id, account.Id);
+            Assert.Equal(expectedAccount, account);
         }
 
         [Fact]
         public void GetById_RecordDoesntExist_NotFound()
         {
+            // Arrange
+            Account account;
 
+            // Act
+            account = DbContext.Accounts.GetById(10).SingleOrDefault();
+
+            // Assert
+            Assert.Null(account);
         }
     }
 }
