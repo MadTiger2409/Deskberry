@@ -29,6 +29,9 @@ namespace Deskberry.UWP
         /// </summary>
         public App()
         {
+            // Syncfusion key
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTM1MjkyQDMxMzcyZTMyMmUzMGFhYUg1N242WFhaNFFaTmtSc3RmV2RjVXlyVnd4dmh4VExOTGszdERqRjg9");
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
