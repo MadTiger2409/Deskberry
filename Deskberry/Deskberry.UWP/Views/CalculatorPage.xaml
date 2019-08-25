@@ -7,9 +7,120 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:SfInput="using:Syncfusion.UI.Xaml.Controls.Input"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="Transparent">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
-    <Viewbox Margin="20">
-        <SfInput:SfCalculator />
-    </Viewbox>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0"
+                Grid.Row="0"
+                BorderThickness="0,0,0,0.3"
+                BorderBrush="DarkGray"
+                Background="{ThemeResource SystemControlAcrylicElementBrush}">
+            <TextBlock Text="Super Notes"
+                       FontWeight="ExtraBold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="8,0,0,0"/>
+        </Border>
+
+
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Background="{ThemeResource SystemControlAcrylicElementBrush}">
+            <Button Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="DarkGray"
+                    BorderThickness="0.2,0,0,0.3"
+                    Width="40"
+                    Command="{Binding NavigateBackCommand}">
+                <Viewbox>
+                    <Path Data="{StaticResource PreviousArrowGeometry}"
+                          Fill="Transparent"
+                          Stroke="LightGray"
+                      RenderTransformOrigin="0.6,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0"/>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Viewbox>
+            </Button>
+
+            <Button Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="DarkGray"
+                    BorderThickness="0.2,0,0,0.3"
+                    Width="40"
+                    Command="{Binding CloseSubAppCommand}">
+                <Viewbox>
+                    <Path Data="{StaticResource CloseGeometry}"
+                          Fill="Transparent"
+                          Stroke="LightGray"
+                          StrokeThickness="2"
+                          RenderTransformOrigin="0.5,0.4">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0"/>
+                                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Viewbox>
+            </Button>
+        </StackPanel>
+
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="2"
+              Background="Black">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Viewbox Grid.Row="0">
+                <SfInput:SfCalculator x:Name="calculator"
+                    Background="Black"
+                    BorderThickness="2"
+                    BorderBrush="Gray"
+                    Margin="20"/>
+            </Viewbox>
+
+            <StackPanel Grid.Column="1" Padding="5">
+                <TextBox Text="2 + 5 = 7" FontSize="20" IsReadOnly="True"/>
+                <TextBox Text="2 + 5 = 7" FontSize="20" IsReadOnly="True"/>
+                <TextBox Text="2 + 5 = 7" FontSize="20" IsReadOnly="True"/>
+                <TextBox Text="2 + 5 = 7" FontSize="20" IsReadOnly="True"/>
+                <TextBox Text="2 + 5 = 7" FontSize="20" IsReadOnly="True"/>
+                <TextBox Text="2 + 5 = 7" FontSize="20" IsReadOnly="True"/>
+                <TextBox Text="2 + 5 = 7" FontSize="20" IsReadOnly="True"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Page>

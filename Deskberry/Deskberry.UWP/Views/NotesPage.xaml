@@ -124,10 +124,6 @@
             <NavigationView.AutoSuggestBox>
                 <AutoSuggestBox QueryIcon="Find"/>
             </NavigationView.AutoSuggestBox>
-            <!--<NavigationView.MenuItems>
-                <NavigationViewItem Content="All notes" Icon="List"/>
-                <NavigationViewItem Content="Add note" Icon="Add"/>
-            </NavigationView.MenuItems>-->
 
             <ScrollViewer>
                 <Frame x:Name="ContentFrame" Background="White"/>
