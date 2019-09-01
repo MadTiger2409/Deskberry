@@ -8,9 +8,12 @@
     mc:Ignorable="d"
     Background="Black">
 
-    <Viewbox HorizontalAlignment="Center"
-             VerticalAlignment="Center"
-             MaxHeight="50">
-        <TextBlock Text="Browser"/>
-    </Viewbox>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <WebView Grid.Row="1" Source="http://youtube.com"/>
+    </Grid>
 </Page>
