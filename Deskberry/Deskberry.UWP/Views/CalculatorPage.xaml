@@ -5,11 +5,14 @@
     xmlns:local="using:Deskberry.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:SfInput="using:Syncfusion.UI.Xaml.Controls.Input"
+    xmlns:input="using:Syncfusion.UI.Xaml.Controls.Input"
+	xmlns:syncresource="using:Syncfusion.UI.Xaml.Controls.Input"
     mc:Ignorable="d"
     Background="Transparent">
     <Page.Resources>
         <ResourceDictionary>
+            <syncresource:ResourceWrapper x:Key="ResourceWrapperKey"/>
+            <input:MemoryConverter x:Key="MemoryConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml"/>
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml"/>
@@ -105,11 +108,9 @@
             </Grid.ColumnDefinitions>
 
             <Viewbox Grid.Row="0">
-                <SfInput:SfCalculator x:Name="calculator"
-                    Background="Black"
-                    BorderThickness="2"
-                    BorderBrush="Gray"
-                    Margin="20"/>
+                <input:SfCalculator x:Name="calculator"
+                                    Style="{StaticResource DefaultSfCalculatorStyle}"
+                                    FunctionsPaneStyle="{StaticResource SfCalculatorFunctionsPaneStyle1}"/>
             </Viewbox>
 
             <StackPanel Grid.Column="1" Padding="5">

@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/NotesPage.xaml"/>
+                <ResourceDictionary Source="/Styles/CalculatorPage.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="SystemAccentColor">#A80000</Color>
             <Color x:Key="SystemAccentColorLight1">#CF2323</Color>
