@@ -109,6 +109,7 @@
     <Compile Include="Services\Interfaces\INoteNavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\NoteNavigationService.cs" />
+    <Compile Include="ViewModels\CalculatorViewModel.cs" />
     <Compile Include="ViewModels\DesktopPageViewModel.cs" />
     <Compile Include="ViewModels\NotesViewModel.cs" />
     <Compile Include="ViewModels\Notes\AddNotePageViewModel.cs" />
@@ -247,10 +248,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\EditNoteContentDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Styles\CalculatorPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

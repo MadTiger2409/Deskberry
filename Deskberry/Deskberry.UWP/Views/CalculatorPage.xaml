@@ -5,6 +5,7 @@
     xmlns:local="using:Deskberry.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
     xmlns:input="using:Syncfusion.UI.Xaml.Controls.Input"
 	xmlns:syncresource="using:Syncfusion.UI.Xaml.Controls.Input"
     mc:Ignorable="d"
@@ -126,7 +127,7 @@
                                 </input:CalculatorButton>
                                 <input:CalculatorButton x:Name="PART_Button15" BrushOpacity="0.3" Content="%" Grid.Column="4" Function="Percentage" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="2"/>
                                 <input:CalculatorButton x:Name="PART_Button16" BrushOpacity="0.3" Content="1/x" Grid.Column="4" Function="Reciproc" FlowDirection="LeftToRight" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="3"/>
-                                <input:CalculatorButton x:Name="PART_Button17" BrushOpacity="0.1" Content="=" Grid.Column="4" Function="Return" Background="#a82828" Foreground="{TemplateBinding Foreground}" FontSize="35" IsTabStop="False" Grid.RowSpan="2" Grid.Row="4"/>
+                                <input:CalculatorButton x:Name="PART_Button17" BrushOpacity="0" Content="=" Grid.Column="4" Function="Return" Background="#a82828" Foreground="{TemplateBinding Foreground}" FontSize="35" IsTabStop="False" Grid.RowSpan="2" Grid.Row="4"/>
                                 <input:InputPane x:Name="PART_Input" Grid.ColumnSpan="3" IsTabStop="False" Grid.RowSpan="5" Grid.Row="2"/>
                             </Grid>
                         </ControlTemplate>
@@ -362,6 +363,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+
+    <Page.DataContext>
+        <viewModels:CalculatorViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>

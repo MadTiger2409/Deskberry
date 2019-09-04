@@ -29,6 +29,7 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<NotesViewModel>();
             services.AddScoped<AddNotePageViewModel>();
             services.AddScoped<AllNotesPageViewModel>();
+            services.AddScoped<CalculatorViewModel>();
             #endregion
 
             #region Services
