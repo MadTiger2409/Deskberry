@@ -17,12 +17,5 @@ namespace Deskberry.UWP.Views
             this.InitializeComponent();
             DataContext = MainContainer.Container.GetService<CalculatorViewModel>();
         }
-
-        private void EqualButtonClicked(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            var vm = DataContext as CalculatorViewModel;
-
-            vm.AddExpressionCommand.Execute(calculator.Expression);
-        }
     }
 }

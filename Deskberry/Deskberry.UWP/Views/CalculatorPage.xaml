@@ -138,7 +138,8 @@
                                                         FontSize="35"
                                                         IsTabStop="False"
                                                         Function="Return"
-                                                        KeyUp="EqualButtonClicked"/>
+                                                        Command="{Binding AddExpressionCommand}"
+                                                        CommandParameter="{Binding ElementName=calculator, Path=Value}"/>
                                 <input:InputPane x:Name="PART_Input" Grid.ColumnSpan="3" IsTabStop="False" Grid.RowSpan="5" Grid.Row="2"/>
                             </Grid>
                         </ControlTemplate>
@@ -267,46 +268,30 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <input:CalculatorButton Key="Number7"  IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Content="7" x:Name="PART_Digit7" />
-                                <input:CalculatorButton Key="Number8" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Column="1"
-                                                Content="8" x:Name="PART_Digit8"/>
-                                <input:CalculatorButton Key="Number9" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Column="2"
-                                                Content="9" x:Name="PART_Digit9"/>
-                                <input:CalculatorButton Key="Number4" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="1"
-                                                Content="4" x:Name="PART_Digit4" />
-                                <input:CalculatorButton Key="Number5" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                Content="5" x:Name="PART_Digit5"/>
-                                <input:CalculatorButton Key="Number6" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="1"
-                                                Grid.Column="2"
-                                                Content="6" x:Name="PART_Digit6"/>
-                                <input:CalculatorButton Key="Number1" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="2"
-                                                Grid.Column="0"
-                                                Content="1" x:Name="PART_Digit1"/>
-                                <input:CalculatorButton Key="Number2" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="2"
-                                                Grid.Column="1"
-                                                Content="2" x:Name="PART_Digit2"/>
-                                <input:CalculatorButton Key="Number3" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="2"
-                                                Grid.Column="2"
-                                                Content="3" x:Name="PART_Digit3"/>
-                                <input:CalculatorButton Key="Number0" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="3"
-                                                Grid.Column="0"
-                                                Grid.ColumnSpan="2"
-                                                Content="0" x:Name="PART_Digit0"/>
-                                <input:CalculatorButton Key="Decimal" IsTabStop="False" Background="#696969" Foreground="{TemplateBinding Foreground}"
-                                                Grid.Row="3"
-                                                Grid.Column="2"
-                                                Content="." x:Name="PART_Decimal"/>
+                                <input:CalculatorButton Key="Number7" Command="{Binding ComputeExpressionCommand}" IsTabStop="False" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Content="7" x:Name="PART_Digit7" />
+                                <input:CalculatorButton Key="Number8"
+                                                        Command="{Binding ComputeExpressionCommand}" IsTabStop="False" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Column="1" Content="8" x:Name="PART_Digit8"/>
+                                <input:CalculatorButton Key="Number9" Command="{Binding ComputeExpressionCommand}" IsTabStop="False" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Column="2" Content="9" x:Name="PART_Digit9"/>
+                                <input:CalculatorButton Key="Number4" Command="{Binding ComputeExpressionCommand}" IsTabStop="False" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="1" Content="4" x:Name="PART_Digit4" />
+                                <input:CalculatorButton Key="Number5" IsTabStop="False" Command="{Binding ComputeExpressionCommand}" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="1" Grid.Column="1" Content="5" x:Name="PART_Digit5"/>
+                                <input:CalculatorButton Key="Number6" IsTabStop="False" Background="#696969" Command="{Binding ComputeExpressionCommand}"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="1" Grid.Column="2" Content="6" x:Name="PART_Digit6"/>
+                                <input:CalculatorButton Key="Number1" IsTabStop="False" Command="{Binding ComputeExpressionCommand}" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="2" Grid.Column="0" Content="1" x:Name="PART_Digit1"/>
+                                <input:CalculatorButton Key="Number2" IsTabStop="False" Command="{Binding ComputeExpressionCommand}" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="2" Grid.Column="1" Content="2" x:Name="PART_Digit2"/>
+                                <input:CalculatorButton Key="Number3" IsTabStop="False" Command="{Binding ComputeExpressionCommand}" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="2" Grid.Column="2" Content="3" x:Name="PART_Digit3"/>
+                                <input:CalculatorButton Key="Number0" IsTabStop="False" Command="{Binding ComputeExpressionCommand}" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                                                        Content="0" x:Name="PART_Digit0"/>
+                                <input:CalculatorButton Key="Decimal" IsTabStop="False" Command="{Binding ComputeExpressionCommand}" Background="#696969"
+                                                        Foreground="{TemplateBinding Foreground}" Grid.Row="3" Grid.Column="2" Content="." x:Name="PART_Decimal"/>
 
                             </Grid>
                         </ControlTemplate>
@@ -469,7 +454,8 @@
 
             <Viewbox Grid.Row="0">
                 <input:SfCalculator x:Name="calculator"
-                                    
+                                    DisplayText="{Binding DisplayText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                    Expression="{Binding ExpressionText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                     Style="{StaticResource DefaultSfCalculatorStyle}"
                                     FunctionsPaneStyle="{StaticResource SfCalculatorFunctionsPaneStyle1}"/>
             </Viewbox>
