@@ -445,14 +445,14 @@
 
         <Grid Grid.Row="1"
               Grid.ColumnSpan="2"
-              Margin="20"
               Background="Black">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <Viewbox Grid.Row="0">
+            <Viewbox Grid.Row="0"
+                     Margin="20">
                 <input:SfCalculator x:Name="calculator"
                                     DisplayText="{Binding DisplayText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                     Expression="{Binding ExpressionText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
@@ -463,12 +463,14 @@
             <ItemsControl x:Name="tStack" Grid.Column="1" ItemsSource="{Binding Expressions}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
+                        <StackPanel Orientation="Vertical"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBox Text="{Binding}"/>
+                        <ListViewItem>
+                            <TextBlock Text="{Binding}"/>
+                        </ListViewItem>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

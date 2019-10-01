@@ -83,7 +83,8 @@ namespace Deskberry.UWP.ViewModels
             {
                 var res = result.ToString();
 
-                string fullExpression = $"{_expression}={res}";
+                var fullExpression = $"{_expression} = {res}";
+                Expressions.Add(fullExpression);
             }
         }
         #endregion
