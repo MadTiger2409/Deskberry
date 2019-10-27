@@ -31,6 +31,7 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand CloseSubAppCommand { get; private set; }
         public RelayCommand NavigateBackCommand { get; private set; }
         public RelayCommand ComputeExpressionCommand { get; private set; }
+        public RelayCommand ComputeExpressionForOneParameterOperationCommand { get; private set; }
         public RelayCommand<object> AddExpressionCommand { get; protected set; }
         #endregion
 
@@ -67,6 +68,7 @@ namespace Deskberry.UWP.ViewModels
             CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
             NavigateBackCommand = new RelayCommand(() => NavigateBack());
             ComputeExpressionCommand = new RelayCommand(() => ComputeExpression());
+            ComputeExpressionForOneParameterOperationCommand = new RelayCommand(() => ComputeExpressionForOneParameterOperation());
             AddExpressionCommand = new RelayCommand<object>(x => AddExpression(x));
         }
 
@@ -76,6 +78,8 @@ namespace Deskberry.UWP.ViewModels
         private void NavigateBack() => _navigationService.NavigateBackFromSubApp();
 
         private void ComputeExpression() => _expression = ExpressionText + DisplayText;
+
+        private void ComputeExpressionForOneParameterOperation() => _expression = ExpressionText;
 
         private void AddExpression(object result)
         {

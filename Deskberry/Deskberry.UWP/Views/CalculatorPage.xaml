@@ -93,7 +93,17 @@
                                 <input:CalculatorButton x:Name="PART_Button7" BrushOpacity="0.3" Content="{Binding C, Source={StaticResource ResourceWrapperKey}}" Grid.Column="1" Function="Clear" Foreground="{TemplateBinding Foreground}"  FontSize="15" IsTabStop="False" Grid.Row="1"/>
                                 <input:CalculatorButton x:Name="PART_Button8" BrushOpacity="0.3" Content="{Binding CE, Source={StaticResource ResourceWrapperKey}}" Grid.Column="2" Function="ClearEntry" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="1"/>
                                 <input:CalculatorButton x:Name="PART_Button9" BrushOpacity="0.3" Content="±" Grid.Column="3" Function="Sign" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="1"/>
-                                <input:CalculatorButton x:Name="PART_Button10" BrushOpacity="0.3" Content="√" Grid.Column="4" Function="SquareRoot" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="1"/>
+                                <input:CalculatorButton x:Name="PART_Button10"
+                                                        BrushOpacity="0.3"
+                                                        Content="√"
+                                                        Grid.Column="4"
+                                                        Function="SquareRoot"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        FontSize="15"
+                                                        IsTabStop="False"
+                                                        Grid.Row="1"
+                                                        Command="{Binding ComputeExpressionForOneParameterOperationCommand}"/>
+                                
                                 <input:CalculatorButton x:Name="PART_Button11" BrushOpacity="0.3" Content="/" Grid.Column="3" Function="Divide" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="2"/>
                                 <input:CalculatorButton x:Name="PART_Button12" BrushOpacity="0.3" Grid.Column="3" Function="Multiply" FontSize="15" IsTabStop="False" Grid.Row="3">
                                     <Path Data="M28.03125,48.5152053833008L48,68.5308303833008 67.96875,48.5152053833008 75.515625,56.1089553833008 55.546875,76.0777053833008 75.515625,96.0464553833008 67.96875,103.593330383301 48,83.6245803833008 28.03125,103.593330383301 20.484375,96.0464553833008 40.453125,76.0777053833008 20.484375,56.1089553833008 28.03125,48.5152053833008z" Fill="{TemplateBinding Foreground}" Height="15" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5" Stretch="Uniform" Width="15">
@@ -126,7 +136,17 @@
                                     </Path>
                                 </input:CalculatorButton>
                                 <input:CalculatorButton x:Name="PART_Button15" BrushOpacity="0.3" Content="%" Grid.Column="4" Function="Percentage" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="2"/>
-                                <input:CalculatorButton x:Name="PART_Button16" BrushOpacity="0.3" Content="1/x" Grid.Column="4" Function="Reciproc" FlowDirection="LeftToRight" Foreground="{TemplateBinding Foreground}" FontSize="15" IsTabStop="False" Grid.Row="3"/>
+                                <input:CalculatorButton x:Name="PART_Button16"
+                                                        BrushOpacity="0.3"
+                                                        Content="1/x"
+                                                        Grid.Column="4"
+                                                        Function="Reciproc"
+                                                        FlowDirection="LeftToRight"
+                                                        Foreground="{TemplateBinding Foreground}"
+                                                        FontSize="15" IsTabStop="False"
+                                                        Grid.Row="3"
+                                                        Command="{Binding ComputeExpressionForOneParameterOperationCommand}"/>
+                                
                                 <input:CalculatorButton x:Name="PART_Button17"
                                                         Content="="
                                                         Grid.RowSpan="2"
