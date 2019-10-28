@@ -1,5 +1,6 @@
 ﻿using Deskberry.UWP.Commands;
 using Deskberry.UWP.Commands.Generic;
+using Deskberry.UWP.Helpers.Models;
 using Deskberry.UWP.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Deskberry.UWP.ViewModels
         #endregion
 
         #region Properties
-        public ObservableCollection<string> Expressions { get; set; }
+        public ObservableCollection<Equation> Expressions { get; set; }
 
         public string DisplayText
         {
@@ -63,7 +64,7 @@ namespace Deskberry.UWP.ViewModels
 
         public CalculatorViewModel(INavigationService navigationService)
         {
-            Expressions = new ObservableCollection<string>();
+            Expressions = new ObservableCollection<Equation>();
 
             CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
             NavigateBackCommand = new RelayCommand(() => NavigateBack());
@@ -87,8 +88,7 @@ namespace Deskberry.UWP.ViewModels
             {
                 var res = result.ToString();
 
-                var fullExpression = $"{_expression} = {res}";
-                Expressions.Add(fullExpression);
+                Expressions.Add(new Equation(_expression, res));
             }
         }
         #endregion

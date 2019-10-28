@@ -104,6 +104,7 @@
       <DependentUpon>EditNoteContentDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DialogHelper.cs" />
+    <Compile Include="Helpers\Models\Equation.cs" />
     <Compile Include="IoC\MainContainer.cs" />
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\Interfaces\INoteNavigationService.cs" />
