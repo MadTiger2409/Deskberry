@@ -467,8 +467,8 @@
               Grid.ColumnSpan="2"
               Background="Black">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="4.5*"/>
+                <ColumnDefinition Width="2.5*"/>
             </Grid.ColumnDefinitions>
 
             <Viewbox Grid.Row="0"
@@ -480,36 +480,61 @@
                                     FunctionsPaneStyle="{StaticResource SfCalculatorFunctionsPaneStyle1}"/>
             </Viewbox>
 
-            <StackPanel Grid.Column="1"
-                        Background="#3A3A3A"
+            <Grid Grid.Column="1"
+                  Background="#3A3A3A"
+                  Opacity="0.95">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="0"
                         BorderBrush="Gray"
-                        BorderThickness="2"
-                        Opacity="0.95">
-                <TextBlock Text="History"
-                           FontSize="30"/>
-                <ItemsControl x:Name="tStack" ItemsSource="{Binding Expressions}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <ListViewItem HorizontalAlignment="Stretch"
-                                          HorizontalContentAlignment="Right">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Expression}"
-                                               TextWrapping="WrapWholeWords"
-                                               HorizontalTextAlignment="Right"/>
-                                    <TextBlock Text="{Binding Result}"
-                                               TextWrapping="Wrap"
-                                               HorizontalTextAlignment="Right"/>
-                                </StackPanel>
-                            </ListViewItem>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
+                        BorderThickness="2,0,2,2">
+                    <TextBlock  Text="History"
+                                FontSize="30"
+                                Padding="8,0,0,0"/>
+                </Border>
+                
+                <ScrollViewer Grid.Row="1"
+                              BorderBrush="Gray"
+                              BorderThickness="2,0,2,2">
+                    <StackPanel>
+                        <ItemsControl x:Name="tStack" ItemsSource="{Binding Expressions}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <ListViewItem HorizontalAlignment="Stretch"
+                                                  HorizontalContentAlignment="Right"
+                                                  Margin="0,2,0,2">
+                                        <StackPanel >
+                                            <TextBlock Text="{Binding Expression}"
+                                                       TextWrapping="WrapWholeWords"
+                                                       HorizontalTextAlignment="Right"/>
+                                            <TextBlock Text="{Binding Result}"
+                                                       TextWrapping="Wrap"
+                                                       FontSize="20"
+                                                       FontWeight="Bold"
+                                                       HorizontalTextAlignment="Right"/>
+                                        </StackPanel>
+                                    </ListViewItem>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <Button Grid.Row="2"
+                        Content="Clear"
+                        HorizontalAlignment="Stretch"
+                        MinHeight="35"
+                        Style="{StaticResource ActionButton}"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

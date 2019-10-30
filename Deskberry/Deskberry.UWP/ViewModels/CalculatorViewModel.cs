@@ -65,6 +65,7 @@ namespace Deskberry.UWP.ViewModels
         public CalculatorViewModel(INavigationService navigationService)
         {
             Expressions = new ObservableCollection<Equation>();
+            _navigationService = navigationService;
 
             CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
             NavigateBackCommand = new RelayCommand(() => NavigateBack());
