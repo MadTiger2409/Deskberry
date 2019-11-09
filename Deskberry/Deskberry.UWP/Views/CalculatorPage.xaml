@@ -384,7 +384,7 @@
         <viewModels:CalculatorViewModel/>
     </Page.DataContext>
 
-    <Grid>
+    <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
@@ -465,14 +465,15 @@
 
         <Grid Grid.Row="1"
               Grid.ColumnSpan="2"
-              Background="Black">
+              Margin="20"
+              Padding="20"
+              Background="#181818">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4.5*"/>
-                <ColumnDefinition Width="2.5*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Viewbox Grid.Row="0"
-                     Margin="20">
+            <Viewbox Grid.Row="0">
                 <input:SfCalculator x:Name="calculator"
                                     DisplayText="{Binding DisplayText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                     Expression="{Binding ExpressionText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
@@ -491,7 +492,7 @@
 
                 <Border Grid.Row="0"
                         BorderBrush="Gray"
-                        BorderThickness="2,0,2,2">
+                        BorderThickness="4,4,4,2">
                     <TextBlock  Text="History"
                                 FontSize="30"
                                 Padding="8,0,0,0"/>
@@ -499,7 +500,7 @@
                 
                 <ScrollViewer Grid.Row="1"
                               BorderBrush="Gray"
-                              BorderThickness="2,0,2,2">
+                              BorderThickness="4,0,4,1">
                     <StackPanel>
                         <ItemsControl x:Name="tStack" ItemsSource="{Binding Expressions}">
                             <ItemsControl.ItemsPanel>
@@ -533,6 +534,9 @@
                         Content="Clear"
                         HorizontalAlignment="Stretch"
                         MinHeight="35"
+                        BorderBrush="Gray"
+                        BorderThickness="4,0,4,4"
+                        Command="{Binding ClearHistoryCommand}"
                         Style="{StaticResource ActionButton}"/>
             </Grid>
         </Grid>

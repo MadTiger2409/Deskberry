@@ -34,7 +34,7 @@ namespace Deskberry.UWP.IoC
 
             #region Services
             services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<INavigationService, NavigationService>();
+            services.AddSingleton<INavigationService, NavigationService>();
             services.AddScoped<INoteNavigationService, NoteNavigationService>();
             services.AddScoped<INoteService, NoteService>();
             #endregion

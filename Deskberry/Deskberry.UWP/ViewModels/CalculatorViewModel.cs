@@ -33,6 +33,7 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand NavigateBackCommand { get; private set; }
         public RelayCommand ComputeExpressionCommand { get; private set; }
         public RelayCommand ComputeExpressionForOneParameterOperationCommand { get; private set; }
+        public RelayCommand ClearHistoryCommand { get; private set; }
         public RelayCommand<object> AddExpressionCommand { get; protected set; }
         #endregion
 
@@ -72,6 +73,7 @@ namespace Deskberry.UWP.ViewModels
             ComputeExpressionCommand = new RelayCommand(() => ComputeExpression());
             ComputeExpressionForOneParameterOperationCommand = new RelayCommand(() => ComputeExpressionForOneParameterOperation());
             AddExpressionCommand = new RelayCommand<object>(x => AddExpression(x));
+            ClearHistoryCommand = new RelayCommand(() => ClearHistory());
         }
 
         #region PrivateMethods
@@ -92,6 +94,8 @@ namespace Deskberry.UWP.ViewModels
                 Expressions.Add(new Equation(_expression, res));
             }
         }
+
+        private void ClearHistory() => Expressions.Clear();
         #endregion
     }
 }

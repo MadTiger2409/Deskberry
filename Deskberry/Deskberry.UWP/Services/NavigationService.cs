@@ -39,12 +39,13 @@ namespace Deskberry.UWP.Services
             Frame rootFrame = Window.Current.Content as Frame;
             var desktopPage = rootFrame.Content as DesktopPage;
 
-            if (desktopPage.NavigationFrame.CanGoBack == true)
+            if (desktopPage.NavigationFrame.BackStackDepth > 0)
             {
                 desktopPage.NavigationFrame.GoBack();
             }
             else
             {
+                desktopPage.NavigationFrame.BackStack.Clear();
                 desktopPage.NavigationFrame.Content = null;
             }
         }
