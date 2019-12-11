@@ -1,11 +1,14 @@
 ﻿using System;
 using Deskberry.SQLite.Data;
+using Deskberry.Tools.CommandObjects.Note;
 using Deskberry.Tools.Services;
 using Deskberry.Tools.Services.Interfaces;
+using Deskberry.UWP.Helpers.Validators;
 using Deskberry.UWP.Services;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.ViewModels;
 using Deskberry.UWP.ViewModels.Notes;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -20,7 +23,7 @@ namespace Deskberry.UWP.IoC
             var services = new ServiceCollection();
 
             #region Databases
-            services.AddDbContext<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"));
+            services.AddDbContextPool<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"), 2);
             #endregion
 
             #region ViewModels
@@ -37,6 +40,10 @@ namespace Deskberry.UWP.IoC
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddScoped<INoteNavigationService, NoteNavigationService>();
             services.AddScoped<INoteService, NoteService>();
+            #endregion
+
+            #region Validators
+            services.AddScoped<IValidator<CreateNote>, CreateNoteValidator>();
             #endregion
 
             Container = services.BuildServiceProvider();

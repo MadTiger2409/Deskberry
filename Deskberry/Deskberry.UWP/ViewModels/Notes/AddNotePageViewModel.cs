@@ -2,6 +2,8 @@
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
+using Deskberry.UWP.Helpers.Validators;
+using FluentValidation;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace Deskberry.UWP.ViewModels.Notes
         #region Injected
         private INoteService _noteService;
         private IAccountService _accountService;
+        private IValidator<CreateNote> _createNoteValidator;
         #endregion
 
         #region Commands
@@ -30,19 +33,20 @@ namespace Deskberry.UWP.ViewModels.Notes
 
         public AddNotePageViewModel() { }
 
-        public AddNotePageViewModel(INoteService noteService, IAccountService accountService)
+        public AddNotePageViewModel(INoteService noteService, IAccountService accountService, IValidator<CreateNote> validator)
         {
-            InitializeDependencies(noteService, accountService);
+            InitializeDependencies(noteService, accountService, validator);
             InitializeCommands();
 
             NoteForm = new CreateNote();
         }
 
         #region PrivateMethods
-        private void InitializeDependencies(INoteService noteService, IAccountService accountService)
+        private void InitializeDependencies(INoteService noteService, IAccountService accountService, IValidator<CreateNote> validator)
         {
             _noteService = noteService;
             _accountService = accountService;
+            _createNoteValidator = validator;
         }
 
         private void InitializeCommands()
