@@ -6,9 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Deskberry.UWP.ViewModels.Notes"
+    xmlns:converters ="using:Microsoft.Toolkit.Uwp.UI.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Page.Resources>
+    
     <Page.DataContext>
         <viewModels:AddNotePageViewModel/>
     </Page.DataContext>
@@ -24,6 +29,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -35,6 +41,9 @@
             <TextBox Background="Transparent"
                      PlaceholderText="Put the note title here."
                      Text="{Binding NoteForm.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Foreground="Red"
+                       Text="Title can't be empty and must be from 2 to 300 characters long"
+                       Visibility="{Binding NoteForm.IsTitleErrorVisible, Converter={StaticResource BoolToVisibility}}"/>
         </StackPanel>
 
         <TextBlock Grid.Column="1"
@@ -53,8 +62,14 @@
                  Background="Transparent"
                  VerticalAlignment="Stretch"/>
 
+        <TextBlock Grid.Column="1"
+                   Grid.Row="3"
+                   Foreground="Red"
+                   Text="Description can't be empty and must be from 2 to 500 characters long"
+                   Visibility="{Binding NoteForm.IsDescriptionErrorVisible, Converter={StaticResource BoolToVisibility}}"/>
+
         <StackPanel Grid.Column="1"
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Margin="0,6,0,16">

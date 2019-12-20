@@ -64,7 +64,7 @@ namespace Deskberry.Tools.CommandObjects.Note
                     return;
 
                 _isTitleErrorVisible = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsTitleErrorVisible)));
             }
         }
 
@@ -77,7 +77,7 @@ namespace Deskberry.Tools.CommandObjects.Note
                     return;
 
                 _isDescriptionErrorVisible = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsDescriptionErrorVisible)));
             }
         }
         #endregion
@@ -102,6 +102,10 @@ namespace Deskberry.Tools.CommandObjects.Note
         {
             var result = _validator.Validate(this);
             _isValid = result.IsValid;
+
+            IsTitleErrorVisible = false;
+            IsDescriptionErrorVisible = false;
+
 
             foreach (var failure in result.Errors)
             {
