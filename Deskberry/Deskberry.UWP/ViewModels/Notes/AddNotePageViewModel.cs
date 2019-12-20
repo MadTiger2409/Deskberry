@@ -19,7 +19,6 @@ namespace Deskberry.UWP.ViewModels.Notes
         #region Injected
         private INoteService _noteService;
         private IAccountService _accountService;
-        private IValidator<CreateNote> _createNoteValidator;
         #endregion
 
         #region Commands
@@ -33,25 +32,26 @@ namespace Deskberry.UWP.ViewModels.Notes
 
         public AddNotePageViewModel() { }
 
-        public AddNotePageViewModel(INoteService noteService, IAccountService accountService, IValidator<CreateNote> validator)
+        public AddNotePageViewModel(INoteService noteService, IAccountService accountService)
         {
-            InitializeDependencies(noteService, accountService, validator);
+            NoteForm = new CreateNote();
+
+            InitializeDependencies(noteService, accountService);
             InitializeCommands();
 
-            NoteForm = new CreateNote();
+            NoteForm.CanExecutedChanged = AddCommand.RaiseCanExecuteChanged;
         }
 
         #region PrivateMethods
-        private void InitializeDependencies(INoteService noteService, IAccountService accountService, IValidator<CreateNote> validator)
+        private void InitializeDependencies(INoteService noteService, IAccountService accountService)
         {
             _noteService = noteService;
             _accountService = accountService;
-            _createNoteValidator = validator;
         }
 
         private void InitializeCommands()
         {
-            AddCommand = new RelayCommand(async () => await AddNoteAsync());
+            AddCommand = new RelayCommand(async () => await AddNoteAsync(), NoteForm.IsValid);
             ResetCommand = new RelayCommand(async () => await ResetNoteFormAsync());
         }
 
