@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Deskberry.Tools.Validators;
+using FluentValidation;
 
 namespace Deskberry.Tools.CommandObjects.Note
 {
@@ -10,7 +11,6 @@ namespace Deskberry.Tools.CommandObjects.Note
         #region Fields
         protected bool _isTitleErrorVisible;
         protected bool _isDescriptionErrorVisible;
-        protected bool _isValid;
 
         protected string _title;
         protected string _description;
@@ -34,8 +34,10 @@ namespace Deskberry.Tools.CommandObjects.Note
                     return;
 
                 _title = value;
-                Validate();
+
+                IsTitleErrorVisible = !_validator.Validate(this, ruleSet: "Title").IsValid;
                 CanExecutedChanged.Invoke();
+
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Title)));
             }
         }
@@ -49,8 +51,10 @@ namespace Deskberry.Tools.CommandObjects.Note
                     return;
 
                 _description = value;
-                Validate();
+
+                IsDescriptionErrorVisible = !_validator.Validate(this, ruleSet: "Description").IsValid;
                 CanExecutedChanged.Invoke();
+
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Description)));
             }
         }
@@ -84,7 +88,6 @@ namespace Deskberry.Tools.CommandObjects.Note
 
         public CreateNote()
         {
-            _isValid = false;
             IsTitleErrorVisible = false;
             IsDescriptionErrorVisible = false;
             _validator = new CreateNoteValidator();
@@ -94,32 +97,10 @@ namespace Deskberry.Tools.CommandObjects.Note
         {
             await Task.FromResult(Title = null);
             await Task.FromResult(Description = null);
-        }
-
-        public bool IsValid() => _isValid;
-
-        protected void Validate()
-        {
-            var result = _validator.Validate(this);
-            _isValid = result.IsValid;
-
             IsTitleErrorVisible = false;
             IsDescriptionErrorVisible = false;
+        }
 
-
-            foreach (var failure in result.Errors)
-            {
-                switch (failure.PropertyName)
-                {
-                    case "Title":
-                        IsTitleErrorVisible = true;
-                        break;
-
-                    case "Description":
-                        IsDescriptionErrorVisible = true;
-                        break;
-                }
-            }
-        } 
+        public bool IsValid() => _validator.Validate(this, ruleSet: "Full").IsValid;
     }
 }
