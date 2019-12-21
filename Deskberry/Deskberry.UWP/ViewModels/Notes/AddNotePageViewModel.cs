@@ -2,6 +2,8 @@
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
+using Deskberry.UWP.Helpers.Validators;
+using FluentValidation;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
@@ -32,10 +34,12 @@ namespace Deskberry.UWP.ViewModels.Notes
 
         public AddNotePageViewModel(INoteService noteService, IAccountService accountService)
         {
+            NoteForm = new CreateNote();
+
             InitializeDependencies(noteService, accountService);
             InitializeCommands();
 
-            NoteForm = new CreateNote();
+            NoteForm.CanExecutedChanged = AddCommand.RaiseCanExecuteChanged;
         }
 
         #region PrivateMethods
@@ -47,7 +51,7 @@ namespace Deskberry.UWP.ViewModels.Notes
 
         private void InitializeCommands()
         {
-            AddCommand = new RelayCommand(async () => await AddNoteAsync());
+            AddCommand = new RelayCommand(async () => await AddNoteAsync(), NoteForm.IsValid);
             ResetCommand = new RelayCommand(async () => await ResetNoteFormAsync());
         }
 

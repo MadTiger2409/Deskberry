@@ -20,7 +20,7 @@ namespace Deskberry.UWP.IoC
             var services = new ServiceCollection();
 
             #region Databases
-            services.AddDbContext<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"));
+            services.AddDbContextPool<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"), 2);
             #endregion
 
             #region ViewModels
