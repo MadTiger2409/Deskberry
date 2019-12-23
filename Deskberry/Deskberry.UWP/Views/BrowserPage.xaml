@@ -10,10 +10,57 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <WebView Grid.Row="1" Source="http://youtube.com"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="2,4,2,4"
+                    Content="B"/>
+            <Button Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="2,4,2,4"
+                    Content="F"/>
+            <Button Grid.Column="2"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="2,4,2,4"
+                    Content="R"/>
+            <Button Grid.Column="3"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="2,4,2,4"
+                    Content="H"/>
+            <TextBox Grid.Column="4"
+                     VerticalAlignment="Stretch"
+                     Margin="2,4,2,4"
+                     Background="Gray"/>
+            <Button Grid.Column="5"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="2,4,2,4"
+                    Content="FA"/>
+            <Button Grid.Column="6"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="2,4,2,4"
+                    Content="FH"/>
+        </Grid>
+
+        <WebView Grid.Row="1"/>
     </Grid>
 </Page>

@@ -25,7 +25,7 @@
             <EdgeUIThemeTransition Edge="Right"/>
         </TransitionCollection>
     </Page.Transitions>
-    
+
     <Page.Background>
         <ImageBrush ImageSource="ms-appx:///Assets/Wallpapers/RaspberryPi.jpg"
                     Stretch="UniformToFill"/>
@@ -106,25 +106,25 @@
                                             </Viewbox>
                                         </Button.Content>
                                     </Button>
-                                    
+
                                     <!-- Power button -->
                                     <Button Height="30"
                                             Background="Transparent"
                                             ToolTipService.ToolTip="Power"
                                             Margin="0,8,0,0">
                                         <Viewbox>
-                                                <Path Data="{StaticResource PowerGeometry}"
+                                            <Path Data="{StaticResource PowerGeometry}"
                                                       Fill="#FFFFFFFF"
                                                       RenderTransformOrigin="0.5,0.5">
-                                                    <Path.RenderTransform>
-                                                        <TransformGroup>
-                                                            <TransformGroup.Children>
-                                                                <RotateTransform Angle="0"/>
-                                                                <ScaleTransform ScaleX="2" ScaleY="2"/>
-                                                            </TransformGroup.Children>
-                                                        </TransformGroup>
-                                                    </Path.RenderTransform>
-                                                </Path>
+                                                <Path.RenderTransform>
+                                                    <TransformGroup>
+                                                        <TransformGroup.Children>
+                                                            <RotateTransform Angle="0"/>
+                                                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                                                        </TransformGroup.Children>
+                                                    </TransformGroup>
+                                                </Path.RenderTransform>
+                                            </Path>
                                         </Viewbox>
 
                                         <Button.Flyout>
@@ -138,7 +138,7 @@
                                                             Background="Transparent"
                                                             Margin="0,4,0,0"
                                                             HorizontalAlignment="Stretch"/>
-                                                    <Button Content="Logout (temporary)"
+                                                    <Button Content="Logout"
                                                             Background="Transparent"
                                                             Margin="0,4,0,0"
                                                             HorizontalAlignment="Stretch"
@@ -222,7 +222,7 @@
             <!-- Task's bar applications -->
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal"/>
-            
+
             <!-- DateTime's info button -->
             <Viewbox Grid.Column="2"
                      MaxHeight="50"
@@ -245,7 +245,7 @@
                     </Button.Flyout>
                 </Button>
             </Viewbox>
-            
+
             <!-- Back to desktop button -->
             <Button Grid.Column="3"
                     Width="10"
