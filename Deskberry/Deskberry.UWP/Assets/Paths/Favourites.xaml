@@ -1,0 +1,6 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Deskberry.UWP.Assets.Paths">
+    <x:String x:Key="FavouritesGeometry">M15.81601,2.6480103L11.631012,11.122009 2.2730103,12.487 9.0450134,19.085999 7.4460144,28.40799 15.81601,24.006012 24.187012,28.40799 22.588013,19.085999 29.360016,12.487 20.002014,11.122009z M0,0L32,0 32,32 0,32z</x:String>
+</ResourceDictionary>

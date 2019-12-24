@@ -1,0 +1,6 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Deskberry.UWP.Assets.Paths">
+    <x:String x:Key="HomeGeometry">M16.208,8.438004L27.884,17.579009 27.884,31.293015 18.392,31.293015 18.392,21.676011 13.44,21.676011 13.44,31.293015 4.0419998,31.293015 4.0419998,17.579009z M16.211,0L22.585,5.1080027 22.585,2.2450008 26.773,2.2450008 26.773,8.4610038 32.000001,12.645006 32.000001,16.808008 16.23,4.1510019 0,17.177008 0,13.013006z</x:String>
+</ResourceDictionary>
