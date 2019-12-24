@@ -112,7 +112,6 @@
         <Grid
             Grid.Row="1"
             Grid.ColumnSpan="2"
-            Padding="4,0,2,0"
             Background="Black">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
@@ -122,9 +121,10 @@
 
             <Grid
                 Grid.Row="0"
-                Margin="0,0,0,0"
+                Padding="4,0,2,0"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch">
+                VerticalAlignment="Stretch"
+                Background="#222222">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="40" />
@@ -282,6 +282,4 @@
                 VerticalAlignment="Stretch" />
         </Grid>
     </Grid>
-
-
 </Page>
