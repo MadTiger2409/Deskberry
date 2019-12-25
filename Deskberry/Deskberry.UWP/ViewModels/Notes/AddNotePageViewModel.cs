@@ -2,35 +2,18 @@
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
-using Deskberry.UWP.Helpers.Validators;
-using FluentValidation;
-using System;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Deskberry.UWP.ViewModels.Notes
 {
-    public class AddNotePageViewModel : INotifyPropertyChanged
+    public class AddNotePageViewModel
     {
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Injected
-        private INoteService _noteService;
         private IAccountService _accountService;
-        #endregion
+        private INoteService _noteService;
 
-        #region Commands
-        public RelayCommand AddCommand { get; private set; }
-        public RelayCommand ResetCommand { get; private set; }
-        #endregion
-
-        #region Properties
-        public CreateNote NoteForm { get; set; }
-        #endregion
-
-        public AddNotePageViewModel() { }
+        public AddNotePageViewModel()
+        {
+        }
 
         public AddNotePageViewModel(INoteService noteService, IAccountService accountService)
         {
@@ -42,18 +25,9 @@ namespace Deskberry.UWP.ViewModels.Notes
             NoteForm.CanExecutedChanged = AddCommand.RaiseCanExecuteChanged;
         }
 
-        #region PrivateMethods
-        private void InitializeDependencies(INoteService noteService, IAccountService accountService)
-        {
-            _noteService = noteService;
-            _accountService = accountService;
-        }
-
-        private void InitializeCommands()
-        {
-            AddCommand = new RelayCommand(async () => await AddNoteAsync(), NoteForm.IsValid);
-            ResetCommand = new RelayCommand(async () => await ResetNoteFormAsync());
-        }
+        public RelayCommand AddCommand { get; private set; }
+        public CreateNote NoteForm { get; set; }
+        public RelayCommand ResetCommand { get; private set; }
 
         private async Task AddNoteAsync()
         {
@@ -63,10 +37,18 @@ namespace Deskberry.UWP.ViewModels.Notes
             await ResetNoteFormAsync();
         }
 
-        private async Task ResetNoteFormAsync()
+        private void InitializeCommands()
         {
-            await NoteForm.ClearAsync();
+            AddCommand = new RelayCommand(async () => await AddNoteAsync(), NoteForm.IsValid);
+            ResetCommand = new RelayCommand(async () => await ResetNoteFormAsync());
         }
-        #endregion
+
+        private void InitializeDependencies(INoteService noteService, IAccountService accountService)
+        {
+            _noteService = noteService;
+            _accountService = accountService;
+        }
+
+        private async Task ResetNoteFormAsync() => await NoteForm.ClearAsync();
     }
 }

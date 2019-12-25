@@ -1,37 +1,69 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using Deskberry.SQLite.Models;
+﻿using Deskberry.SQLite.Models;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
 
 namespace Deskberry.UWP.ViewModels
 {
-    class MainPageViewModel : INotifyPropertyChanged
+    internal class MainPageViewModel : INotifyPropertyChanged
     {
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Fields
-        public Account _selectedAccount;
-        public string _password;
         public bool _isWarningVisible;
-        #endregion
+        public string _password;
+        public Account _selectedAccount;
 
-        #region Injected
         private IAccountService _accountService;
         private INavigationService _navigationService;
-        #endregion
 
-        #region Commands
-        public RelayCommand LoginCommand { get; private set; }
-        #endregion
+        public MainPageViewModel()
+        {
+        }
 
-        #region Properties
+        public MainPageViewModel(IAccountService accountService, INavigationService navigationService)
+        {
+            _accountService = accountService;
+            _navigationService = navigationService;
+
+            LoginCommand = new RelayCommand(() => Login());
+            Accounts = LoadAccounts();
+            SelectedAccount = Accounts.FirstOrDefault();
+            IsWarningVisible = false;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public ObservableCollection<Account> Accounts { get; set; }
+
+        public bool IsWarningVisible
+        {
+            get { return _isWarningVisible; }
+            set
+            {
+                if (value == _isWarningVisible)
+                    return;
+
+                _isWarningVisible = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsWarningVisible)));
+            }
+        }
+
+        public RelayCommand LoginCommand { get; private set; }
+
+        public string Password
+        {
+            get { return _password; }
+            set
+            {
+                if (value == _password)
+                    return;
+
+                _password = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
+            }
+        }
 
         public Account SelectedAccount
         {
@@ -47,47 +79,6 @@ namespace Deskberry.UWP.ViewModels
             }
         }
 
-        public string Password
-        {
-            get { return _password; }
-            set
-            {
-                if (value == _password)
-                    return;
-
-                _password = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
-            }
-        }
-
-        public bool IsWarningVisible
-        {
-            get { return _isWarningVisible; }
-            set
-            {
-                if (value == _isWarningVisible)
-                    return;
-
-                _isWarningVisible = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsWarningVisible)));
-            }
-        }
-        #endregion
-
-        public MainPageViewModel() { }
-
-        public MainPageViewModel(IAccountService accountService, INavigationService navigationService)
-        {
-            _accountService = accountService;
-            _navigationService = navigationService;
-
-            LoginCommand = new RelayCommand(() => Login());
-            Accounts = LoadAccounts();
-            SelectedAccount = Accounts.FirstOrDefault();
-            IsWarningVisible = false;
-        }
-
-        #region PrivateMethods
         private ObservableCollection<Account> LoadAccounts()
         {
             var accounts = _accountService.GetAsync().GetAwaiter().GetResult();
@@ -105,6 +96,5 @@ namespace Deskberry.UWP.ViewModels
                 _navigationService.NavigateTo(typeof(DesktopPage));
             }
         }
-        #endregion
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Deskberry.SQLite.Data;
+﻿using Deskberry.SQLite.Data;
 using Deskberry.Tools.Services;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Services;
@@ -8,6 +7,7 @@ using Deskberry.UWP.ViewModels;
 using Deskberry.UWP.ViewModels.Notes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace Deskberry.UWP.IoC
 {
@@ -19,25 +19,20 @@ namespace Deskberry.UWP.IoC
         {
             var services = new ServiceCollection();
 
-            #region Databases
             services.AddDbContextPool<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"), 2);
-            #endregion
 
-            #region ViewModels
             services.AddScoped<MainPageViewModel>();
             services.AddScoped<DesktopPageViewModel>();
             services.AddScoped<NotesViewModel>();
             services.AddScoped<AddNotePageViewModel>();
             services.AddScoped<AllNotesPageViewModel>();
             services.AddScoped<CalculatorViewModel>();
-            #endregion
+            services.AddScoped<BrowserViewModel>();
 
-            #region Services
             services.AddScoped<IAccountService, AccountService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddScoped<INoteNavigationService, NoteNavigationService>();
             services.AddScoped<INoteService, NoteService>();
-            #endregion
 
             Container = services.BuildServiceProvider();
         }

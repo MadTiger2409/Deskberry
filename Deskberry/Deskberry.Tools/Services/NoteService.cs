@@ -1,12 +1,12 @@
 ﻿using Deskberry.SQLite.Data;
-using Deskberry.SQLite.Models;
 using Deskberry.SQLite.Data.Extensions.Queries;
+using Deskberry.SQLite.Models;
 using Deskberry.Tools.CommandObjects.Note;
 using Deskberry.Tools.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Deskberry.Tools.Services
 {

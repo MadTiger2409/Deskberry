@@ -105,12 +105,12 @@
     </Compile>
     <Compile Include="Helpers\DialogHelper.cs" />
     <Compile Include="Helpers\Models\Equation.cs" />
-    <Compile Include="Helpers\Validators\CreateNoteValidator.cs" />
     <Compile Include="IoC\MainContainer.cs" />
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\Interfaces\INoteNavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\NoteNavigationService.cs" />
+    <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\CalculatorViewModel.cs" />
     <Compile Include="ViewModels\DesktopPageViewModel.cs" />
     <Compile Include="ViewModels\NotesViewModel.cs" />

@@ -2,30 +2,17 @@
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
-using System.ComponentModel;
 
 namespace Deskberry.UWP.ViewModels
 {
-    public class DesktopPageViewModel : INotifyPropertyChanged
+    public class DesktopPageViewModel
     {
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Injected
-        private INavigationService _navigationService;
         private IAccountService _accountService;
-        #endregion
+        private INavigationService _navigationService;
 
-        #region Commands
-        public RelayCommand OpenBrowerCommand { get; private set; }
-        public RelayCommand OpenNotesCommand { get; private set; }
-        public RelayCommand OpenCalculatorCommand { get; private set; }
-        public RelayCommand ClearDesktopWinddowCommand { get; private set; }
-        public RelayCommand LogOutCommand { get; private set; }
-        #endregion
-
-        public DesktopPageViewModel() { }
+        public DesktopPageViewModel()
+        {
+        }
 
         public DesktopPageViewModel(INavigationService navigationService, IAccountService accountService)
         {
@@ -39,32 +26,24 @@ namespace Deskberry.UWP.ViewModels
             LogOutCommand = new RelayCommand(() => LogOut());
         }
 
-        #region PrivateMethods
-        private void OpenBrowser()
-        {
-            _navigationService.NavigateToSubApp(typeof(BrowserPage));
-        }
+        public RelayCommand ClearDesktopWinddowCommand { get; private set; }
+        public RelayCommand LogOutCommand { get; private set; }
+        public RelayCommand OpenBrowerCommand { get; private set; }
+        public RelayCommand OpenCalculatorCommand { get; private set; }
+        public RelayCommand OpenNotesCommand { get; private set; }
 
-        private void OpenNotes()
-        {
-            _navigationService.NavigateToSubApp(typeof(NotesPage));
-        }
-
-        private void OpenCalculator()
-        {
-            _navigationService.NavigateToSubApp(typeof(CalculatorPage));
-        }
-
-        private void ClearDesktopWindow()
-        {
-            _navigationService.ClearSubAppsWindow();
-        }
+        private void ClearDesktopWindow() => _navigationService.ClearSubAppsWindow();
 
         private void LogOut()
         {
             _accountService.LogOut();
             _navigationService.NavigateBack();
         }
-        #endregion
+
+        private void OpenBrowser() => _navigationService.NavigateToSubApp(typeof(BrowserPage));
+
+        private void OpenCalculator() => _navigationService.NavigateToSubApp(typeof(CalculatorPage));
+
+        private void OpenNotes() => _navigationService.NavigateToSubApp(typeof(NotesPage));
     }
 }

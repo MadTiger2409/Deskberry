@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Deskberry.UWP.Commands
 {
     public class RelayCommand : ICommand
     {
-        Action _TargetExecuteMethod;
-        Func<bool> _TargetCanExecuteMethod;
+        private readonly Func<bool> _TargetCanExecuteMethod;
+        private readonly Action _TargetExecuteMethod;
 
         public RelayCommand(Action executeMethod)
         {
@@ -23,12 +19,7 @@ namespace Deskberry.UWP.Commands
             _TargetCanExecuteMethod = canExecuteMethod;
         }
 
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged(this, EventArgs.Empty);
-        }
-
-        #region ICommand Members
+        public event EventHandler CanExecuteChanged = delegate { };
 
         bool ICommand.CanExecute(object parameter)
         {
@@ -43,12 +34,8 @@ namespace Deskberry.UWP.Commands
             return false;
         }
 
-        public event EventHandler CanExecuteChanged = delegate { };
+        void ICommand.Execute(object parameter) => _TargetExecuteMethod?.Invoke();
 
-        void ICommand.Execute(object parameter)
-        {
-            _TargetExecuteMethod?.Invoke();
-        }
-        #endregion
+        public void RaiseCanExecuteChanged() => CanExecuteChanged(this, EventArgs.Empty);
     }
 }

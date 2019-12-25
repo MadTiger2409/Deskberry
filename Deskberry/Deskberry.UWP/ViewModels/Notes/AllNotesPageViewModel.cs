@@ -1,41 +1,25 @@
 ﻿using Deskberry.SQLite.Models;
+using Deskberry.Tools.CommandObjects.Note;
+using Deskberry.Tools.Enums;
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
-using Deskberry.Tools.Enums;
-using Deskberry.UWP.Commands;
 using Deskberry.UWP.Commands.Generic;
 using Deskberry.UWP.Helpers;
 using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
-using Deskberry.Tools.CommandObjects.Note;
 
 namespace Deskberry.UWP.ViewModels.Notes
 {
-    public class AllNotesPageViewModel : INotifyPropertyChanged
+    public class AllNotesPageViewModel
     {
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Injected
         private INoteService _noteService;
-        #endregion
 
-        #region Commands
-        public RelayCommand<object> DeleteCommand { get; protected set; }
-        public RelayCommand<object> EditNoteCommand { get; protected set; }
-        #endregion
-
-        #region Properties
-        public ObservableCollection<Note> Notes { get; set; }
-        #endregion
-
-        public AllNotesPageViewModel() { }
+        public AllNotesPageViewModel()
+        {
+        }
 
         public AllNotesPageViewModel(INoteService noteService)
         {
@@ -46,20 +30,15 @@ namespace Deskberry.UWP.ViewModels.Notes
             Notes = new ObservableCollection<Note>();
         }
 
-        #region PublicMethods
+        public RelayCommand<object> DeleteCommand { get; protected set; }
+        public RelayCommand<object> EditNoteCommand { get; protected set; }
+        public ObservableCollection<Note> Notes { get; set; }
+
         public void RefreshNotesCollection()
         {
             var notes = _noteService.GetAllAsync(Session.Id).GetAwaiter().GetResult();
 
             Notes = new ObservableCollection<Note>(notes);
-        }
-        #endregion
-
-        #region PrivateMethods
-        private void InitializeCommands()
-        {
-            DeleteCommand = new RelayCommand<object>(async x => await DeleteNoteAsync(x));
-            EditNoteCommand = new RelayCommand<object>(async x => await EditNoteAsync(x));
         }
 
         private async Task DeleteNoteAsync(object id)
@@ -91,6 +70,11 @@ namespace Deskberry.UWP.ViewModels.Notes
                 await _noteService.UpdateAsync(context);
             }
         }
-        #endregion
+
+        private void InitializeCommands()
+        {
+            DeleteCommand = new RelayCommand<object>(async x => await DeleteNoteAsync(x));
+            EditNoteCommand = new RelayCommand<object>(async x => await EditNoteAsync(x));
+        }
     }
 }

@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="using:Deskberry.UWP"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
     Background="Transparent"
     mc:Ignorable="d">
 
@@ -22,6 +23,10 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
+
+    <Page.DataContext>
+        <viewModels:BrowserViewModel />
+    </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>

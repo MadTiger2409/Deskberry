@@ -1,46 +1,30 @@
-﻿using System;
+﻿using Deskberry.Tools.Validators;
+using FluentValidation;
+using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
-using Deskberry.Tools.Validators;
-using FluentValidation;
 
 namespace Deskberry.Tools.CommandObjects.Note
 {
     public class CreateNote : INotifyPropertyChanged
     {
-        #region Fields
-        protected bool _isTitleErrorVisible;
-        protected bool _isDescriptionErrorVisible;
-
-        protected string _title;
         protected string _description;
+        protected bool _isDescriptionErrorVisible;
+        protected bool _isTitleErrorVisible;
+        protected string _title;
+
         private readonly CreateNoteValidator _validator;
-        #endregion
 
-        #region Events
+        public CreateNote()
+        {
+            IsTitleErrorVisible = false;
+            IsDescriptionErrorVisible = false;
+            _validator = new CreateNoteValidator();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Properties
 
         public Action CanExecutedChanged { get; set; }
-
-        public string Title
-        {
-            get { return _title; }
-            set
-            {
-                if (value == _title)
-                    return;
-
-                _title = value;
-
-                IsTitleErrorVisible = !_validator.Validate(this, ruleSet: "Title").IsValid;
-                CanExecutedChanged.Invoke();
-
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Title)));
-            }
-        }
 
         public string Description
         {
@@ -59,6 +43,19 @@ namespace Deskberry.Tools.CommandObjects.Note
             }
         }
 
+        public bool IsDescriptionErrorVisible
+        {
+            get { return _isDescriptionErrorVisible; }
+            set
+            {
+                if (value == _isDescriptionErrorVisible)
+                    return;
+
+                _isDescriptionErrorVisible = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsDescriptionErrorVisible)));
+            }
+        }
+
         public bool IsTitleErrorVisible
         {
             get { return _isTitleErrorVisible; }
@@ -72,25 +69,21 @@ namespace Deskberry.Tools.CommandObjects.Note
             }
         }
 
-        public bool IsDescriptionErrorVisible
+        public string Title
         {
-            get { return _isDescriptionErrorVisible; }
+            get { return _title; }
             set
             {
-                if (value == _isDescriptionErrorVisible)
+                if (value == _title)
                     return;
 
-                _isDescriptionErrorVisible = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsDescriptionErrorVisible)));
-            }
-        }
-        #endregion
+                _title = value;
 
-        public CreateNote()
-        {
-            IsTitleErrorVisible = false;
-            IsDescriptionErrorVisible = false;
-            _validator = new CreateNoteValidator();
+                IsTitleErrorVisible = !_validator.Validate(this, ruleSet: "Title").IsValid;
+                CanExecutedChanged.Invoke();
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Title)));
+            }
         }
 
         public async Task ClearAsync()

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Deskberry.SQLite.Data;
+﻿using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Data.Extensions.Queries;
 using Deskberry.SQLite.Extensions.Security;
 using Deskberry.SQLite.Models;
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Deskberry.Tools.Services
 {
@@ -41,12 +41,10 @@ namespace Deskberry.Tools.Services
             return areValid;
         }
 
+        public async Task<Account> GetAsync(int id) => await _context.Accounts.GetById(id).SingleOrDefaultAsync();
+
+        public async Task<List<Account>> GetAsync() => await _context.Accounts.Include(x => x.Avatar).ToListAsync();
+
         public void LogOut() => Session.Clear();
-
-        public async Task<Account> GetAsync(int id)
-            => await _context.Accounts.GetById(id).SingleOrDefaultAsync();
-
-        public async Task<List<Account>> GetAsync()
-            => await _context.Accounts.Include(x => x.Avatar).ToListAsync();
     }
 }

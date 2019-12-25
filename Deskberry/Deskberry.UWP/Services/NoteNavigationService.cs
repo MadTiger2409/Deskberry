@@ -1,10 +1,6 @@
 ﻿using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -12,7 +8,7 @@ namespace Deskberry.UWP.Services
 {
     public class NoteNavigationService : INoteNavigationService
     {
-        private string _noteNamespace = "Deskberry.UWP.Views.Notes";
+        private readonly string _noteNamespace = "Deskberry.UWP.Views.Notes";
 
         public void NavigateTo(Type viewType)
         {
@@ -30,7 +26,7 @@ namespace Deskberry.UWP.Services
 
         private NotesPage GetNotesPage()
         {
-            Frame rootFrame = Window.Current.Content as Frame;
+            var rootFrame = Window.Current.Content as Frame;
             var desktopPage = rootFrame.Content as DesktopPage;
             var notesPage = desktopPage.NavigationFrame.Content as NotesPage;
 

@@ -1,38 +1,39 @@
 ﻿using Deskberry.Tools.Extensions.HelpModels;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Services.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
 namespace Deskberry.UWP.ViewModels
 {
     public class NotesViewModel : INotifyPropertyChanged
     {
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Fields
         public NoteMenuItem _selectedMenuItem;
-        #endregion
 
-        #region Injected
         private INavigationService _navigationService;
         private INoteNavigationService _noteNavigationService;
-        #endregion
 
-        #region Commands
+        public NotesViewModel()
+        {
+        }
+
+        public NotesViewModel(INavigationService navigationService, INoteNavigationService noteNavigationService)
+        {
+            _navigationService = navigationService;
+            _noteNavigationService = noteNavigationService;
+
+            NoteMenuItems = InitializeMenuItems();
+
+            CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
+            NavigateBackCommand = new RelayCommand(() => NavigateBack());
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public RelayCommand CloseSubAppCommand { get; private set; }
         public RelayCommand NavigateBackCommand { get; private set; }
-        #endregion
-
-        #region Properties
         public ObservableCollection<NoteMenuItem> NoteMenuItems { get; set; }
 
         public NoteMenuItem SelectedMenuItem
@@ -49,30 +50,17 @@ namespace Deskberry.UWP.ViewModels
             }
         }
 
-        #endregion
-
-        public NotesViewModel() { }
-
-        public NotesViewModel(INavigationService navigationService, INoteNavigationService noteNavigationService)
-        {
-            _navigationService = navigationService;
-            _noteNavigationService = noteNavigationService;
-
-            NoteMenuItems = InitializeMenuItems();
-
-            CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
-            NavigateBackCommand = new RelayCommand(() => NavigateBack());
-        }
-
-        #region PublicMethods
         public void SetMenuItemOnStart()
         {
             SelectedMenuItem = NoteMenuItems.FirstOrDefault();
             _noteNavigationService.NavigateTo(SelectedMenuItem.Tag);
         }
-        #endregion
 
-        #region PrivateMethods
+        private void CloseSubApp()
+        {
+            _navigationService.ClearSubAppsWindow();
+        }
+
         private ObservableCollection<NoteMenuItem> InitializeMenuItems()
         {
             var collection = new ObservableCollection<NoteMenuItem>
@@ -84,15 +72,9 @@ namespace Deskberry.UWP.ViewModels
             return collection;
         }
 
-        private void CloseSubApp()
-        {
-            _navigationService.ClearSubAppsWindow();
-        }
-
         private void NavigateBack()
         {
             _navigationService.NavigateBackFromSubApp();
         }
-        #endregion
     }
 }
