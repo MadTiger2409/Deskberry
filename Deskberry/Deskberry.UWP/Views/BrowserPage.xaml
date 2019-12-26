@@ -53,8 +53,6 @@
                 Text="Browser" />
         </Border>
 
-
-
         <StackPanel
             Grid.Row="0"
             Grid.Column="1"
@@ -144,13 +142,15 @@
                     Grid.Column="0"
                     Margin="2,4,2,4"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch"
+                    Command="{Binding GoBackwardCommand}"
+                    ToolTipService.ToolTip="Backward">
                     <Viewbox>
                         <Path
                             Data="{StaticResource UndoGeometry}"
-                            Fill="Transparent"
+                            Fill="LightGray"
                             RenderTransformOrigin="0.5,0.5"
-                            Stroke="White">
+                            Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -166,13 +166,15 @@
                     Grid.Column="1"
                     Margin="2,4,2,4"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch"
+                    Command="{Binding GoForwardCommand}"
+                    ToolTipService.ToolTip="Forward">
                     <Viewbox>
                         <Path
                             Data="{StaticResource RedoGeometry}"
-                            Fill="Transparent"
+                            Fill="LightGray"
                             RenderTransformOrigin="0.5,0.5"
-                            Stroke="White">
+                            Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -188,13 +190,15 @@
                     Grid.Column="2"
                     Margin="2,4,2,4"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch"
+                    Command="{Binding RefreshCommand}"
+                    ToolTipService.ToolTip="Refresh">
                     <Viewbox>
                         <Path
                             Data="{StaticResource ReloadGeometry}"
-                            Fill="Transparent"
+                            Fill="LightGray"
                             RenderTransformOrigin="0.5,0.5"
-                            Stroke="White">
+                            Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -210,13 +214,15 @@
                     Grid.Column="3"
                     Margin="2,4,2,4"
                     HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
+                    VerticalAlignment="Stretch"
+                    Command="{Binding GoHomeCommand}"
+                    ToolTipService.ToolTip="Home Page">
                     <Viewbox>
                         <Path
                             Data="{StaticResource HomeGeometry}"
-                            Fill="Transparent"
+                            Fill="LightGray"
                             RenderTransformOrigin="0.5,0.5"
-                            Stroke="White">
+                            Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -241,9 +247,9 @@
                     <Viewbox>
                         <Path
                             Data="{StaticResource FavouritesAddGeometry}"
-                            Fill="Transparent"
+                            Fill="LightGray"
                             RenderTransformOrigin="0.34,0.5"
-                            Stroke="White">
+                            Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -263,9 +269,9 @@
                     <Viewbox>
                         <Path
                             Data="{StaticResource FavouritesGeometry}"
-                            Fill="Transparent"
+                            Fill="LightGray"
                             RenderTransformOrigin="0.5,0.3"
-                            Stroke="White">
+                            Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -279,12 +285,13 @@
                 </Button>
             </Grid>
 
-            <WebView
+            <ContentPresenter
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Margin="0,0,0,0"
                 HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch" />
+                VerticalAlignment="Stretch"
+                Content="{Binding WebView}" />
         </Grid>
     </Grid>
 </Page>
