@@ -35,11 +35,11 @@ namespace Deskberry.UWP.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand<object> AddExpressionCommand { get; protected set; }
-        public RelayCommand ClearHistoryCommand { get; private set; }
-        public RelayCommand CloseSubAppCommand { get; private set; }
-        public RelayCommand ComputeExpressionCommand { get; private set; }
-        public RelayCommand ComputeExpressionForOneParameterOperationCommand { get; private set; }
-        public RelayCommand NavigateBackCommand { get; private set; }
+        public RelayCommand ClearHistoryCommand { get; protected set; }
+        public RelayCommand CloseSubAppCommand { get; protected set; }
+        public RelayCommand ComputeExpressionCommand { get; protected set; }
+        public RelayCommand ComputeExpressionForOneParameterOperationCommand { get; protected set; }
+        public RelayCommand NavigateBackCommand { get; protected set; }
         public ObservableCollection<Equation> Expressions { get; set; }
 
         public string DisplayText

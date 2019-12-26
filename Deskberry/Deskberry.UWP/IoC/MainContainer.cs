@@ -33,6 +33,7 @@ namespace Deskberry.UWP.IoC
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddScoped<INoteNavigationService, NoteNavigationService>();
             services.AddScoped<INoteService, NoteService>();
+            services.AddScoped<IFavoriteService, FavoriteService>();
 
             Container = services.BuildServiceProvider();
         }

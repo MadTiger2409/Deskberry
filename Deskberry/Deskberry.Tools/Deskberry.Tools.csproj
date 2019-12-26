@@ -120,6 +120,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CommandObjects\Favorite\CreateFavorite.cs" />
     <Compile Include="CommandObjects\Note\CreateNote.cs" />
     <Compile Include="CommandObjects\Note\UpdateNote.cs" />
     <Compile Include="Converters\Base64ToImageConverter.cs" />
@@ -128,9 +129,12 @@
     <Compile Include="Extensions\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\FavoriteService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
+    <Compile Include="Services\Interfaces\IFavoriteService.cs" />
     <Compile Include="Services\Interfaces\INoteService.cs" />
     <Compile Include="Services\NoteService.cs" />
+    <Compile Include="Validators\CreateFavoriteValidator.cs" />
     <Compile Include="Validators\CreateNoteValidator.cs" />
     <EmbeddedResource Include="Properties\Deskberry.Tools.rd.xml" />
   </ItemGroup>
@@ -151,8 +155,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Deskberry.SQLite">
-      <HintPath>..\Deskberry.SQLite\bin\Release\netstandard2.0\Deskberry.SQLite.dll</HintPath>
+    <Reference Include="Deskberry.SQLite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

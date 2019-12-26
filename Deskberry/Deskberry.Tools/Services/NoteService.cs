@@ -35,7 +35,7 @@ namespace Deskberry.Tools.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Note>> GetAllAsync(int userId) => await _context.Notes.Where(x => x.AccountId == userId).ToListAsync();
+        public async Task<List<Note>> GetAllForUserAsync(int userId) => await _context.Notes.Where(x => x.AccountId == userId).ToListAsync();
 
         public async Task<Note> GetAsync(int id) => await _context.Notes.GetById(id).SingleOrDefaultAsync();
 

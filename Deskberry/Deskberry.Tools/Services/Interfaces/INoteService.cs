@@ -11,7 +11,7 @@ namespace Deskberry.Tools.Services.Interfaces
 
         Task DeleteAsync(int id);
 
-        Task<List<Note>> GetAllAsync(int userId);
+        Task<List<Note>> GetAllForUserAsync(int userId);
 
         Task<Note> GetAsync(int id);
 

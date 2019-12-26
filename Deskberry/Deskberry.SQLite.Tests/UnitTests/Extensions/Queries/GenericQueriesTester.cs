@@ -2,25 +2,25 @@
 using Deskberry.SQLite.Models;
 using Deskberry.SQLite.Tests.Resources.Databases;
 using Deskberry.SQLite.Tests.Resources.UnitTests.AccountQueries;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
 {
-    [Collection("Account Queries Tests")]
-    public class AccountQueriesTester : SQLiteDatabaseFixture
+    [Collection("Generic Queries Tests")]
+    public class GenericQueriesTester : SQLiteDatabaseFixture
     {
-        private void PrepareDbContextWithOneAvatarAndOneUser(string login, byte[] passwordHash, byte[] passwordSalt, out Account account)
+        [Fact]
+        public void GetById_RecordDoesntExist_NotFound()
         {
-            var avatar = new Avatar(new byte[] { 1, 57, 137, 75 });
-            account = new Account(login, passwordHash, passwordSalt, avatar);
+            // Arrange
+            Account account;
 
-            DbContext.Avatars.Add(avatar);
-            DbContext.Accounts.Add(account);
-            DbContext.SaveChanges();
+            // Act
+            account = DbContext.Accounts.GetById(10).SingleOrDefault();
+
+            // Assert
+            Assert.Null(account);
         }
 
         [Theory]
@@ -42,17 +42,14 @@ namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
             Assert.Equal(expectedAccount, account);
         }
 
-        [Fact]
-        public void GetById_RecordDoesntExist_NotFound()
+        private void PrepareDbContextWithOneAvatarAndOneUser(string login, byte[] passwordHash, byte[] passwordSalt, out Account account)
         {
-            // Arrange
-            Account account;
+            var avatar = new Avatar(new byte[] { 1, 57, 137, 75 });
+            account = new Account(login, passwordHash, passwordSalt, avatar);
 
-            // Act
-            account = DbContext.Accounts.GetById(10).SingleOrDefault();
-
-            // Assert
-            Assert.Null(account);
+            DbContext.Avatars.Add(avatar);
+            DbContext.Accounts.Add(account);
+            DbContext.SaveChanges();
         }
     }
 }
