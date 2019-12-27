@@ -1,5 +1,6 @@
 ﻿using Deskberry.SQLite.Models;
 using Deskberry.Tools.Enums;
+using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Commands.Generic;
@@ -25,6 +26,7 @@ namespace Deskberry.UWP.ViewModels
         {
             _favoriteService = favoriteService;
             WebView = new WebView();
+            Favorites = new ObservableCollection<Favorite>();
 
             GoBackwardCommand = new RelayCommand(() => WebView.GoBack(), CanGoBackward);
             GoForwardCommand = new RelayCommand(() => WebView.GoForward(), CanGoForward);
@@ -41,6 +43,13 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand GoHomeCommand { get; protected set; }
         public RelayCommand RefreshCommand { get; protected set; }
         public WebView WebView { get; set; }
+
+        public void RefreshFavoritesCollection()
+        {
+            var favorites = _favoriteService.GetAllForUserAsync(Session.Id).GetAwaiter().GetResult();
+
+            Favorites = new ObservableCollection<Favorite>(favorites);
+        }
 
         private bool CanGoBackward() => WebView.CanGoBack;
 

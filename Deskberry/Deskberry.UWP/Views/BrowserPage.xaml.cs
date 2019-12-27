@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Deskberry.UWP.IoC;
+﻿using Deskberry.UWP.IoC;
 using Deskberry.UWP.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace Deskberry.UWP.Views
 {
@@ -19,6 +16,24 @@ namespace Deskberry.UWP.Views
         {
             this.InitializeComponent();
             DataContext = MainContainer.Container.GetService<BrowserViewModel>();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var viewModel = DataContext as BrowserViewModel;
+            viewModel.RefreshFavoritesCollection();
+        }
+
+        // A workaround for accessing parent's command
+        private void Button_Click_DeleteFavorite(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (BrowserViewModel)DataContext;
+            var button = (Button)sender;
+
+            if (viewModel.DeleteFavoriteCommand.CanExecute(button.Tag))
+                viewModel.DeleteFavoriteCommand.Execute(button.Tag);
+
+            FavoritesListView.ItemsSource = viewModel.Favorites;
         }
     }
 }

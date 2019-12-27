@@ -260,6 +260,51 @@
                             </Path.RenderTransform>
                         </Path>
                     </Viewbox>
+
+                    <Button.Flyout>
+                        <Flyout>
+                            <Grid Width="200" Height="200">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="10" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="Title" />
+                                <TextBox
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Stretch"
+                                    PlaceholderText="Title" />
+                                <TextBlock
+                                    Grid.Row="2"
+                                    Foreground="Red"
+                                    Text="Enter valid title" />
+
+                                <TextBlock Grid.Row="4" Text="Uri" />
+                                <Border
+                                    Grid.Row="5"
+                                    Background="Black"
+                                    BorderBrush="Gray"
+                                    BorderThickness="2">
+                                    <TextBlock
+                                        Height="22"
+                                        Margin="10,2,10,2"
+                                        HorizontalAlignment="Stretch"
+                                        AllowFocusOnInteraction="False"
+                                        Text="https://some-random-side.com"
+                                        TextWrapping="NoWrap" />
+                                </Border>
+                                <Button
+                                    Grid.Row="6"
+                                    HorizontalAlignment="Stretch"
+                                    Content="Add" />
+                            </Grid>
+                        </Flyout>
+                    </Button.Flyout>
                 </Button>
                 <Button
                     Grid.Column="6"
@@ -285,7 +330,18 @@
 
                     <Button.Flyout>
                         <Flyout>
-                            <TextBlock Text="Hello" />
+                            <Grid Width="200" Height="350">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Text="Favorites" />
+                                <ListView
+                                    x:Name="FavoritesListView"
+                                    Grid.Row="1"
+                                    ItemsSource="{Binding Favorites}" />
+                            </Grid>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
