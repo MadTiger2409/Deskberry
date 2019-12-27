@@ -2,24 +2,22 @@
 using Deskberry.SQLite.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Deskberry.SQLite.Data
 {
     public class DeskberryContext : DbContext
     {
+        public bool IsProductionDatabase { get; protected set; }
+
+        public DeskberryContext(DbContextOptions<DeskberryContext> options) : base(options)
+        {
+            IsProductionDatabase = true;
+        }
+
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Avatar> Avatars { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Note> Notes { get; set; }
-
-        private readonly bool isProductionDatabase;
-
-        public DeskberryContext(DbContextOptions<DeskberryContext> options, bool isProductionDatabase = true) : base(options)
-        {
-            this.isProductionDatabase = isProductionDatabase;
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -47,7 +45,7 @@ namespace Deskberry.SQLite.Data
                 .WithMany(y => y.Notes)
                 .HasForeignKey(x => x.AccountId);
 
-            if (isProductionDatabase)
+            if (IsProductionDatabase)
             {
                 modelBuilder.Entity<Avatar>()
                 .HasData(new

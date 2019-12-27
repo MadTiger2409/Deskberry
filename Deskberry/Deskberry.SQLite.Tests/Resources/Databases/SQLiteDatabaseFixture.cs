@@ -2,8 +2,6 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Deskberry.SQLite.Tests.Resources.Databases
 {
@@ -12,7 +10,7 @@ namespace Deskberry.SQLite.Tests.Resources.Databases
         private const string InMemoryConnectionString = "DataSource=:memory:";
         private readonly SqliteConnection _connection;
 
-        protected readonly DeskberryContext DbContext;
+        protected readonly TestDeskberryContext DbContext;
 
         protected SQLiteDatabaseFixture()
         {
@@ -21,13 +19,10 @@ namespace Deskberry.SQLite.Tests.Resources.Databases
             var options = new DbContextOptionsBuilder<DeskberryContext>()
                     .UseSqlite(_connection, x => x.SuppressForeignKeyEnforcement())
                     .Options;
-            DbContext = new DeskberryContext(options, false);
+            DbContext = new TestDeskberryContext(options, false);
             DbContext.Database.EnsureCreated();
         }
 
-        public void Dispose()
-        {
-            _connection.Close();
-        }
+        public void Dispose() => _connection.Close();
     }
 }

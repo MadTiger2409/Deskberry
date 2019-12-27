@@ -282,6 +282,12 @@
                             </Path.RenderTransform>
                         </Path>
                     </Viewbox>
+
+                    <Button.Flyout>
+                        <Flyout>
+                            <TextBlock Text="Hello" />
+                        </Flyout>
+                    </Button.Flyout>
                 </Button>
             </Grid>
 

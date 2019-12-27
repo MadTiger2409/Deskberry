@@ -1,5 +1,4 @@
-﻿using Deskberry.UWP.Dialogs;
-using Deskberry.UWP.IoC;
+﻿using Deskberry.UWP.IoC;
 using Deskberry.UWP.ViewModels.Notes;
 using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Xaml;
@@ -39,12 +38,7 @@ namespace Deskberry.UWP.Views.Notes
             NotesListView.ItemsSource = viewModel.Notes;
         }
 
-        // Disables highlighting for selected item
-        private void NotesListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            NotesListView.SelectedItem = null;
-        }
-
+        // A workaround for accessing parent's command
         private void Button_Click_EditNote(object sender, RoutedEventArgs e)
         {
             var viewModel = (AllNotesPageViewModel)DataContext;
@@ -53,5 +47,8 @@ namespace Deskberry.UWP.Views.Notes
             if (viewModel.EditNoteCommand.CanExecute(button.Tag))
                 viewModel.EditNoteCommand.Execute(button.Tag);
         }
+
+        // Disables highlighting for selected item
+        private void NotesListView_SelectionChanged(object sender, SelectionChangedEventArgs e) => NotesListView.SelectedItem = null;
     }
 }
