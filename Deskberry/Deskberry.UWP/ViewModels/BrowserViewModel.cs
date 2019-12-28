@@ -1,11 +1,11 @@
 ﻿using Deskberry.SQLite.Models;
 using Deskberry.Tools.Enums;
-using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Commands.Generic;
 using Deskberry.UWP.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -46,7 +46,25 @@ namespace Deskberry.UWP.ViewModels
 
         public void RefreshFavoritesCollection()
         {
-            var favorites = _favoriteService.GetAllForUserAsync(Session.Id).GetAwaiter().GetResult();
+            // var favorites = _favoriteService.GetAllForUserAsync(Session.Id).GetAwaiter().GetResult();
+            var favorites = new List<Favorite>
+            {
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com"),
+                new Favorite("Google", @"https://google.com")
+            };
 
             Favorites = new ObservableCollection<Favorite>(favorites);
         }

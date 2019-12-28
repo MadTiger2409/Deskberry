@@ -1,60 +1,66 @@
 ﻿<Page
-    x:Name="AllNotes"
     x:Class="Deskberry.UWP.Views.Notes.AllNotesPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Deskberry.UWP.Views.Notes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:Deskberry.UWP.Views.Notes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModels="using:Deskberry.UWP.ViewModels.Notes"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    x:Name="AllNotes"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    mc:Ignorable="d">
 
     <Page.DataContext>
-        <viewModels:AllNotesPageViewModel/>
+        <viewModels:AllNotesPageViewModel />
     </Page.DataContext>
 
     <Page.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="noteTemplate">
-                <ListViewItem BorderBrush="#2b2b2b"
-                              BorderThickness="1.2"
-                              Background="Transparent"
-                              Margin="0, 3, 0, 3">
+                <ListViewItem
+                    Margin="0,3,0,3"
+                    Background="Transparent"
+                    BorderBrush="#2b2b2b"
+                    BorderThickness="1.2">
                     <Grid Margin="6">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
-                        
-                        <TextBlock Grid.Row="0"
-                                   Grid.Column="0"
-                                   FontWeight="Bold"
-                                   FontSize="20"
-                                   Text="{Binding Title, Mode=OneWay}"/>
-                        <TextBlock Grid.Row="1"
-                                   Grid.Column="0"
-                                   Text="{Binding Content, Mode=OneWay}"/>
 
-                        <StackPanel Grid.Row="1"
-                                    Grid.Column="1"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Bottom"
-                                    Orientation="Horizontal">
-                            <Button Content="Edit"
-                                    Margin="0,0,6,0"
-                                    Tag="{Binding Id}"
-                                    Click="Button_Click_EditNote"
-                                    Style="{ThemeResource ActionButton}"/>
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Text="{Binding Title, Mode=OneWay}" />
+                        <TextBlock
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="{Binding Content, Mode=OneWay}" />
 
-                            <Button Content="Delete"
-                                    Tag="{Binding Id}"
-                                    Click="Button_Click_DeleteNote"/>
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Orientation="Horizontal">
+                            <Button
+                                Margin="0,0,6,0"
+                                Click="Button_Click_EditNote"
+                                Content="Edit"
+                                Style="{ThemeResource ActionButton}"
+                                Tag="{Binding Id}" />
+
+                            <Button
+                                Click="Button_Click_DeleteNote"
+                                Content="Delete"
+                                Tag="{Binding Id}" />
                         </StackPanel>
                     </Grid>
                 </ListViewItem>
@@ -64,32 +70,35 @@
 
     <Grid Margin="20" Background="#181818">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0"
-                   Grid.Column="1"
-                   Text="Notes"
-                   FontSize="30"
-                   Margin="0,0,0,5"/>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="0,0,0,5"
+            FontSize="30"
+            Text="Notes" />
 
-        <ScrollViewer Grid.Row="1"
-                      Grid.Column="1"
-                      VerticalScrollBarVisibility="Auto">
-            <ListView x:Name="NotesListView"
-                      SelectionChanged="NotesListView_SelectionChanged"
-                      ItemsSource="{Binding Notes, Mode=TwoWay}"
-                      ItemTemplate="{StaticResource noteTemplate}">
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Auto">
+            <ListView
+                x:Name="NotesListView"
+                ItemTemplate="{StaticResource noteTemplate}"
+                ItemsSource="{Binding Notes, Mode=TwoWay}"
+                SelectionChanged="NotesListView_SelectionChanged">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>

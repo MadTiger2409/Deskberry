@@ -11,6 +11,24 @@
 
     <Page.Resources>
         <ResourceDictionary>
+            <DataTemplate x:Key="favoritesTemplate">
+                <Grid Margin="0,3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        Text="{Binding Title}" />
+                    <Button
+                        Grid.Column="1"
+                        Content="Delete"
+                        Style="{StaticResource ActionButton}" />
+                </Grid>
+            </DataTemplate>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml" />
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml" />
@@ -295,13 +313,15 @@
                                         Margin="10,2,10,2"
                                         HorizontalAlignment="Stretch"
                                         AllowFocusOnInteraction="False"
+                                        Foreground="Gray"
                                         Text="https://some-random-side.com"
                                         TextWrapping="NoWrap" />
                                 </Border>
                                 <Button
                                     Grid.Row="6"
                                     HorizontalAlignment="Stretch"
-                                    Content="Add" />
+                                    Content="Add"
+                                    Style="{StaticResource ActionButton}" />
                             </Grid>
                         </Flyout>
                     </Button.Flyout>
@@ -337,10 +357,13 @@
                                 </Grid.RowDefinitions>
 
                                 <TextBlock Grid.Row="0" Text="Favorites" />
-                                <ListView
-                                    x:Name="FavoritesListView"
-                                    Grid.Row="1"
-                                    ItemsSource="{Binding Favorites}" />
+
+                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
+                                    <ItemsControl
+                                        x:Name="FavoritesListView"
+                                        ItemTemplate="{StaticResource favoritesTemplate}"
+                                        ItemsSource="{Binding Favorites, Mode=TwoWay}" />
+                                </ScrollViewer>
                             </Grid>
                         </Flyout>
                     </Button.Flyout>
