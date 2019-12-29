@@ -1,0 +1,6 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Deskberry.UWP.Assets.Paths">
+    <x:String x:Key="MenuGeometry">M2.384186E-06,24L32.000004,24 32.000004,26 2.384186E-06,26z M0,11.999998L32,11.999998 32,13.999998 0,13.999998z M2.384186E-06,0L32.000004,0 32.000004,2 2.384186E-06,2z</x:String>
+</ResourceDictionary>

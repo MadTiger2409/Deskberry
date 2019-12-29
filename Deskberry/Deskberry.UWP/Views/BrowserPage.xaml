@@ -12,7 +12,13 @@
     <Page.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="favoritesTemplate">
-                <Grid Margin="0,3">
+                <Grid
+                    Margin="0,3"
+                    Padding="4,0,0,0"
+                    Background="#313131"
+                    BorderBrush="#404040"
+                    BorderThickness="1"
+                    CornerRadius="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
@@ -24,8 +30,44 @@
                         Text="{Binding Title}" />
                     <Button
                         Grid.Column="1"
-                        Content="Delete"
-                        Style="{StaticResource ActionButton}" />
+                        Width="30"
+                        Height="30"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Background="Transparent"
+                        CornerRadius="2">
+                        <Viewbox>
+                            <Path
+                                Data="M2.384186E-06,24L32.000004,24 32.000004,26 2.384186E-06,26z M0,11.999998L32,11.999998 32,13.999998 0,13.999998z M2.384186E-06,0L32.000004,0 32.000004,2 2.384186E-06,2z"
+                                Fill="LightGray"
+                                RenderTransformOrigin="0.5,0.5"
+                                Stroke="Transparent">
+                                <Path.RenderTransform>
+                                    <TransformGroup>
+                                        <TransformGroup.Children>
+                                            <RotateTransform Angle="0" />
+                                            <ScaleTransform ScaleX="1.6" ScaleY="2" />
+                                        </TransformGroup.Children>
+                                    </TransformGroup>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Viewbox>
+
+                        <Button.Flyout>
+                            <Flyout Placement="LeftEdgeAlignedTop">
+                                <StackPanel>
+                                    <Button
+                                        Margin="0,0,0,2"
+                                        HorizontalAlignment="Stretch"
+                                        Content="Delete" />
+                                    <Button
+                                        Margin="0,2,0,0"
+                                        HorizontalAlignment="Stretch"
+                                        Content="Load" />
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
                 </Grid>
             </DataTemplate>
 
@@ -38,6 +80,7 @@
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Home.xaml" />
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Favourites-Add.xaml" />
                 <ResourceDictionary Source="ms-appx:///Assets/Paths/Favourites.xaml" />
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Menu.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -356,7 +399,10 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Text="Favorites" />
+                                <TextBlock
+                                    Grid.Row="0"
+                                    Margin="0,0,0,4"
+                                    Text="Favorites" />
 
                                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
                                     <ItemsControl
