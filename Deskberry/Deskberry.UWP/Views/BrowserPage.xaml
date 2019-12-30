@@ -59,7 +59,9 @@
                                     <Button
                                         Margin="0,0,0,2"
                                         HorizontalAlignment="Stretch"
-                                        Content="Delete" />
+                                        Click="Button_Click_DeleteFavorite"
+                                        Content="Delete"
+                                        Tag="{Binding Id}" />
                                     <Button
                                         Margin="0,2,0,0"
                                         HorizontalAlignment="Stretch"
@@ -299,7 +301,8 @@
                     Grid.Column="4"
                     Margin="2,4,2,4"
                     VerticalAlignment="Stretch"
-                    Background="Gray" />
+                    Background="Gray"
+                    Text="{Binding Uri, Mode=TwoWay}" />
                 <Button
                     Grid.Column="5"
                     Margin="2,4,2,4"

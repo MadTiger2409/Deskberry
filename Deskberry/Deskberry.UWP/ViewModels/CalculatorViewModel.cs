@@ -23,13 +23,7 @@ namespace Deskberry.UWP.ViewModels
         {
             Expressions = new ObservableCollection<Equation>();
             _navigationService = navigationService;
-
-            CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
-            NavigateBackCommand = new RelayCommand(() => NavigateBack());
-            ComputeExpressionCommand = new RelayCommand(() => ComputeExpression());
-            ComputeExpressionForOneParameterOperationCommand = new RelayCommand(() => ComputeExpressionForOneParameterOperation());
-            AddExpressionCommand = new RelayCommand<object>(x => AddExpression(x));
-            ClearHistoryCommand = new RelayCommand(() => ClearHistory());
+            InitializeCommands();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -39,8 +33,6 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand CloseSubAppCommand { get; protected set; }
         public RelayCommand ComputeExpressionCommand { get; protected set; }
         public RelayCommand ComputeExpressionForOneParameterOperationCommand { get; protected set; }
-        public RelayCommand NavigateBackCommand { get; protected set; }
-        public ObservableCollection<Equation> Expressions { get; set; }
 
         public string DisplayText
         {
@@ -52,6 +44,8 @@ namespace Deskberry.UWP.ViewModels
             }
         }
 
+        public ObservableCollection<Equation> Expressions { get; set; }
+
         public string ExpressionText
         {
             get { return _expressionText; }
@@ -61,6 +55,8 @@ namespace Deskberry.UWP.ViewModels
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ExpressionText)));
             }
         }
+
+        public RelayCommand NavigateBackCommand { get; protected set; }
 
         private void AddExpression(object result)
         {
@@ -79,6 +75,16 @@ namespace Deskberry.UWP.ViewModels
         private void ComputeExpression() => _expression = ExpressionText + DisplayText;
 
         private void ComputeExpressionForOneParameterOperation() => _expression = ExpressionText;
+
+        private void InitializeCommands()
+        {
+            CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
+            NavigateBackCommand = new RelayCommand(() => NavigateBack());
+            ComputeExpressionCommand = new RelayCommand(() => ComputeExpression());
+            ComputeExpressionForOneParameterOperationCommand = new RelayCommand(() => ComputeExpressionForOneParameterOperation());
+            AddExpressionCommand = new RelayCommand<object>(x => AddExpression(x));
+            ClearHistoryCommand = new RelayCommand(() => ClearHistory());
+        }
 
         private void NavigateBack() => _navigationService.NavigateBackFromSubApp();
     }

@@ -1,11 +1,11 @@
 ﻿using Deskberry.SQLite.Models;
 using Deskberry.Tools.Enums;
+using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Commands.Generic;
 using Deskberry.UWP.Helpers;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -18,6 +18,8 @@ namespace Deskberry.UWP.ViewModels
     {
         private readonly IFavoriteService _favoriteService;
 
+        private string uri;
+
         public BrowserViewModel()
         {
         }
@@ -25,12 +27,9 @@ namespace Deskberry.UWP.ViewModels
         public BrowserViewModel(IFavoriteService favoriteService)
         {
             _favoriteService = favoriteService;
-            WebView = new WebView();
             Favorites = new ObservableCollection<Favorite>();
-
-            GoBackwardCommand = new RelayCommand(() => WebView.GoBack(), CanGoBackward);
-            GoForwardCommand = new RelayCommand(() => WebView.GoForward(), CanGoForward);
-            RefreshCommand = new RelayCommand(() => WebView.Refresh());
+            InitializeWebView();
+            InitializeCommands();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -41,30 +40,24 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand GoBackwardCommand { get; protected set; }
         public RelayCommand GoForwardCommand { get; protected set; }
         public RelayCommand GoHomeCommand { get; protected set; }
+        public RelayCommand GoToCommand { get; protected set; }
         public RelayCommand RefreshCommand { get; protected set; }
+
+        public string Uri
+        {
+            get { return uri; }
+            set
+            {
+                uri = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Uri)));
+            }
+        }
+
         public WebView WebView { get; set; }
 
         public void RefreshFavoritesCollection()
         {
-            // var favorites = _favoriteService.GetAllForUserAsync(Session.Id).GetAwaiter().GetResult();
-            var favorites = new List<Favorite>
-            {
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com"),
-                new Favorite("Google", @"https://google.com")
-            };
+            var favorites = _favoriteService.GetAllForUserAsync(Session.Id).GetAwaiter().GetResult();
 
             Favorites = new ObservableCollection<Favorite>(favorites);
         }
@@ -87,6 +80,30 @@ namespace Deskberry.UWP.ViewModels
                 await _favoriteService.DeleteAsync(favoriteId);
                 Favorites.Remove(Favorites.Where(x => x.Id == favoriteId).SingleOrDefault());
             }
+        }
+
+        private void InitializeWebView()
+        {
+            WebView = new WebView();
+            WebView.NavigationStarting += WebView_NavigationStarting;
+            WebView.NewWindowRequested += WebView_NewWindowRequested;
+        }
+
+        private void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs e) => Uri = e.Uri.AbsoluteUri;
+
+        private void WebView_NewWindowRequested(WebView sender, WebViewNewWindowRequestedEventArgs e)
+        {
+            WebView.Navigate(e.Uri);
+            e.Handled = true;
+        }
+
+        private void InitializeCommands()
+        {
+            GoBackwardCommand = new RelayCommand(() => WebView.GoBack(), CanGoBackward);
+            GoForwardCommand = new RelayCommand(() => WebView.GoForward(), CanGoForward);
+            GoToCommand = new RelayCommand(() => WebView.Navigate(new Uri(Uri)));
+            RefreshCommand = new RelayCommand(() => WebView.Refresh());
+            DeleteFavoriteCommand = new RelayCommand<object>(async x => await DeleteFavoriteAsync(x));
         }
     }
 }
