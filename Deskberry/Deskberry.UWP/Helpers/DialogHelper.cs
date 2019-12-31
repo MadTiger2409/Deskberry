@@ -30,8 +30,16 @@ namespace Deskberry.UWP.Helpers
                     };
                     break;
 
+                case DialogEnum.DeleteFavoriteDialog:
+                    dialog = new DeleteFavoriteContentDialog
+                    {
+                        DataContext = dialogContent
+                    };
+                    break;
+
                 default:
-                    dialog = new ContentDialog();
+                    var content = (string)dialogContent;
+                    dialog = new StandardDialog(content);
                     break;
             }
 

@@ -50,6 +50,7 @@ namespace Deskberry.UWP.ViewModels
             {
                 uri = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Uri)));
+                GoToCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -66,13 +67,15 @@ namespace Deskberry.UWP.ViewModels
 
         private bool CanGoForward() => WebView.CanGoForward;
 
+        private bool CanGoTo() => !string.IsNullOrWhiteSpace(Uri);
+
         private async Task DeleteFavoriteAsync(object id)
         {
             var favoriteId = (int)id;
 
             var context = Favorites.Where(x => x.Id == favoriteId).Select(x => x.Title).SingleOrDefault();
 
-            var dialog = DialogHelper.GetContentDialog(DialogEnum.DeleteNoteDialog, context);
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.DeleteFavoriteDialog, context);
             var resoult = await dialog.ShowAsync();
 
             if (resoult == ContentDialogResult.Primary)
@@ -82,28 +85,49 @@ namespace Deskberry.UWP.ViewModels
             }
         }
 
+        private void InitializeCommands()
+        {
+            GoBackwardCommand = new RelayCommand(() => WebView.GoBack(), CanGoBackward);
+            GoForwardCommand = new RelayCommand(() => WebView.GoForward(), CanGoForward);
+            GoToCommand = new RelayCommand(() => GoTo(), CanGoTo);
+            RefreshCommand = new RelayCommand(() => WebView.Refresh());
+            DeleteFavoriteCommand = new RelayCommand<object>(async x => await DeleteFavoriteAsync(x));
+        }
+
         private void InitializeWebView()
         {
             WebView = new WebView();
-            WebView.NavigationStarting += WebView_NavigationStarting;
-            WebView.NewWindowRequested += WebView_NewWindowRequested;
+            WebView.NavigationStarting += WebView_OnNavigationStarting;
+            WebView.NewWindowRequested += WebView_OnNewWindowRequested;
+            WebView.NavigationCompleted += WebView_OnNavigationCompleted;
         }
 
-        private void WebView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs e) => Uri = e.Uri.AbsoluteUri;
+        private void GoTo()
+        {
+            var uriBuildder = new UriBuilder(Uri);
+            WebView.Navigate(uriBuildder.Uri);
+        }
 
-        private void WebView_NewWindowRequested(WebView sender, WebViewNewWindowRequestedEventArgs e)
+        private void WebView_OnNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs e)
+        {
+            Uri = e.Uri.AbsoluteUri;
+            GoForwardCommand.RaiseCanExecuteChanged();
+            GoBackwardCommand.RaiseCanExecuteChanged();
+        }
+
+        private void WebView_OnNewWindowRequested(WebView sender, WebViewNewWindowRequestedEventArgs e)
         {
             WebView.Navigate(e.Uri);
             e.Handled = true;
         }
 
-        private void InitializeCommands()
+        private async void WebView_OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
         {
-            GoBackwardCommand = new RelayCommand(() => WebView.GoBack(), CanGoBackward);
-            GoForwardCommand = new RelayCommand(() => WebView.GoForward(), CanGoForward);
-            GoToCommand = new RelayCommand(() => WebView.Navigate(new Uri(Uri)));
-            RefreshCommand = new RelayCommand(() => WebView.Refresh());
-            DeleteFavoriteCommand = new RelayCommand<object>(async x => await DeleteFavoriteAsync(x));
+            if (!e.IsSuccess)
+            {
+                var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, $"{e.Uri.AbsoluteUri} is not a valid address or the server is unreachable.");
+                await dialog.ShowAsync();
+            }
         }
     }
 }
