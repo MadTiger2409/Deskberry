@@ -5,6 +5,7 @@ using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Commands.Generic;
 using Deskberry.UWP.Helpers;
+using Deskberry.UWP.Services.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -17,16 +18,19 @@ namespace Deskberry.UWP.ViewModels
     public class BrowserViewModel : INotifyPropertyChanged
     {
         private readonly IFavoriteService _favoriteService;
+        private readonly INavigationService _navigationService;
 
-        private string uri;
+        private string _title;
+        private string _uri;
 
         public BrowserViewModel()
         {
         }
 
-        public BrowserViewModel(IFavoriteService favoriteService)
+        public BrowserViewModel(IFavoriteService favoriteService, INavigationService navigationService)
         {
             _favoriteService = favoriteService;
+            _navigationService = navigationService;
             Favorites = new ObservableCollection<Favorite>();
             InitializeWebView();
             InitializeCommands();
@@ -35,20 +39,32 @@ namespace Deskberry.UWP.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand AddFavoriteCommand { get; protected set; }
+        public RelayCommand CloseSubAppCommand { get; private set; }
         public RelayCommand<object> DeleteFavoriteCommand { get; protected set; }
         public ObservableCollection<Favorite> Favorites { get; set; }
         public RelayCommand GoBackwardCommand { get; protected set; }
         public RelayCommand GoForwardCommand { get; protected set; }
         public RelayCommand GoHomeCommand { get; protected set; }
         public RelayCommand GoToCommand { get; protected set; }
+        public RelayCommand NavigateBackCommand { get; private set; }
         public RelayCommand RefreshCommand { get; protected set; }
+
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Title)));
+            }
+        }
 
         public string Uri
         {
-            get { return uri; }
+            get { return _uri; }
             set
             {
-                uri = value;
+                _uri = value;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Uri)));
                 GoToCommand.RaiseCanExecuteChanged();
             }
@@ -69,6 +85,8 @@ namespace Deskberry.UWP.ViewModels
 
         private bool CanGoTo() => !string.IsNullOrWhiteSpace(Uri);
 
+        private void CloseSubApp() => _navigationService.ClearSubAppsWindow();
+
         private async Task DeleteFavoriteAsync(object id)
         {
             var favoriteId = (int)id;
@@ -85,6 +103,12 @@ namespace Deskberry.UWP.ViewModels
             }
         }
 
+        private void GoTo()
+        {
+            var uriBuildder = new UriBuilder(Uri);
+            WebView.Navigate(uriBuildder.Uri);
+        }
+
         private void InitializeCommands()
         {
             GoBackwardCommand = new RelayCommand(() => WebView.GoBack(), CanGoBackward);
@@ -92,6 +116,8 @@ namespace Deskberry.UWP.ViewModels
             GoToCommand = new RelayCommand(() => GoTo(), CanGoTo);
             RefreshCommand = new RelayCommand(() => WebView.Refresh());
             DeleteFavoriteCommand = new RelayCommand<object>(async x => await DeleteFavoriteAsync(x));
+            CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
+            NavigateBackCommand = new RelayCommand(() => NavigateBack());
         }
 
         private void InitializeWebView()
@@ -102,10 +128,19 @@ namespace Deskberry.UWP.ViewModels
             WebView.NavigationCompleted += WebView_OnNavigationCompleted;
         }
 
-        private void GoTo()
+        private void NavigateBack() => _navigationService.NavigateBackFromSubApp();
+
+        private async void WebView_OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
         {
-            var uriBuildder = new UriBuilder(Uri);
-            WebView.Navigate(uriBuildder.Uri);
+            if (!e.IsSuccess)
+            {
+                var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, $"{e.Uri.AbsoluteUri} is not a valid address or the server is unreachable.");
+                await dialog.ShowAsync();
+            }
+            else
+            {
+                Title = WebView.DocumentTitle;
+            }
         }
 
         private void WebView_OnNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs e)
@@ -119,15 +154,6 @@ namespace Deskberry.UWP.ViewModels
         {
             WebView.Navigate(e.Uri);
             e.Handled = true;
-        }
-
-        private async void WebView_OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
-        {
-            if (!e.IsSuccess)
-            {
-                var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, $"{e.Uri.AbsoluteUri} is not a valid address or the server is unreachable.");
-                await dialog.ShowAsync();
-            }
         }
     }
 }

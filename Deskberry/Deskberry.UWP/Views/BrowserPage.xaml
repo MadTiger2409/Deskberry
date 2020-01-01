@@ -108,12 +108,28 @@
             Background="{ThemeResource SystemControlAcrylicElementBrush}"
             BorderBrush="DarkGray"
             BorderThickness="0,0,0,0.3">
-            <TextBlock
-                Margin="8,0,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Center"
-                FontWeight="ExtraBold"
-                Text="Browser" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Grid.Column="0"
+                    Margin="8,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    FontWeight="ExtraBold"
+                    Text="Browser" />
+
+                <TextBlock
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Foreground="Gray"
+                    Text="{Binding Title}" />
+            </Grid>
         </Border>
 
         <StackPanel
@@ -303,6 +319,7 @@
                     Margin="2,4,2,4"
                     VerticalAlignment="Stretch"
                     Background="Gray"
+                    IsSpellCheckEnabled="False"
                     Text="{Binding Uri, Mode=TwoWay}" />
                 <Button
                     Grid.Column="5"

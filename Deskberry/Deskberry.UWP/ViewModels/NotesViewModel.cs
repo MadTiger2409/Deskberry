@@ -56,10 +56,7 @@ namespace Deskberry.UWP.ViewModels
             _noteNavigationService.NavigateTo(SelectedMenuItem.Tag);
         }
 
-        private void CloseSubApp()
-        {
-            _navigationService.ClearSubAppsWindow();
-        }
+        private void CloseSubApp() => _navigationService.ClearSubAppsWindow();
 
         private ObservableCollection<NoteMenuItem> InitializeMenuItems()
         {
@@ -72,9 +69,6 @@ namespace Deskberry.UWP.ViewModels
             return collection;
         }
 
-        private void NavigateBack()
-        {
-            _navigationService.NavigateBackFromSubApp();
-        }
+        private void NavigateBack() => _navigationService.NavigateBackFromSubApp();
     }
 }
