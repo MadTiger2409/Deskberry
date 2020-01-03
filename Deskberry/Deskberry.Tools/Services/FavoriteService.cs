@@ -20,12 +20,14 @@ namespace Deskberry.Tools.Services
             _context = context;
         }
 
-        public async Task AddAsync(CreateFavorite command, Account account)
+        public async Task<Favorite> AddAsync(CreateFavorite command, Account account)
         {
             var favorite = new Favorite(command.Title, command.Uri) { Account = account };
             _context.Favorites.Add(favorite);
 
             await _context.SaveChangesAsync();
+
+            return favorite;
         }
 
         public async Task DeleteAsync(int id)

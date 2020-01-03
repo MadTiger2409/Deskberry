@@ -1,4 +1,5 @@
 ﻿using Deskberry.SQLite.Models;
+using Deskberry.Tools.CommandObjects.Favorite;
 using Deskberry.Tools.Enums;
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
@@ -19,6 +20,7 @@ namespace Deskberry.UWP.ViewModels
     {
         private readonly IFavoriteService _favoriteService;
         private readonly INavigationService _navigationService;
+        private readonly IAccountService _accountService;
 
         private string _title;
         private string _uri;
@@ -27,20 +29,26 @@ namespace Deskberry.UWP.ViewModels
         {
         }
 
-        public BrowserViewModel(IFavoriteService favoriteService, INavigationService navigationService)
+        public BrowserViewModel(IFavoriteService favoriteService, INavigationService navigationService, IAccountService accountService)
         {
             _favoriteService = favoriteService;
             _navigationService = navigationService;
+            _accountService = accountService;
+            FavoriteForm = new CreateFavorite();
             Favorites = new ObservableCollection<Favorite>();
+
             InitializeWebView();
             InitializeCommands();
+
+            FavoriteForm.CanExecutedChanged = AddFavoriteCommand.RaiseCanExecuteChanged;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand AddFavoriteCommand { get; protected set; }
-        public RelayCommand CloseSubAppCommand { get; private set; }
+        public RelayCommand CloseSubAppCommand { get; protected set; }
         public RelayCommand<object> DeleteFavoriteCommand { get; protected set; }
+        public CreateFavorite FavoriteForm { get; set; }
         public ObservableCollection<Favorite> Favorites { get; set; }
         public RelayCommand GoBackwardCommand { get; protected set; }
         public RelayCommand GoForwardCommand { get; protected set; }
@@ -111,6 +119,7 @@ namespace Deskberry.UWP.ViewModels
 
         private void InitializeCommands()
         {
+            AddFavoriteCommand = new RelayCommand(async () => await AddFavoriteAsync(), FavoriteForm.IsValid);
             GoBackwardCommand = new RelayCommand(() => WebView.GoBack(), CanGoBackward);
             GoForwardCommand = new RelayCommand(() => WebView.GoForward(), CanGoForward);
             GoToCommand = new RelayCommand(() => GoTo(), CanGoTo);
@@ -139,13 +148,15 @@ namespace Deskberry.UWP.ViewModels
             }
             else
             {
-                Title = WebView.DocumentTitle;
+                FavoriteForm.Title = Title = WebView.DocumentTitle;
+                FavoriteForm.Uri = Uri;
             }
         }
 
         private void WebView_OnNavigationStarting(WebView sender, WebViewNavigationStartingEventArgs e)
         {
             Uri = e.Uri.AbsoluteUri;
+
             GoForwardCommand.RaiseCanExecuteChanged();
             GoBackwardCommand.RaiseCanExecuteChanged();
         }
@@ -154,6 +165,14 @@ namespace Deskberry.UWP.ViewModels
         {
             WebView.Navigate(e.Uri);
             e.Handled = true;
+        }
+
+        private async Task AddFavoriteAsync()
+        {
+            var account = await _accountService.GetAsync(Session.Id);
+
+            var favorite = await _favoriteService.AddAsync(FavoriteForm, account);
+            Favorites.Add(favorite);
         }
     }
 }

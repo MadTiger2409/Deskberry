@@ -7,7 +7,7 @@ namespace Deskberry.Tools.Services.Interfaces
 {
     public interface IFavoriteService
     {
-        Task AddAsync(CreateFavorite command, Account account);
+        Task<Favorite> AddAsync(CreateFavorite command, Account account);
 
         Task DeleteAsync(int id);
 

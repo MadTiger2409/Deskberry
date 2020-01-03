@@ -22,6 +22,8 @@ namespace Deskberry.Tools.CommandObjects.Favorite
             _validator = new CreateFavoriteValidator();
         }
 
+        public CreateFavorite(Action canExecutedCommand) : base() => CanExecutedChanged = canExecutedCommand;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Action CanExecutedChanged { get; set; }
