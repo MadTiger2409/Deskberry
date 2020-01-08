@@ -35,5 +35,14 @@ namespace Deskberry.UWP.Views
 
             FavoritesListView.ItemsSource = viewModel.Favorites;
         }
+
+        private void Button_Click_LoadFavorite(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (BrowserViewModel)DataContext;
+            var button = (Button)sender;
+
+            if (viewModel.LoadFavoriteCommand.CanExecute(button.Tag))
+                viewModel.LoadFavoriteCommand.Execute(button.Tag);
+        }
     }
 }

@@ -48,6 +48,7 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand AddFavoriteCommand { get; protected set; }
         public RelayCommand CloseSubAppCommand { get; protected set; }
         public RelayCommand<object> DeleteFavoriteCommand { get; protected set; }
+        public RelayCommand<object> LoadFavoriteCommand { get; protected set; }
         public CreateFavorite FavoriteForm { get; set; }
         public ObservableCollection<Favorite> Favorites { get; set; }
         public RelayCommand GoBackwardCommand { get; protected set; }
@@ -125,6 +126,7 @@ namespace Deskberry.UWP.ViewModels
             GoToCommand = new RelayCommand(() => GoTo(), CanGoTo);
             RefreshCommand = new RelayCommand(() => WebView.Refresh());
             DeleteFavoriteCommand = new RelayCommand<object>(async x => await DeleteFavoriteAsync(x));
+            LoadFavoriteCommand = new RelayCommand<object>(x => LoadFavorite(x));
             CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
             NavigateBackCommand = new RelayCommand(() => NavigateBack());
         }
@@ -173,6 +175,15 @@ namespace Deskberry.UWP.ViewModels
 
             var favorite = await _favoriteService.AddAsync(FavoriteForm, account);
             Favorites.Add(favorite);
+        }
+
+        private void LoadFavorite(object id)
+        {
+            var favoriteId = (int)id;
+
+            Uri = Favorites.Where(x => x.Id == favoriteId).Select(y => y.Uri).SingleOrDefault();
+
+            GoTo();
         }
     }
 }

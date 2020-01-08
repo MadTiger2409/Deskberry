@@ -68,7 +68,9 @@
                                     <Button
                                         Margin="0,2,0,0"
                                         HorizontalAlignment="Stretch"
-                                        Content="Load" />
+                                        Click="Button_Click_LoadFavorite"
+                                        Content="Load"
+                                        Tag="{Binding Id}" />
                                 </StackPanel>
                             </Flyout>
                         </Button.Flyout>
