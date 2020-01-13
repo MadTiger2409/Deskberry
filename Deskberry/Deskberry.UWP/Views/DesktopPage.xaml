@@ -88,7 +88,8 @@
                                     <Button Height="30"
                                             Background="Transparent"
                                             ToolTipService.ToolTip="Settings"
-                                            Margin="0,4,0,0">
+                                            Margin="0,4,0,0"
+                                            Command="{Binding OpenSettingsCommand}">
                                         <Button.Content>
                                             <Viewbox>
                                                 <Path Data="{StaticResource SettingsGeometry}"

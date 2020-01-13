@@ -21,6 +21,7 @@ namespace Deskberry.UWP.ViewModels
 
             OpenBrowerCommand = new RelayCommand(() => OpenBrowser());
             OpenNotesCommand = new RelayCommand(() => OpenNotes());
+            OpenSettingsCommand = new RelayCommand(() => OpenSettings());
             OpenCalculatorCommand = new RelayCommand(() => OpenCalculator());
             ClearDesktopWinddowCommand = new RelayCommand(() => ClearDesktopWindow());
             LogOutCommand = new RelayCommand(() => LogOut());
@@ -31,6 +32,7 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand OpenBrowerCommand { get; private set; }
         public RelayCommand OpenCalculatorCommand { get; private set; }
         public RelayCommand OpenNotesCommand { get; private set; }
+        public RelayCommand OpenSettingsCommand { get; private set; }
 
         private void ClearDesktopWindow() => _navigationService.ClearSubAppsWindow();
 
@@ -45,5 +47,7 @@ namespace Deskberry.UWP.ViewModels
         private void OpenCalculator() => _navigationService.NavigateToSubApp(typeof(CalculatorPage));
 
         private void OpenNotes() => _navigationService.NavigateToSubApp(typeof(NotesPage));
+
+        private void OpenSettings() => _navigationService.NavigateToSubApp(typeof(SettingsPage));
     }
 }
