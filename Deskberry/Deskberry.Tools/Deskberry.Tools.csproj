@@ -125,7 +125,8 @@
     <Compile Include="CommandObjects\Note\UpdateNote.cs" />
     <Compile Include="Converters\Base64ToImageConverter.cs" />
     <Compile Include="Enums\DialogEnum.cs" />
-    <Compile Include="Extensions\HelpModels\NoteMenuItem.cs" />
+    <Compile Include="Extensions\HelpModels\IconMenuItem.cs" />
+    <Compile Include="Extensions\HelpModels\SymbolMenuItem.cs" />
     <Compile Include="Extensions\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />

@@ -5,14 +5,125 @@
     xmlns:local="using:Deskberry.UWP.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml"/>
+
+                <ResourceDictionary>
+                    <DataTemplate x:Key="settingsMenuTemplate">
+                        <NavigationViewItem Content="{Binding Path=Name, Mode=OneWay}"
+                                            Tag="{Binding Path=Tag, Mode=OneWay}">
+                            <NavigationViewItem.Icon>
+                                <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{Binding Path=GlyphCode, Mode=OneWay}"/>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <viewModels:SettingsViewModel/>
+    </Page.DataContext>
+
     <Grid>
-        <TextBlock
-            Text="Settings"
-            FontSize="40"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="0"
+                Grid.Row="0"
+                BorderThickness="0,0,0,0.3"
+                BorderBrush="DarkGray"
+                Background="{ThemeResource SystemControlAcrylicElementBrush}">
+            <TextBlock Text="Settings Center"
+                       FontWeight="ExtraBold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="8,0,0,0"/>
+        </Border>
+
+
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Background="{ThemeResource SystemControlAcrylicElementBrush}">
+            <Button Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="DarkGray"
+                    BorderThickness="0.2,0,0,0.3"
+                    Width="40"
+                    Command="{Binding NavigateBackCommand}">
+                <Viewbox>
+                    <Path Data="{StaticResource PreviousArrowGeometry}"
+                          Fill="Transparent"
+                          Stroke="LightGray"
+                      RenderTransformOrigin="0.6,0.5">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0"/>
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Viewbox>
+            </Button>
+
+            <Button Background="Transparent"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    BorderBrush="DarkGray"
+                    BorderThickness="0.2,0,0,0.3"
+                    Width="40"
+                    Command="{Binding CloseSubAppCommand}">
+                <Viewbox>
+                    <Path Data="{StaticResource CloseGeometry}"
+                          Fill="Transparent"
+                          Stroke="LightGray"
+                          StrokeThickness="2"
+                          RenderTransformOrigin="0.5,0.4">
+                        <Path.RenderTransform>
+                            <TransformGroup>
+                                <TransformGroup.Children>
+                                    <RotateTransform Angle="0"/>
+                                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                                </TransformGroup.Children>
+                            </TransformGroup>
+                        </Path.RenderTransform>
+                    </Path>
+                </Viewbox>
+            </Button>
+        </StackPanel>
+
+        <NavigationView Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        PaneTitle="Settings"
+                        IsSettingsVisible="False"
+                        IsBackButtonVisible="Collapsed"
+                        AlwaysShowHeader="False"
+                        MenuItemsSource="{Binding NoteMenuItems}"
+                        SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}"
+                        MenuItemTemplate="{StaticResource settingsMenuTemplate}">
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame" Background="White"/>
+            </ScrollViewer>
+        </NavigationView>
     </Grid>
 </Page>

@@ -28,10 +28,12 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<AllNotesPageViewModel>();
             services.AddScoped<CalculatorViewModel>();
             services.AddScoped<BrowserViewModel>();
+            services.AddScoped<SettingsViewModel>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddScoped<INoteNavigationService, NoteNavigationService>();
+            services.AddScoped<ISettingNavigationService, SettingNavigationService>();
             services.AddScoped<INoteService, NoteService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
 

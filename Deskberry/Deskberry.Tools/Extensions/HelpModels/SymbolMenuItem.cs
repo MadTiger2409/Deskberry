@@ -2,7 +2,7 @@
 
 namespace Deskberry.Tools.Extensions.HelpModels
 {
-    public class NoteMenuItem
+    public class SymbolMenuItem
     {
         public Symbol Glyph { get; set; }
         public string Name { get; set; }

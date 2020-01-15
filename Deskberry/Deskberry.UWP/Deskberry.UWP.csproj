@@ -114,14 +114,17 @@
     <Compile Include="IoC\MainContainer.cs" />
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\Interfaces\INoteNavigationService.cs" />
+    <Compile Include="Services\Interfaces\ISettingNavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\NoteNavigationService.cs" />
+    <Compile Include="Services\SettingNavigationService.cs" />
     <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\CalculatorViewModel.cs" />
     <Compile Include="ViewModels\DesktopPageViewModel.cs" />
     <Compile Include="ViewModels\NotesViewModel.cs" />
     <Compile Include="ViewModels\Notes\AddNotePageViewModel.cs" />
     <Compile Include="ViewModels\Notes\AllNotesPageViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\BrowserPage.xaml.cs">
       <DependentUpon>BrowserPage.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,12 @@
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\PasswordSettingsPage.xaml.cs">
+      <DependentUpon>PasswordSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\PersonalizationSettingsPage.xaml.cs">
+      <DependentUpon>PersonalizationSettingsPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +340,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\PasswordSettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Settings\PersonalizationSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
