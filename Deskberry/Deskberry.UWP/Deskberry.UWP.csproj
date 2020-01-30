@@ -125,6 +125,7 @@
     <Compile Include="ViewModels\Notes\AddNotePageViewModel.cs" />
     <Compile Include="ViewModels\Notes\AllNotesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\PasswordSettingsPageViewModel.cs" />
     <Compile Include="Views\BrowserPage.xaml.cs">
       <DependentUpon>BrowserPage.xaml</DependentUpon>
     </Compile>

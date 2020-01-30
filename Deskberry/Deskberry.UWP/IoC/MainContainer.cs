@@ -5,6 +5,7 @@ using Deskberry.UWP.Services;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.ViewModels;
 using Deskberry.UWP.ViewModels.Notes;
+using Deskberry.UWP.ViewModels.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -29,6 +30,7 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<CalculatorViewModel>();
             services.AddScoped<BrowserViewModel>();
             services.AddScoped<SettingsViewModel>();
+            services.AddScoped<PasswordSettingsPageViewModel>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddSingleton<INavigationService, NavigationService>();
