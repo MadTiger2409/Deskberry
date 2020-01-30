@@ -1,15 +1,9 @@
 ﻿using Deskberry.Tools.Extensions.HelpModels;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Services.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
 
 namespace Deskberry.UWP.ViewModels
 {
@@ -65,13 +59,12 @@ namespace Deskberry.UWP.ViewModels
 
         private ObservableCollection<IconMenuItem> InitializeMenuItems()
         {
-            var collection = new ObservableCollection<IconMenuItem>
+            return new ObservableCollection<IconMenuItem>
             {
                 new IconMenuItem { Name = "Security", Tag = "PasswordSettingsPage", GlyphCode = "\xE72E" },
-                //new IconMenuItem { Name = "Personalization", Tag = "AddNotePage", GlyphCode = "\xE771;" }
+                new IconMenuItem { Name = "Personalization", Tag = "PersonalizationSettingsPage", GlyphCode = "\xE771;" },
+                new IconMenuItem { Name = "Browser", Tag = "PersonalizationSettingsPage", GlyphCode = "\xF6FA;" }
             };
-
-            return collection;
         }
 
         private void NavigateBack() => _navigationService.NavigateBackFromSubApp();
