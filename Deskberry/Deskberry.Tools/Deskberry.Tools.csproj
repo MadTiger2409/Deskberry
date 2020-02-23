@@ -135,7 +135,9 @@
     <Compile Include="Services\Interfaces\IAccountService.cs" />
     <Compile Include="Services\Interfaces\IFavoriteService.cs" />
     <Compile Include="Services\Interfaces\INoteService.cs" />
+    <Compile Include="Services\Interfaces\ISettingsService.cs" />
     <Compile Include="Services\NoteService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Validators\CreateFavoriteValidator.cs" />
     <Compile Include="Validators\CreateNoteValidator.cs" />
     <Compile Include="Validators\UpdatePasswordValidator.cs" />
