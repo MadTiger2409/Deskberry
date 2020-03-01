@@ -18,7 +18,9 @@ namespace Deskberry.SQLite.Models
         public List<Favorite> Favorites { get; set; }
         public List<Note> Notes { get; set; }
 
-        public Account() : base() { }
+        public Account() : base()
+        {
+        }
 
         /// <summary>
         /// Constructor used to popule database with the account
@@ -50,6 +52,15 @@ namespace Deskberry.SQLite.Models
         {
             Avatar = avatar;
             AvatarId = avatar.Id;
+        }
+
+        public void UpdatePassword(string newPassword)
+        {
+            var manager = new PasswordManager();
+            byte[] passHash;
+            manager.CalculatePasswordHash(newPassword, PasswordHash, out passHash);
+
+            PasswordHash = passHash;
         }
     }
 }

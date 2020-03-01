@@ -46,5 +46,13 @@ namespace Deskberry.Tools.Services
         public async Task<List<Account>> GetAsync() => await _context.Accounts.Include(x => x.Avatar).ToListAsync();
 
         public void LogOut() => Session.Clear();
+
+        public async Task UpdatePasswordAsync(Account account, string password)
+        {
+            account.UpdatePassword(password);
+
+            _context.Accounts.Update(account);
+            await _context.SaveChangesAsync();
+        }
     }
 }

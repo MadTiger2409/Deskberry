@@ -1,4 +1,5 @@
-﻿using Deskberry.Tools.CommandObjects.Password;
+﻿using Deskberry.SQLite.Extensions.Security;
+using Deskberry.Tools.CommandObjects.Password;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,14 @@ namespace Deskberry.Tools.Validators
                 RuleForCurrentPassword<string>(x => x.Password);
             });
 
-            RuleSet("New password", () =>
+            RuleSet("NewPassword", () =>
             {
-                RuleForCurrentPassword<string>(x => x.NewPassword);
+                RuleForNewPassword<string>(x => x.NewPassword);
             });
 
-            RuleSet("Repeated new password", () =>
+            RuleSet("RepeatedNewPassword", () =>
             {
-                RuleForCurrentPassword<string>(x => x.RepeatedNewPassword);
+                RuleForRepeatedNewPassword<string>(x => x.RepeatedNewPassword);
             });
 
             RuleSet("Full", () =>
@@ -49,8 +50,7 @@ namespace Deskberry.Tools.Validators
             return RuleFor(expression)
                 .NotNull()
                 .NotEmpty()
-                .MinimumLength(8)
-                .NotEqual(x => x.CorrectPassword);
+                .MinimumLength(8);
         }
 
         protected IRuleBuilderOptions<UpdatePassword, string> RuleForRepeatedNewPassword<TProperty>(Expression<Func<UpdatePassword, string>> expression)

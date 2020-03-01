@@ -7,11 +7,14 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Deskberry.UWP.IoC;
+using Deskberry.UWP.ViewModels.Settings;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +28,15 @@ namespace Deskberry.UWP.Views.Settings
         public PasswordSettingsPage()
         {
             this.InitializeComponent();
+            DataContext = MainContainer.Container.GetService<PasswordSettingsPageViewModel>();
+        }
+
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var vm = DataContext as PasswordSettingsPageViewModel;
+            await vm.InitializeData();
+
+            base.OnNavigatedTo(e);
         }
     }
 }

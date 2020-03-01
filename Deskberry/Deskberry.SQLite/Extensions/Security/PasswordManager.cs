@@ -36,5 +36,7 @@ namespace Deskberry.SQLite.Extensions.Security
                 if (computedHash[i] != passwordHash[i]) return false;
             return true;
         }
+
+        internal void CalculatePasswordHash(string newPassword, byte[] passwordHash, out object passHash) => throw new NotImplementedException();
     }
 }

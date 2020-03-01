@@ -6,6 +6,8 @@ namespace Deskberry.Tools.Services.Interfaces
 {
     public interface IAccountService
     {
+        Task UpdatePasswordAsync(Account account, string password);
+
         Task<bool> AreCredentialsValidAsync(Account account, string password);
 
         Task<bool> CanLogInAsync(Account account, string password);
