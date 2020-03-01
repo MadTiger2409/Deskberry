@@ -29,7 +29,7 @@ namespace Deskberry.Tools.CommandObjects.Password
 
         public Action CanExecutedChanged { get; set; }
 
-        public byte[] PasswordSalt { private get; set; }
+        public string CorrectPassword { get; set; }
 
         public bool IsNewPasswordErrorVisible
         {
@@ -74,8 +74,6 @@ namespace Deskberry.Tools.CommandObjects.Password
             }
         }
 
-        public string CorrectPassword { get; set; }
-
         public string Password
         {
             get => _password;
@@ -84,16 +82,20 @@ namespace Deskberry.Tools.CommandObjects.Password
                 if (value == _password)
                     return;
 
-                byte[] pass;
-                _passwordManager.CalculatePasswordHash(value, PasswordSalt, out pass);
-                _newPassword = pass.ToString();
+                _password = value;
 
-                IsNewPasswordErrorVisible = !_validator.Validate(this, ruleSet: "Password").IsValid;
+                ArePasswordsEqual = _passwordManager.VerifyPasswordHash(value, PasswordHash, PasswordSalt);
+                _validator.Validate(this, ruleSet: "Password");
+
                 CanExecutedChanged.Invoke();
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Password)));
             }
         }
+
+        public byte[] PasswordHash { private get; set; }
+        public byte[] PasswordSalt { private get; set; }
+        public bool ArePasswordsEqual { get; set; }
 
         public string RepeatedNewPassword
         {
@@ -103,9 +105,9 @@ namespace Deskberry.Tools.CommandObjects.Password
                 if (value == _repeatedNewPassword)
                     return;
 
-                _newPassword = value;
+                _repeatedNewPassword = value;
 
-                IsNewPasswordErrorVisible = !_validator.Validate(this, ruleSet: "RepeatedNewPassword").IsValid;
+                IsRepeatedNewPasswordVisible = !_validator.Validate(this, ruleSet: "RepeatedNewPassword").IsValid;
                 CanExecutedChanged.Invoke();
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RepeatedNewPassword)));
@@ -114,9 +116,9 @@ namespace Deskberry.Tools.CommandObjects.Password
 
         public async Task ClearAsync()
         {
-            await Task.FromResult(CorrectPassword = null);
-            await Task.FromResult(Password = null);
-            await Task.FromResult(RepeatedNewPassword = null);
+            await Task.FromResult(Password = string.Empty);
+            NewPassword = null;
+            RepeatedNewPassword = null;
             IsRepeatedNewPasswordVisible = false;
             IsNewPasswordErrorVisible = false;
         }

@@ -34,10 +34,10 @@ namespace Deskberry.Tools.Services
         public async Task<bool> CanLogInAsync(Account account, string password)
         {
             var areValid = await AreCredentialsValidAsync(account, password);
+
             if (areValid == true)
-            {
                 Session.Set(account.Id, account.Login);
-            }
+
             return areValid;
         }
 

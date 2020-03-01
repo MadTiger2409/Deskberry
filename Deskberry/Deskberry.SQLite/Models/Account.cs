@@ -58,7 +58,7 @@ namespace Deskberry.SQLite.Models
         {
             var manager = new PasswordManager();
             byte[] passHash;
-            manager.CalculatePasswordHash(newPassword, PasswordHash, out passHash);
+            manager.CalculatePasswordHash(newPassword, Salt, out passHash);
 
             PasswordHash = passHash;
         }

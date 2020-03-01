@@ -17,6 +17,7 @@ namespace Deskberry.Tools.Validators
             RuleSet("Password", () =>
             {
                 RuleForCurrentPassword<string>(x => x.Password);
+                RuleForPasswordsEquality<bool>(x => x.ArePasswordsEqual);
             });
 
             RuleSet("NewPassword", () =>
@@ -32,8 +33,10 @@ namespace Deskberry.Tools.Validators
             RuleSet("Full", () =>
             {
                 RuleForCurrentPassword<string>(x => x.Password);
-                RuleForCurrentPassword<string>(x => x.NewPassword);
-                RuleForCurrentPassword<string>(x => x.RepeatedNewPassword);
+                RuleForPasswordsEquality<bool>(x => x.ArePasswordsEqual);
+
+                RuleForNewPassword<string>(x => x.NewPassword);
+                RuleForRepeatedNewPassword<string>(x => x.RepeatedNewPassword);
             });
         }
 
@@ -41,8 +44,12 @@ namespace Deskberry.Tools.Validators
         {
             return RuleFor(expression)
                 .NotNull()
-                .NotEmpty()
-                .Equal(x => x.CorrectPassword);
+                .NotEmpty();
+        }
+
+        protected IRuleBuilderOptions<UpdatePassword, bool> RuleForPasswordsEquality<TProperty>(Expression<Func<UpdatePassword, bool>> expression)
+        {
+            return RuleFor(expression).Equal(true);
         }
 
         protected IRuleBuilderOptions<UpdatePassword, string> RuleForNewPassword<TProperty>(Expression<Func<UpdatePassword, string>> expression)
@@ -58,7 +65,6 @@ namespace Deskberry.Tools.Validators
             return RuleFor(expression)
                 .NotNull()
                 .NotEmpty()
-                .MinimumLength(8)
                 .Equal(x => x.NewPassword);
         }
     }
