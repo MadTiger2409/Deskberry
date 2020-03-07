@@ -53,6 +53,24 @@ namespace Deskberry.SQLite.Data
                     Id = 1,
                     Content = AvatarRoot.ToByteArray(AvatarRoot.Dog),
                     CreatedAt = DateTime.UtcNow
+                },
+                new
+                {
+                    Id = 2,
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.Bird),
+                    CreatedAt = DateTime.UtcNow
+                },
+                new
+                {
+                    Id = 3,
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.Cats),
+                    CreatedAt = DateTime.UtcNow
+                },
+                new
+                {
+                    Id = 4,
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.Wolf),
+                    CreatedAt = DateTime.UtcNow
                 });
 
                 modelBuilder.Entity<Account>()
