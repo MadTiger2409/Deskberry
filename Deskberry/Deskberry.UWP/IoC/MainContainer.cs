@@ -33,9 +33,10 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<PasswordSettingsPageViewModel>();
 
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IAvatarService, AvatarService>();
             services.AddSingleton<INavigationService, NavigationService>();
-            services.AddScoped<INoteNavigationService, NoteNavigationService>();
-            services.AddScoped<ISettingNavigationService, SettingNavigationService>();
+            services.AddSingleton<INoteNavigationService, NoteNavigationService>();
+            services.AddSingleton<ISettingNavigationService, SettingNavigationService>();
             services.AddScoped<INoteService, NoteService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
 

@@ -391,15 +391,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Deskberry.SQLite">
+      <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Deskberry.Tools\Deskberry.Tools.csproj">
       <Project>{ed494184-0cd0-42bd-ac92-7fdb231b4cc4}</Project>
       <Name>Deskberry.Tools</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Deskberry.SQLite">
-      <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

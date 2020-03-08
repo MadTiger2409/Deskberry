@@ -131,8 +131,10 @@
     <Compile Include="Extensions\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\AvatarService.cs" />
     <Compile Include="Services\FavoriteService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
+    <Compile Include="Services\Interfaces\IAvatarService.cs" />
     <Compile Include="Services\Interfaces\IFavoriteService.cs" />
     <Compile Include="Services\Interfaces\INoteService.cs" />
     <Compile Include="Services\Interfaces\ISettingsService.cs" />
@@ -167,10 +169,6 @@
   <ItemGroup>
     <Reference Include="Deskberry.SQLite">
       <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="Deskberry.Tools, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\x64\Debug\Deskberry.Tools.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
