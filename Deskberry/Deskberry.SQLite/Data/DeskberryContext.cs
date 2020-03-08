@@ -9,10 +9,7 @@ namespace Deskberry.SQLite.Data
     {
         public bool IsProductionDatabase { get; protected set; }
 
-        public DeskberryContext(DbContextOptions<DeskberryContext> options) : base(options)
-        {
-            IsProductionDatabase = true;
-        }
+        public DeskberryContext(DbContextOptions<DeskberryContext> options) : base(options) => IsProductionDatabase = true;
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Avatar> Avatars { get; set; }
