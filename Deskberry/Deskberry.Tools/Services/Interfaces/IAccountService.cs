@@ -16,6 +16,8 @@ namespace Deskberry.Tools.Services.Interfaces
 
         Task<List<Account>> GetAsync();
 
+        Task UpdateUserPictureAsync(Account account, Avatar avatar);
+
         void LogOut();
     }
 }

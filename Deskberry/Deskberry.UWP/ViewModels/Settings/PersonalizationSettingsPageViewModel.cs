@@ -27,6 +27,7 @@ namespace Deskberry.UWP.ViewModels.Settings
                     return;
 
                 _selectedAvatar = value;
+                UpdateCommand.RaiseCanExecuteChanged();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedAvatar)));
             }
         }
@@ -50,16 +51,12 @@ namespace Deskberry.UWP.ViewModels.Settings
             _avatarService = avatarService;
             _accountService = accountService;
 
-            //UpdateCommand = new RelayCommand(async () => await)
+            UpdateCommand = new RelayCommand(async () => await UpdateAvatarAsync(), CanUpdateAvatar);
         }
 
-        private async Task UpdateAvatarAsync()
-        {
-            _currentAccount.Avatar = SelectedAvatar;
-            _currentAccount.AvatarId = SelectedAvatar.Id;
+        private async Task UpdateAvatarAsync() => await _accountService.UpdateUserPictureAsync(_currentAccount, _selectedAvatar);
 
-            //await _accountService.
-        }
+        private bool CanUpdateAvatar() => SelectedAvatar.Id != _currentAccount.AvatarId;
 
         public event PropertyChangedEventHandler PropertyChanged;
     }

@@ -66,7 +66,7 @@
                 Margin="0,5,0,30"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
-                Command="{Binding SaveCommand}"
+                Command="{Binding UpdateCommand}"
                 Content="Change"
                 FontSize="20"
                 Style="{StaticResource ActionButton}" />

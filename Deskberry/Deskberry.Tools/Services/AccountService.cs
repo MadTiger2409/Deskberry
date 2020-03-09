@@ -54,5 +54,14 @@ namespace Deskberry.Tools.Services
             _context.Accounts.Update(account);
             await _context.SaveChangesAsync();
         }
+
+        public async Task UpdateUserPictureAsync(Account account, Avatar avatar)
+        {
+            account.Avatar = avatar;
+            account.AvatarId = avatar.Id;
+
+            _context.Avatars.Update(avatar);
+            await _context.SaveChangesAsync();
+        }
     }
 }
