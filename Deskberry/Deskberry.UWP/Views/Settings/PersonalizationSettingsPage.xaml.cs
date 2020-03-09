@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using Deskberry.UWP.IoC;
+using Deskberry.UWP.ViewModels.Settings;
+using Microsoft.Extensions.DependencyInjection;
+using System.Threading;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -25,6 +19,10 @@ namespace Deskberry.UWP.Views.Settings
         public PersonalizationSettingsPage()
         {
             this.InitializeComponent();
+
+            var vm = MainContainer.Container.GetService<PersonalizationSettingsPageViewModel>();
+            vm.InitializeDataAsync();
+            DataContext = vm;
         }
     }
 }

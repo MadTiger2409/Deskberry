@@ -31,7 +31,7 @@ namespace Deskberry.UWP.ViewModels.Settings
             PasswordForm.CanExecutedChanged = SaveCommand.RaiseCanExecuteChanged;
         }
 
-        public async Task InitializeData()
+        public async Task InitializeDataAsync()
         {
             _account = await _accountService.GetAsync(Session.Id);
             PasswordForm.CorrectPassword = _account.PasswordHash.ToString();

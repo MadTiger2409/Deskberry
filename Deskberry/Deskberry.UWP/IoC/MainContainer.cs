@@ -31,6 +31,7 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<BrowserViewModel>();
             services.AddScoped<SettingsViewModel>();
             services.AddScoped<PasswordSettingsPageViewModel>();
+            services.AddScoped<PersonalizationSettingsPageViewModel>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAvatarService, AvatarService>();
