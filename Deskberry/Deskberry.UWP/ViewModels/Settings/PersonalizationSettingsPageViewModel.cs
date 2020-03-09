@@ -54,7 +54,12 @@ namespace Deskberry.UWP.ViewModels.Settings
             UpdateCommand = new RelayCommand(async () => await UpdateAvatarAsync(), CanUpdateAvatar);
         }
 
-        private async Task UpdateAvatarAsync() => await _accountService.UpdateUserPictureAsync(_currentAccount, _selectedAvatar);
+        private async Task UpdateAvatarAsync()
+        {
+            await _accountService.UpdateUserPictureAsync(_currentAccount, _selectedAvatar);
+
+            UpdateCommand.RaiseCanExecuteChanged();
+        }
 
         private bool CanUpdateAvatar() => SelectedAvatar.Id != _currentAccount.AvatarId;
 
