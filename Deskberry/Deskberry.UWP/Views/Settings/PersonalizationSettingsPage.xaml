@@ -20,7 +20,7 @@
 
         <DataTemplate x:Key="avatarTemplate">
             <Viewbox MinHeight="100"
-                     MaxHeight="500">
+                     MaxHeight="180">
                 <controls:ImageEx CornerRadius="999"
                                   Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
             </Viewbox>
