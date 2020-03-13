@@ -41,7 +41,7 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="5*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
@@ -50,7 +50,7 @@
                    Margin="0,0,0,5"
                    FontSize="30"
                    FontWeight="ExtraBold"
-                   Text="Choose avatar" />
+                   Text="Personalization" />
 
         <layout:SfCarousel Grid.Row="1"
                            Grid.Column="1"
