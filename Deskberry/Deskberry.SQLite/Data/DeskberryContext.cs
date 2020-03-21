@@ -15,6 +15,7 @@ namespace Deskberry.SQLite.Data
         public DbSet<Avatar> Avatars { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Note> Notes { get; set; }
+        public DbSet<HomePage> HomePages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +28,10 @@ namespace Deskberry.SQLite.Data
                 .HasOne(x => x.Avatar)
                 .WithMany(y => y.Accounts)
                 .HasForeignKey(x => x.AvatarId);
+            modelBuilder.Entity<Account>()
+                .HasOne(x => x.HomePage)
+                .WithOne(y => y.Account)
+                .HasForeignKey<HomePage>(y => y.AccountId);
 
             modelBuilder.Entity<Favorite>()
                 .HasKey(x => x.Id);

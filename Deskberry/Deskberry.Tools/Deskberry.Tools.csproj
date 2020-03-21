@@ -137,9 +137,7 @@
     <Compile Include="Services\Interfaces\IAvatarService.cs" />
     <Compile Include="Services\Interfaces\IFavoriteService.cs" />
     <Compile Include="Services\Interfaces\INoteService.cs" />
-    <Compile Include="Services\Interfaces\ISettingsService.cs" />
     <Compile Include="Services\NoteService.cs" />
-    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Validators\CreateFavoriteValidator.cs" />
     <Compile Include="Validators\CreateNoteValidator.cs" />
     <Compile Include="Validators\UpdatePasswordValidator.cs" />
@@ -167,7 +165,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Deskberry.SQLite">
+    <Reference Include="Deskberry.SQLite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Deskberry.SQLite\bin\Debug\netstandard2.0\Deskberry.SQLite.dll</HintPath>
     </Reference>
   </ItemGroup>
