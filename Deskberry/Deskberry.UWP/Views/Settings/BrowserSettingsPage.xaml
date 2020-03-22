@@ -43,34 +43,28 @@
             <TextBlock Margin="0,0,0,5"
                        FontSize="30"
                        Text="Home page" />
-            <!--<PasswordBox Margin="0,5,0,10"
-                         VerticalAlignment="Stretch"
-                         Background="Transparent"
-                         Password="{Binding PasswordForm.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         PlaceholderText="Your home page" />-->
+            <TextBox Margin="0,5,0,10"
+                     VerticalAlignment="Stretch"
+                     Background="Transparent"
+                     PlaceholderText="Your home page"
+                     Text="{Binding HomePageForm.Uri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <!--<TextBlock Margin="0,0,0,10"
+            <TextBlock Margin="0,0,0,10"
                        Foreground="Red"
                        Text="Home page URI cannot be empty."
-                       Visibility="{Binding PasswordForm.IsNewPasswordErrorVisible, Converter={StaticResource BoolToVisibility}}" />-->
+                       Visibility="{Binding HomePageForm.IsUriErrorVisible, Converter={StaticResource BoolToVisibility}}" />
 
             <StackPanel Grid.Row="4"
                         Grid.Column="1"
                         Margin="0,6,0,0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
-                <!--<Button MinWidth="70"
-                        Margin="0,0,10,0"
-                        Background="Gray"
-                        Command="{Binding ResetCommand}"
-                        Content="Reset"
-                        FontSize="20" />
 
                 <Button MinWidth="70"
                         Command="{Binding SaveCommand}"
                         Content="Edit"
                         FontSize="20"
-                        Style="{StaticResource ActionButton}" />-->
+                        Style="{StaticResource ActionButton}" />
             </StackPanel>
         </StackPanel>
     </Grid>

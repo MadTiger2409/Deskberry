@@ -17,12 +17,18 @@ namespace Deskberry.Tools.Services
 
         public HomePageService(DeskberryContext context) => _context = context;
 
-        public async Task AddOrUpdateAsync(int accountId, UpdateHomePage command)
+        public async Task AddOrUpdateAsync(Account account, UpdateHomePage command)
         {
-            var homePage = await GetAsync(accountId);
+            var homePage = new HomePage();
 
-            if (homePage == null)
-                homePage = Add(accountId, homePage);
+            try
+            {
+                homePage = await GetAsync(account.Id);
+            }
+            catch (NullReferenceException)
+            {
+                homePage = Add(account, homePage);
+            }
 
             homePage.Update(command.Uri);
 
@@ -30,16 +36,26 @@ namespace Deskberry.Tools.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<HomePage> GetAsync(int accountId) => await _context.HomePages.Where(x => x.AccountId == accountId).SingleOrDefaultAsync();
+        public async Task<HomePage> GetAsync(int accountId)
+        {
+            var homePage = await _context.HomePages.Where(x => x.AccountId == accountId).SingleOrDefaultAsync();
 
-        private HomePage Add(int accountId, HomePage homePage)
+            if (homePage == null)
+                throw new NullReferenceException();
+
+            return homePage;
+        }
+
+        private HomePage Add(Account account, HomePage homePage)
         {
             homePage = new HomePage
             {
-                AccountId = accountId
+                Account = account,
+                AccountId = account.Id
             };
 
             _context.HomePages.Add(homePage);
+            _context.SaveChanges();
             return homePage;
         }
     }

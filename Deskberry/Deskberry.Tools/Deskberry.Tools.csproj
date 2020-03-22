@@ -143,6 +143,7 @@
     <Compile Include="Services\NoteService.cs" />
     <Compile Include="Validators\CreateFavoriteValidator.cs" />
     <Compile Include="Validators\CreateNoteValidator.cs" />
+    <Compile Include="Validators\UpdateHomePageValidator.cs" />
     <Compile Include="Validators\UpdatePasswordValidator.cs" />
     <EmbeddedResource Include="Properties\Deskberry.Tools.rd.xml" />
   </ItemGroup>

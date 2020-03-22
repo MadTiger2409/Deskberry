@@ -16,7 +16,7 @@ namespace Deskberry.Tools.Services.Interfaces
         /// <param name="accountId">ID of an account that home page belongs to.</param>
         /// <param name="command">Data about home page for add/update operation.</param>
         /// <returns></returns>
-        Task AddOrUpdateAsync(int accountId, UpdateHomePage command);
+        Task AddOrUpdateAsync(Account account, UpdateHomePage command);
 
         /// <summary>
         /// Get home page for specyfic account.

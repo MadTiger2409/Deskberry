@@ -8,10 +8,10 @@ namespace Deskberry.Tools.CommandObjects.Note
 {
     public class CreateNote : INotifyPropertyChanged
     {
-        protected string _description;
-        protected bool _isDescriptionErrorVisible;
-        protected bool _isTitleErrorVisible;
-        protected string _title;
+        private string _description;
+        private bool _isDescriptionErrorVisible;
+        private bool _isTitleErrorVisible;
+        private string _title;
 
         private readonly CreateNoteValidator _validator;
 
