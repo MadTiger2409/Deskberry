@@ -121,6 +121,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CommandObjects\Favorite\CreateFavorite.cs" />
+    <Compile Include="CommandObjects\HomePage\UpdateHomePage.cs" />
     <Compile Include="CommandObjects\Note\CreateNote.cs" />
     <Compile Include="CommandObjects\Note\UpdateNote.cs" />
     <Compile Include="CommandObjects\Password\UpdatePassword.cs" />
@@ -133,9 +134,11 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\AvatarService.cs" />
     <Compile Include="Services\FavoriteService.cs" />
+    <Compile Include="Services\HomePageService.cs" />
     <Compile Include="Services\Interfaces\IAccountService.cs" />
     <Compile Include="Services\Interfaces\IAvatarService.cs" />
     <Compile Include="Services\Interfaces\IFavoriteService.cs" />
+    <Compile Include="Services\Interfaces\IHomePageService.cs" />
     <Compile Include="Services\Interfaces\INoteService.cs" />
     <Compile Include="Services\NoteService.cs" />
     <Compile Include="Validators\CreateFavoriteValidator.cs" />

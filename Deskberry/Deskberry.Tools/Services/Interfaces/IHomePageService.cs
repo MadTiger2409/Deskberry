@@ -1,0 +1,28 @@
+﻿using Deskberry.SQLite.Models;
+using Deskberry.Tools.CommandObjects.HomePage;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Deskberry.Tools.Services.Interfaces
+{
+    public interface IHomePageService
+    {
+        /// <summary>
+        /// Add home page if it doesn't exist. If it does, then update it.
+        /// </summary>
+        /// <param name="accountId">ID of an account that home page belongs to.</param>
+        /// <param name="command">Data about home page for add/update operation.</param>
+        /// <returns></returns>
+        Task AddOrUpdateAsync(int accountId, UpdateHomePage command);
+
+        /// <summary>
+        /// Get home page for specyfic account.
+        /// </summary>
+        /// <param name="accountId">ID of an account that home page belongs to.</param>
+        /// <returns></returns>
+        Task<HomePage> GetAsync(int accountId);
+    }
+}
