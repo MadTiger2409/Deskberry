@@ -25,21 +25,28 @@ namespace Deskberry.Tools.Services
             var favorite = new Favorite(command.Title, command.Uri) { Account = account };
             _context.Favorites.Add(favorite);
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync().ConfigureAwait(true);
 
             return favorite;
         }
 
         public async Task DeleteAsync(int id)
         {
-            var favorite = await GetAsync(id);
+            var favorite = await GetAsync(id).ConfigureAwait(true);
             _context.Favorites.Remove(favorite);
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync().ConfigureAwait(true);
         }
 
-        public async Task<List<Favorite>> GetAllForUserAsync(int userId) => await _context.Favorites.Where(x => x.AccountId == userId).ToListAsync();
+        public async Task DeletellAsync(Account account)
+        {
+            _context.Favorites.RemoveRange(account.Favorites);
 
-        public async Task<Favorite> GetAsync(int id) => await _context.Favorites.GetById(id).SingleOrDefaultAsync();
+            await _context.SaveChangesAsync().ConfigureAwait(true);
+        }
+
+        public async Task<List<Favorite>> GetAllForUserAsync(int userId) => await _context.Favorites.Where(x => x.AccountId == userId).ToListAsync().ConfigureAwait(true);
+
+        public async Task<Favorite> GetAsync(int id) => await _context.Favorites.GetById(id).SingleOrDefaultAsync().ConfigureAwait(true);
     }
 }

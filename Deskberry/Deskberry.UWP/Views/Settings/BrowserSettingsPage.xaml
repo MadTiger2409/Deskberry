@@ -28,6 +28,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -39,33 +40,53 @@
 
         <StackPanel Grid.Row="1"
                     Grid.Column="1"
-                    VerticalAlignment="Center">
-            <TextBlock Margin="0,0,0,5"
+                    Padding="0,20"
+                    VerticalAlignment="Bottom"
+                    BorderBrush="Gray"
+                    BorderThickness="0,0,0,0.25">
+            <TextBlock Margin="0,0,0,15"
                        FontSize="30"
                        Text="Home page" />
-            <TextBox Margin="0,5,0,10"
+            <TextBox Margin="20,5,20,10"
                      VerticalAlignment="Stretch"
                      Background="Transparent"
                      PlaceholderText="Your home page"
                      Text="{Binding HomePageForm.Uri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBlock Margin="0,0,0,10"
+            <TextBlock Margin="20,0,20,10"
                        Foreground="Red"
                        Text="Home page URI cannot be empty."
                        Visibility="{Binding HomePageForm.IsUriErrorVisible, Converter={StaticResource BoolToVisibility}}" />
 
-            <StackPanel Grid.Row="4"
-                        Grid.Column="1"
-                        Margin="0,6,0,0"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
+            <Button MinWidth="70"
+                    Margin="0,0,20,0"
+                    HorizontalAlignment="Right"
+                    Command="{Binding SaveCommand}"
+                    Content="Edit"
+                    FontSize="20"
+                    Style="{StaticResource ActionButton}" />
+        </StackPanel>
 
-                <Button MinWidth="70"
-                        Command="{Binding SaveCommand}"
-                        Content="Edit"
-                        FontSize="20"
-                        Style="{StaticResource ActionButton}" />
-            </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Padding="0,20"
+                    VerticalAlignment="top"
+                    BorderBrush="Gray"
+                    BorderThickness="0,0.25,0,0">
+            <TextBlock Margin="0,0,0,15"
+                       FontSize="30"
+                       Text="Favorites" />
+
+            <TextBlock Margin="20,0,20,5"
+                       FontSize="20"
+                       Foreground="Gray"
+                       Text="Delete all user's favorites" />
+            <Button Margin="20,0"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding DeleteCommand}"
+                    Content="Delete"
+                    FontSize="20"
+                    Style="{StaticResource ActionButton}" />
         </StackPanel>
     </Grid>
 </Page>

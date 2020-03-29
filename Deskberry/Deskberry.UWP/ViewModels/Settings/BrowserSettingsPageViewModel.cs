@@ -1,4 +1,5 @@
-﻿using Deskberry.Tools.CommandObjects.HomePage;
+﻿using Deskberry.SQLite.Models;
+using Deskberry.Tools.CommandObjects.HomePage;
 using Deskberry.Tools.Extensions;
 using Deskberry.Tools.Services.Interfaces;
 using Deskberry.UWP.Commands;
@@ -13,6 +14,7 @@ namespace Deskberry.UWP.ViewModels.Settings
     public class BrowserSettingsPageViewModel
     {
         private IAccountService _accountService;
+        private Account _currentAccount;
         private IFavoriteService _favoriteService;
         private IHomePageService _homePageService;
 
@@ -38,30 +40,42 @@ namespace Deskberry.UWP.ViewModels.Settings
         {
             try
             {
-                HomePageForm.Uri = (await _homePageService.GetAsync(Session.Id)).Uri;
+                HomePageForm.Uri = (await _homePageService.GetAsync(Session.Id).ConfigureAwait(true)).Uri;
             }
             catch (NullReferenceException)
             {
                 HomePageForm.Uri = string.Empty;
             }
+
+            _currentAccount = await _accountService.GetAsync(Session.Id).ConfigureAwait(true);
+            DeleteCommand.RaiseCanExecuteChanged();
         }
 
-        private async Task AddOrUpdateAsync()
-        {
-            var account = await _accountService.GetAsync(Session.Id);
+        private async Task AddOrUpdateAsync() => await _homePageService.AddOrUpdateAsync(_currentAccount, HomePageForm).ConfigureAwait(true);
 
-            await _homePageService.AddOrUpdateAsync(account, HomePageForm);
+        private async Task DeleteFavoritesAsync()
+        {
+            await _favoriteService.DeletellAsync(_currentAccount).ConfigureAwait(true);
+
+            DeleteCommand.RaiseCanExecuteChanged();
         }
 
-        private Task DeleteFavoritesAsync()
+        private bool CanDeleteUserFavorites()
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _currentAccount.Favorites.Count > 0;
+            }
+            catch (NullReferenceException)
+            {
+                return false;
+            }
         }
 
         private void InitializeCommands()
         {
-            SaveCommand = new RelayCommand(async () => await AddOrUpdateAsync(), HomePageForm.IsValid);
-            DeleteCommand = new RelayCommand(async () => await DeleteFavoritesAsync());
+            SaveCommand = new RelayCommand(async () => await AddOrUpdateAsync().ConfigureAwait(true), HomePageForm.IsValid);
+            DeleteCommand = new RelayCommand(async () => await DeleteFavoritesAsync().ConfigureAwait(true), CanDeleteUserFavorites);
         }
 
         private void InitializeDependencies(IHomePageService homePageService, IFavoriteService favoriteService, IAccountService accountService)

@@ -14,5 +14,7 @@ namespace Deskberry.Tools.Services.Interfaces
         Task<List<Favorite>> GetAllForUserAsync(int userId);
 
         Task<Favorite> GetAsync(int id);
+
+        Task DeletellAsync(Account account);
     }
 }
