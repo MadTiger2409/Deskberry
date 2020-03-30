@@ -71,7 +71,7 @@
                            Background="#1a1a1a"
                            CornerRadius="10"
                            ItemsSource="{Binding Avatars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                           ScaleOffset="1.25"
+                           ScaleOffset="1.15"
                            SelectedItem="{Binding SelectedAvatar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                            Offset="5" />
         <Button Grid.Row="2"
