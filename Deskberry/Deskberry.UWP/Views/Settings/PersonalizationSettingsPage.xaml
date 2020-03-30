@@ -18,11 +18,25 @@
         <!--  Converter for Base64 images  -->
         <convertersD:Base64ToImageConverter x:Key="Base64ToImageConverter" />
 
-        <DataTemplate x:Key="avatarTemplate">
-            <Viewbox>
-                <controls:ImageEx CornerRadius="999"
-                                  Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
-            </Viewbox>
+        <DataTemplate x:Key="avatarMinTemplate">
+            <controls:ImageEx Width="180"
+                              Height="180"
+                              CornerRadius="999"
+                              Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="avatarNormalTemplate">
+            <controls:ImageEx Width="280"
+                              Height="280"
+                              CornerRadius="999"
+                              Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="avatarWideTemplate">
+            <controls:ImageEx Width="400"
+                              Height="400"
+                              CornerRadius="999"
+                              Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
         </DataTemplate>
     </Page.Resources>
 
@@ -55,11 +69,11 @@
                            Grid.Column="1"
                            VerticalAlignment="Stretch"
                            Background="#1a1a1a"
-                           CharacterSpacing="5"
                            CornerRadius="10"
-                           ItemTemplate="{StaticResource avatarTemplate}"
                            ItemsSource="{Binding Avatars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                           SelectedItem="{Binding SelectedAvatar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                           ScaleOffset="1.25"
+                           SelectedItem="{Binding SelectedAvatar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           Offset="5" />
         <Button Grid.Row="2"
                 Grid.Column="1"
                 MinWidth="70"
@@ -81,7 +95,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="avatarsCarousel.Height" Value="500" />
+                        <Setter Target="avatarsCarousel.ItemTemplate" Value="{StaticResource avatarWideTemplate}" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -93,7 +107,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="avatarsCarousel.Height" Value="300" />
+                        <Setter Target="avatarsCarousel.ItemTemplate" Value="{StaticResource avatarNormalTemplate}" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -105,7 +119,7 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="avatarsCarousel.Height" Value="100" />
+                        <Setter Target="avatarsCarousel.ItemTemplate" Value="{StaticResource avatarMinTemplate}" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
