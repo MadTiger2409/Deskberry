@@ -68,11 +68,7 @@
                           Height="32"
                           Data="{StaticResource RaspberryGeometry}"
                           Fill="White"
-                          StrokeThickness="0.3">
-                        <Path.RenderTransform>
-                            <ScaleTransform ScaleX="1" ScaleY="1" />
-                        </Path.RenderTransform>
-                    </Path>
+                          StrokeThickness="0.3" />
                 </Button.Content>
                 <Button.Flyout>
                     <!--  Start's menu  -->
@@ -225,32 +221,28 @@
                 </Button.Flyout>
             </Button>
 
-            <!--  Task's bar applications  -->
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal" />
-
             <!--  DateTime's info button  -->
-            <Viewbox Grid.Column="2"
-                     MaxWidth="150"
-                     MaxHeight="50">
-                <Button Background="Transparent">
-                    <StackPanel Margin="3"
-                                Orientation="Vertical">
-                        <TextBlock Name="timeTextBlock"
-                                   HorizontalAlignment="Center"
-                                   Text="15:00" />
-                        <TextBlock Name="dateTextBlock"
-                                   HorizontalAlignment="Center"
-                                   Text="12.12.2012" />
-                    </StackPanel>
+            <Button Grid.Column="2"
+                    Width="80"
+                    Background="Transparent">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Name="timeTextBlock"
+                               HorizontalAlignment="Center"
+                               Text="15:00" />
+                    <TextBlock Name="dateTextBlock"
+                               HorizontalAlignment="Center"
+                               Text="12.12.2012" />
+                </StackPanel>
 
-                    <Button.Flyout>
-                        <Flyout>
+                <Button.Flyout>
+                    <Flyout>
+                        <Viewbox MaxWidth="250"
+                                 MaxHeight="250">
                             <CalendarView />
-                        </Flyout>
-                    </Button.Flyout>
-                </Button>
-            </Viewbox>
+                        </Viewbox>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
 
             <!--  Back to desktop button  -->
             <Button Grid.Column="3"
@@ -273,6 +265,8 @@
                     <VisualState.Setters>
                         <Setter Target="menuButton.Width" Value="65" />
                         <Setter Target="menuButton.Height" Value="55" />
+                        <Setter Target="timeTextBlock.FontSize" Value="12" />
+                        <Setter Target="dateTextBlock.FontSize" Value="12" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -286,6 +280,8 @@
                     <VisualState.Setters>
                         <Setter Target="menuButton.Width" Value="60" />
                         <Setter Target="menuButton.Height" Value="50" />
+                        <Setter Target="timeTextBlock.FontSize" Value="12" />
+                        <Setter Target="dateTextBlock.FontSize" Value="12" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -297,8 +293,10 @@
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
-                        <Setter Target="menuButton.Width" Value="50" />
-                        <Setter Target="menuButton.Height" Value="40" />
+                        <Setter Target="menuButton.Width" Value="55" />
+                        <Setter Target="menuButton.Height" Value="45" />
+                        <Setter Target="timeTextBlock.FontSize" Value="10" />
+                        <Setter Target="dateTextBlock.FontSize" Value="10" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
