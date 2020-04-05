@@ -236,8 +236,7 @@
 
                 <Button.Flyout>
                     <Flyout>
-                        <Viewbox MaxWidth="250"
-                                 MaxHeight="250">
+                        <Viewbox x:Name="calendarFlyout">
                             <CalendarView />
                         </Viewbox>
                     </Flyout>
@@ -267,6 +266,8 @@
                         <Setter Target="menuButton.Height" Value="55" />
                         <Setter Target="timeTextBlock.FontSize" Value="12" />
                         <Setter Target="dateTextBlock.FontSize" Value="12" />
+                        <Setter Target="calendarFlyout.Width" Value="350" />
+                        <Setter Target="calendarFlyout.Height" Value="350" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -282,6 +283,8 @@
                         <Setter Target="menuButton.Height" Value="50" />
                         <Setter Target="timeTextBlock.FontSize" Value="12" />
                         <Setter Target="dateTextBlock.FontSize" Value="12" />
+                        <Setter Target="calendarFlyout.Width" Value="200" />
+                        <Setter Target="calendarFlyout.Height" Value="200" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -297,6 +300,8 @@
                         <Setter Target="menuButton.Height" Value="45" />
                         <Setter Target="timeTextBlock.FontSize" Value="10" />
                         <Setter Target="dateTextBlock.FontSize" Value="10" />
+                        <Setter Target="calendarFlyout.Width" Value="100" />
+                        <Setter Target="calendarFlyout.Height" Value="150" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
