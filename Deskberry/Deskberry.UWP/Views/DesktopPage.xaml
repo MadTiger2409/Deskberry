@@ -266,7 +266,7 @@
                         <Setter Target="menuButton.Height" Value="55" />
                         <Setter Target="timeTextBlock.FontSize" Value="12" />
                         <Setter Target="dateTextBlock.FontSize" Value="12" />
-                        <Setter Target="calendarFlyout.Width" Value="350" />
+                        <Setter Target="calendarFlyout.Width" Value="300" />
                         <Setter Target="calendarFlyout.Height" Value="350" />
                     </VisualState.Setters>
                 </VisualState>
@@ -284,7 +284,7 @@
                         <Setter Target="timeTextBlock.FontSize" Value="12" />
                         <Setter Target="dateTextBlock.FontSize" Value="12" />
                         <Setter Target="calendarFlyout.Width" Value="200" />
-                        <Setter Target="calendarFlyout.Height" Value="200" />
+                        <Setter Target="calendarFlyout.Height" Value="250" />
                     </VisualState.Setters>
                 </VisualState>
 
@@ -300,8 +300,8 @@
                         <Setter Target="menuButton.Height" Value="45" />
                         <Setter Target="timeTextBlock.FontSize" Value="10" />
                         <Setter Target="dateTextBlock.FontSize" Value="10" />
-                        <Setter Target="calendarFlyout.Width" Value="100" />
-                        <Setter Target="calendarFlyout.Height" Value="150" />
+                        <Setter Target="calendarFlyout.Width" Value="160" />
+                        <Setter Target="calendarFlyout.Height" Value="180" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
