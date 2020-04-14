@@ -88,6 +88,7 @@
                   Margin="4,0,0,4"
                   HorizontalAlignment="Left"
                   Background="Transparent"
+                  CornerRadius="10"
                   ItemTemplate="{StaticResource accountDataTemplate}"
                   ItemsSource="{Binding Accounts}"
                   SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
@@ -112,8 +113,8 @@
             </Grid.RowDefinitions>
 
             <!--  Account's image  -->
-            <Viewbox Grid.Row="0"
-                     MaxHeight="170"
+            <Viewbox x:Name="selectedAccountImage"
+                     Grid.Row="0"
                      VerticalAlignment="Bottom">
                 <controls:ImageEx HorizontalAlignment="Center"
                                   VerticalAlignment="Top"
@@ -155,5 +156,34 @@
                 <TextBlock Text="Incorrect password!" />
             </Viewbox>
         </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+
+                <!--  Medium window VisualState  -->
+                <VisualState x:Name="DefaultState">
+                    <!--  Medium window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="641" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="selectedAccountImage.MaxHeight" Value="170" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!--  Small window VisualState  -->
+                <VisualState x:Name="NarrowState">
+                    <!--  Small window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="selectedAccountImage.MaxHeight" Value="150" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

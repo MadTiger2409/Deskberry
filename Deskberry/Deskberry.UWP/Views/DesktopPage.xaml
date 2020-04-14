@@ -252,6 +252,7 @@
                     Opacity="0.1"
                     ToolTipService.ToolTip="Desktop" />
         </Grid>
+
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="WindowStates">
                 <!--  Large window VisualState  -->
