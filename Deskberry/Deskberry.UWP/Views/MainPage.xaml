@@ -164,7 +164,7 @@
                 <VisualState x:Name="DefaultState">
                     <!--  Medium window trigger  -->
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="641" />
+                        <AdaptiveTrigger MinWindowWidth="801" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>

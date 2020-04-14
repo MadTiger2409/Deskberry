@@ -276,7 +276,7 @@
                 <VisualState x:Name="DefaultState">
                     <!--  Medium window trigger  -->
                     <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="641" />
+                        <AdaptiveTrigger MinWindowWidth="801" />
                     </VisualState.StateTriggers>
 
                     <VisualState.Setters>
@@ -301,8 +301,8 @@
                         <Setter Target="menuButton.Height" Value="45" />
                         <Setter Target="timeTextBlock.FontSize" Value="10" />
                         <Setter Target="dateTextBlock.FontSize" Value="10" />
-                        <Setter Target="calendarFlyout.Width" Value="160" />
-                        <Setter Target="calendarFlyout.Height" Value="180" />
+                        <Setter Target="calendarFlyout.Width" Value="180" />
+                        <Setter Target="calendarFlyout.Height" Value="210" />
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>

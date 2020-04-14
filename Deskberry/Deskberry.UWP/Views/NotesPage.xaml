@@ -1,26 +1,25 @@
-﻿<Page
-    x:Class="Deskberry.UWP.Views.NotesPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Deskberry.UWP.Views"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
-    xmlns:notes="using:Deskberry.UWP.Views.Notes"
-    Background="Transparent"
-    mc:Ignorable="d">
+﻿<Page x:Class="Deskberry.UWP.Views.NotesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Deskberry.UWP.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:notes="using:Deskberry.UWP.Views.Notes"
+      xmlns:viewModels="using:Deskberry.UWP.ViewModels"
+      Background="Transparent"
+      mc:Ignorable="d">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml"/>
-                <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Close.xaml" />
+                <ResourceDictionary Source="ms-appx:///Assets/Paths/Previous-Arrow.xaml" />
 
                 <ResourceDictionary>
                     <DataTemplate x:Key="notesMenuTemplate">
                         <NavigationViewItem Content="{Binding Path=Name, Mode=OneWay}"
                                             Tag="{Binding Path=Tag, Mode=OneWay}">
                             <NavigationViewItem.Icon>
-                                <SymbolIcon Symbol="{Binding Path=Glyph, Mode=OneWay}"/>
+                                <SymbolIcon Symbol="{Binding Path=Glyph, Mode=OneWay}" />
                             </NavigationViewItem.Icon>
                         </NavigationViewItem>
                     </DataTemplate>
@@ -30,55 +29,53 @@
     </Page.Resources>
 
     <Page.DataContext>
-        <viewModels:NotesViewModel/>
+        <viewModels:NotesViewModel />
     </Page.DataContext>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="0"
-                Grid.Row="0"
-                BorderThickness="0,0,0,0.3"
+        <Border Grid.Row="0"
+                Grid.Column="0"
+                Background="{ThemeResource SystemControlAcrylicElementBrush}"
                 BorderBrush="DarkGray"
-                Background="{ThemeResource SystemControlAcrylicElementBrush}">
-            <TextBlock Text="Super Notes"
-                       FontWeight="ExtraBold"
-                       VerticalAlignment="Center"
+                BorderThickness="0,0,0,0.3">
+            <TextBlock Margin="8,0,0,0"
                        HorizontalAlignment="Left"
-                       Margin="8,0,0,0"/>
+                       VerticalAlignment="Center"
+                       FontWeight="ExtraBold"
+                       Text="Super Notes" />
         </Border>
 
-
-
-        <StackPanel Orientation="Horizontal"
+        <StackPanel Grid.Row="0"
                     Grid.Column="1"
-                    Grid.Row="0"
-                    Background="{ThemeResource SystemControlAcrylicElementBrush}">
-            <Button Background="Transparent"
+                    Background="{ThemeResource SystemControlAcrylicElementBrush}"
+                    Orientation="Horizontal">
+            <Button Width="40"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    Background="Transparent"
                     BorderBrush="DarkGray"
                     BorderThickness="0.2,0,0,0.3"
-                    Width="40"
                     Command="{Binding NavigateBackCommand}">
                 <Viewbox>
                     <Path Data="{StaticResource PreviousArrowGeometry}"
                           Fill="Transparent"
-                          Stroke="LightGray"
-                      RenderTransformOrigin="0.6,0.5">
+                          RenderTransformOrigin="0.6,0.5"
+                          Stroke="LightGray">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <TransformGroup.Children>
-                                    <RotateTransform Angle="0"/>
-                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1"/>
+                                    <RotateTransform Angle="0" />
+                                    <ScaleTransform ScaleX="1.1" ScaleY="1.1" />
                                 </TransformGroup.Children>
                             </TransformGroup>
                         </Path.RenderTransform>
@@ -86,24 +83,24 @@
                 </Viewbox>
             </Button>
 
-            <Button Background="Transparent"
+            <Button Width="40"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    Background="Transparent"
                     BorderBrush="DarkGray"
                     BorderThickness="0.2,0,0,0.3"
-                    Width="40"
                     Command="{Binding CloseSubAppCommand}">
                 <Viewbox>
                     <Path Data="{StaticResource CloseGeometry}"
                           Fill="Transparent"
+                          RenderTransformOrigin="0.5,0.4"
                           Stroke="LightGray"
-                          StrokeThickness="2"
-                          RenderTransformOrigin="0.5,0.4">
+                          StrokeThickness="2">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <TransformGroup.Children>
-                                    <RotateTransform Angle="0"/>
-                                    <ScaleTransform ScaleX="0.7" ScaleY="0.7"/>
+                                    <RotateTransform Angle="0" />
+                                    <ScaleTransform ScaleX="0.7" ScaleY="0.7" />
                                 </TransformGroup.Children>
                             </TransformGroup>
                         </Path.RenderTransform>
@@ -114,19 +111,20 @@
 
         <NavigationView Grid.Row="1"
                         Grid.ColumnSpan="2"
-                        PaneTitle="Notes"
-                        IsSettingsVisible="False"
-                        IsBackButtonVisible="Collapsed"
                         AlwaysShowHeader="False"
+                        IsBackButtonVisible="Collapsed"
+                        IsSettingsVisible="False"
+                        MenuItemTemplate="{StaticResource notesMenuTemplate}"
                         MenuItemsSource="{Binding NoteMenuItems}"
-                        SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}"
-                        MenuItemTemplate="{StaticResource notesMenuTemplate}">
+                        PaneTitle="Notes"
+                        SelectedItem="{Binding SelectedMenuItem, Mode=TwoWay}">
             <NavigationView.AutoSuggestBox>
-                <AutoSuggestBox QueryIcon="Find"/>
+                <AutoSuggestBox QueryIcon="Find" />
             </NavigationView.AutoSuggestBox>
 
-            <ScrollViewer>
-                <Frame x:Name="ContentFrame" Background="White"/>
+            <ScrollViewer IsTabStop="True">
+                <Frame x:Name="ContentFrame"
+                       Background="White" />
             </ScrollViewer>
         </NavigationView>
     </Grid>
