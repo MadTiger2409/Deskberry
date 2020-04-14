@@ -18,12 +18,25 @@
         <!--  Converter for Base64 images  -->
         <convertersD:Base64ToImageConverter x:Key="Base64ToImageConverter" />
 
-        <DataTemplate x:Key="avatarTemplate">
-            <Viewbox MinHeight="100"
-                     MaxHeight="180">
-                <controls:ImageEx CornerRadius="999"
-                                  Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
-            </Viewbox>
+        <DataTemplate x:Key="avatarMinTemplate">
+            <controls:ImageEx Width="180"
+                              Height="180"
+                              CornerRadius="999"
+                              Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="avatarNormalTemplate">
+            <controls:ImageEx Width="280"
+                              Height="280"
+                              CornerRadius="999"
+                              Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="avatarWideTemplate">
+            <controls:ImageEx Width="400"
+                              Height="400"
+                              CornerRadius="999"
+                              Source="{Binding Content, Mode=OneWay, Converter={StaticResource Base64ToImageConverter}}" />
         </DataTemplate>
     </Page.Resources>
 
@@ -33,7 +46,6 @@
 
     <Grid Margin="20"
           Background="#181818">
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -52,14 +64,16 @@
                    FontWeight="ExtraBold"
                    Text="Personalization" />
 
-        <layout:SfCarousel Grid.Row="1"
+        <layout:SfCarousel x:Name="avatarsCarousel"
+                           Grid.Row="1"
                            Grid.Column="1"
                            VerticalAlignment="Stretch"
                            Background="#1a1a1a"
                            CornerRadius="10"
-                           ItemTemplate="{StaticResource avatarTemplate}"
                            ItemsSource="{Binding Avatars, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                           SelectedItem="{Binding SelectedAvatar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                           ScaleOffset="1.15"
+                           SelectedItem="{Binding SelectedAvatar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                           Offset="5" />
         <Button Grid.Row="2"
                 Grid.Column="1"
                 MinWidth="70"
@@ -70,5 +84,45 @@
                 Content="Change"
                 FontSize="20"
                 Style="{StaticResource ActionButton}" />
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WindowStates">
+                <!--  Large window VisualState  -->
+                <VisualState x:Name="WideState">
+                    <!--  Large window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="1008" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="avatarsCarousel.ItemTemplate" Value="{StaticResource avatarWideTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!--  Medium window VisualState  -->
+                <VisualState x:Name="DefaultState">
+                    <!--  Medium window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="801" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="avatarsCarousel.ItemTemplate" Value="{StaticResource avatarNormalTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <!--  Small window VisualState  -->
+                <VisualState x:Name="NarrowState">
+                    <!--  Small window trigger  -->
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+
+                    <VisualState.Setters>
+                        <Setter Target="avatarsCarousel.ItemTemplate" Value="{StaticResource avatarMinTemplate}" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>
