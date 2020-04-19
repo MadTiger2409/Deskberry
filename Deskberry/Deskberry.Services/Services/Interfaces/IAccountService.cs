@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.Services.Interfaces
+namespace Deskberry.Services.Interfaces
 {
     public interface IAccountService
     {

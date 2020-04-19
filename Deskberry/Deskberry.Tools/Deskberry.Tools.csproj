@@ -131,16 +131,6 @@
     <Compile Include="Extensions\HelpModels\SymbolMenuItem.cs" />
     <Compile Include="Extensions\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Services\AvatarService.cs" />
-    <Compile Include="Services\FavoriteService.cs" />
-    <Compile Include="Services\HomePageService.cs" />
-    <Compile Include="Services\Interfaces\IAccountService.cs" />
-    <Compile Include="Services\Interfaces\IAvatarService.cs" />
-    <Compile Include="Services\Interfaces\IFavoriteService.cs" />
-    <Compile Include="Services\Interfaces\IHomePageService.cs" />
-    <Compile Include="Services\Interfaces\INoteService.cs" />
-    <Compile Include="Services\NoteService.cs" />
     <Compile Include="Validators\CreateFavoriteValidator.cs" />
     <Compile Include="Validators\CreateNoteValidator.cs" />
     <Compile Include="Validators\UpdateHomePageValidator.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Deskberry.SQLite.Models.Base
+namespace Deskberry.Common.Models.Base
 {
     public class ModelBase
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.Services.Interfaces
+namespace Deskberry.Services.Interfaces
 {
     public interface IHomePageService
     {

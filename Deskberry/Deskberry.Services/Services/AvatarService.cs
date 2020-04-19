@@ -1,6 +1,6 @@
-﻿using Deskberry.SQLite.Data;
+﻿using Deskberry.Services.Interfaces;
+using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Models;
-using Deskberry.Tools.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.Services
+namespace Deskberry.Services
 {
     public class AvatarService : IAvatarService
     {

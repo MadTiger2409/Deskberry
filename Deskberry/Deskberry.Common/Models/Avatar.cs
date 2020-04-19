@@ -1,16 +1,18 @@
-﻿using Deskberry.SQLite.Models.Base;
+﻿using Deskberry.Common.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Deskberry.SQLite.Models
+namespace Deskberry.Common.Models
 {
     public class Avatar : ModelBase
     {
         public byte[] Content { get; protected set; }
         public List<Account> Accounts { get; set; }
 
-        public Avatar() : base() { }
+        public Avatar() : base()
+        {
+        }
 
         public Avatar(byte[] content) : base()
         {

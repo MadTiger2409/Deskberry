@@ -1,14 +1,14 @@
-﻿using Deskberry.SQLite.Data;
+﻿using Deskberry.Services.Interfaces;
+using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Data.Extensions.Queries;
 using Deskberry.SQLite.Extensions.Security;
 using Deskberry.SQLite.Models;
 using Deskberry.Tools.Extensions;
-using Deskberry.Tools.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.Services
+namespace Deskberry.Services
 {
     public class AccountService : IAccountService
     {

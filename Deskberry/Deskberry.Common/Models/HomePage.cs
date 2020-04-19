@@ -1,7 +1,7 @@
-﻿using Deskberry.SQLite.Models.Base;
+﻿using Deskberry.Common.Models.Base;
 using System;
 
-namespace Deskberry.SQLite.Models
+namespace Deskberry.Common.Models
 {
     public class HomePage : ModelBase
     {

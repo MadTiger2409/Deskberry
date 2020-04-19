@@ -1,11 +1,11 @@
-﻿using Deskberry.SQLite.Extensions;
+﻿using Deskberry.Common.Models.Base;
+using Deskberry.SQLite.Extensions;
 using Deskberry.SQLite.Extensions.Security;
-using Deskberry.SQLite.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Deskberry.SQLite.Models
+namespace Deskberry.Common.Models
 {
     public class Account : ModelBase
     {

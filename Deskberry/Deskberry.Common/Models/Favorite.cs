@@ -1,6 +1,6 @@
-﻿using Deskberry.SQLite.Models.Base;
+﻿using Deskberry.Common.Models.Base;
 
-namespace Deskberry.SQLite.Models
+namespace Deskberry.Common.Models
 {
     public class Favorite : ModelBase
     {

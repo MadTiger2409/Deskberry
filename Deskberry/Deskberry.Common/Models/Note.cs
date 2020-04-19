@@ -1,10 +1,10 @@
-﻿using Deskberry.SQLite.Models.Base;
+﻿using Deskberry.Common.Models.Base;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Deskberry.SQLite.Models
+namespace Deskberry.Common.Models
 {
     public class Note : ModelBase, INotifyPropertyChanged
     {
@@ -42,7 +42,9 @@ namespace Deskberry.SQLite.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Note() : base() { }
+        public Note() : base()
+        {
+        }
 
         public Note(string title, string content) : base()
         {
