@@ -4,7 +4,4 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Deskberry.Security\Deskberry.Security.csproj" />
-  </ItemGroup>
 </Project>

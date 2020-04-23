@@ -1,5 +1,4 @@
-﻿using Deskberry.SQLite.Extensions.Security;
-using Deskberry.Tools.CommandObjects.Password;
+﻿using Deskberry.CommandValidation.CommandObjects.Password;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -8,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.Validators
+namespace Deskberry.CommandValidation.Validators
 {
     public class UpdatePasswordValidator : AbstractValidator<UpdatePassword>
     {

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Deskberry.Tools.CommandObjects.Note
+namespace Deskberry.CommandValidation.CommandObjects.Note
 {
     public class UpdateNote : INotifyPropertyChanged
     {
@@ -12,7 +12,7 @@ namespace Deskberry.Tools.CommandObjects.Note
         {
         }
 
-        public UpdateNote(SQLite.Models.Note note)
+        public UpdateNote(Common.Models.Note note)
         {
             Id = note.Id;
             Title = note.Title;

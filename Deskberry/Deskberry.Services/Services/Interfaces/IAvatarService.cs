@@ -1,4 +1,4 @@
-﻿using Deskberry.SQLite.Models;
+﻿using Deskberry.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

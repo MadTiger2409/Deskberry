@@ -1,9 +1,9 @@
-﻿using Deskberry.Tools.CommandObjects.Note;
+﻿using Deskberry.CommandValidation.CommandObjects.Note;
 using FluentValidation;
 using System;
 using System.Linq.Expressions;
 
-namespace Deskberry.Tools.Validators
+namespace Deskberry.CommandValidation.Validators
 {
     public class CreateNoteValidator : AbstractValidator<CreateNote>
     {

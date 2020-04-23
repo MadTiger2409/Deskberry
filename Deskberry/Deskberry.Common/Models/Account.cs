@@ -1,6 +1,5 @@
 ﻿using Deskberry.Common.Models.Base;
-using Deskberry.SQLite.Extensions;
-using Deskberry.SQLite.Extensions.Security;
+using Deskberry.Security;
 using System;
 using System.Collections.Generic;
 using System.Text;

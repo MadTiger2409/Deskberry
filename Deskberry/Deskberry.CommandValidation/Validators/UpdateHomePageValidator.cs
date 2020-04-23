@@ -1,4 +1,4 @@
-﻿using Deskberry.Tools.CommandObjects.HomePage;
+﻿using Deskberry.CommandValidation.CommandObjects.HomePage;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.Validators
+namespace Deskberry.CommandValidation.Validators
 {
     public class UpdateHomePageValidator : AbstractValidator<UpdateHomePage>
     {
@@ -22,7 +22,7 @@ namespace Deskberry.Tools.Validators
             if (string.IsNullOrWhiteSpace(value))
                 return true;
 
-            return value.Contains(" ", StringComparison.InvariantCulture);
+            return value.Contains(" ");
         };
     }
 }

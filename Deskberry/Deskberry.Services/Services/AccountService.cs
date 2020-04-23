@@ -1,9 +1,9 @@
 ﻿using Deskberry.Services.Interfaces;
 using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Data.Extensions.Queries;
-using Deskberry.SQLite.Extensions.Security;
-using Deskberry.SQLite.Models;
-using Deskberry.Tools.Extensions;
+using Deskberry.Security;
+using Deskberry.Common.Models;
+using Deskberry.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;

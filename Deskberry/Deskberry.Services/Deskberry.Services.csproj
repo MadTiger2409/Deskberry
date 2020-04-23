@@ -1,11 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Deskberry.Common\Deskberry.Common.csproj" />
+    <ProjectReference Include="..\Deskberry.Helpers\Deskberry.Helpers.csproj" />
     <ProjectReference Include="..\Deskberry.SQLite\Deskberry.SQLite.csproj" />
   </ItemGroup>
-
 </Project>

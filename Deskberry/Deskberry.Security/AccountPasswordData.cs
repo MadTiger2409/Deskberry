@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Deskberry.SQLite.Extensions
+namespace Deskberry.Security
 {
     public class AccountPasswordData
     {

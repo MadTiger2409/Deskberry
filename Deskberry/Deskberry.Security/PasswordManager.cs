@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Deskberry.SQLite.Extensions.Security
+namespace Deskberry.Security
 {
     public class PasswordManager
     {

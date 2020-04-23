@@ -1,10 +1,10 @@
-﻿using Deskberry.Tools.Validators;
+﻿using Deskberry.CommandValidation.Validators;
 using FluentValidation;
 using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.CommandObjects.Note
+namespace Deskberry.CommandValidation.CommandObjects.Note
 {
     public class CreateNote : INotifyPropertyChanged
     {

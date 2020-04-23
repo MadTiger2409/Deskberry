@@ -1,7 +1,7 @@
 ﻿using Deskberry.Services.Interfaces;
 using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Data.Extensions.Queries;
-using Deskberry.SQLite.Models;
+using Deskberry.Common.Models;
 using Deskberry.Tools.CommandObjects.Favorite;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,4 +1,4 @@
-﻿namespace Deskberry.Tools.Extensions
+﻿namespace Deskberry.Helpers
 {
     public static class Session
     {

@@ -1,5 +1,5 @@
-﻿using Deskberry.SQLite.Extensions.Security;
-using Deskberry.Tools.Validators;
+﻿using Deskberry.Security;
+using Deskberry.CommandValidation.Validators;
 using FluentValidation;
 using System;
 using System.ComponentModel;

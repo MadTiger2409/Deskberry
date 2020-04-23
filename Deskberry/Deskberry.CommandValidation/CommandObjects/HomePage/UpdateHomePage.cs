@@ -1,4 +1,4 @@
-﻿using Deskberry.Tools.Validators;
+﻿using Deskberry.CommandValidation.Validators;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.CommandObjects.HomePage
+namespace Deskberry.CommandValidation.CommandObjects.HomePage
 {
     public class UpdateHomePage : INotifyPropertyChanged
     {

@@ -1,9 +1,9 @@
-﻿using Deskberry.Tools.CommandObjects.Favorite;
+﻿using Deskberry.CommandValidation.CommandObjects.Favorite;
 using FluentValidation;
 using System;
 using System.Linq.Expressions;
 
-namespace Deskberry.Tools.Validators
+namespace Deskberry.CommandValidation.Validators
 {
     public class CreateFavoriteValidator : AbstractValidator<CreateFavorite>
     {
