@@ -1,5 +1,5 @@
-﻿using Deskberry.SQLite.Models;
-using Deskberry.Tools.CommandObjects.Note;
+﻿using Deskberry.Common.Models;
+using Deskberry.CommandValidation.CommandObjects.Note;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

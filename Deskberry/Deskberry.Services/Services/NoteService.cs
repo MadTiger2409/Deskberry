@@ -1,8 +1,8 @@
 ﻿using Deskberry.Services.Interfaces;
 using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Data.Extensions.Queries;
-using Deskberry.SQLite.Models;
-using Deskberry.Tools.CommandObjects.Note;
+using Deskberry.Common.Models;
+using Deskberry.CommandValidation.CommandObjects.Note;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;

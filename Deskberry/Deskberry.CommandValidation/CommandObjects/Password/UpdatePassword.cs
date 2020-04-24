@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace Deskberry.Tools.CommandObjects.Password
+namespace Deskberry.CommandValidation.CommandObjects.Password
 {
     public class UpdatePassword : INotifyPropertyChanged
     {

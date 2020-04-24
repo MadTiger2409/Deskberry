@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Deskberry.CommandValidation\Deskberry.CommandValidation.csproj" />
     <ProjectReference Include="..\Deskberry.Common\Deskberry.Common.csproj" />
     <ProjectReference Include="..\Deskberry.Helpers\Deskberry.Helpers.csproj" />
     <ProjectReference Include="..\Deskberry.SQLite\Deskberry.SQLite.csproj" />

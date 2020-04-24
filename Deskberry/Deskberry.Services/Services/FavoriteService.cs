@@ -2,7 +2,7 @@
 using Deskberry.SQLite.Data;
 using Deskberry.SQLite.Data.Extensions.Queries;
 using Deskberry.Common.Models;
-using Deskberry.Tools.CommandObjects.Favorite;
+using Deskberry.CommandValidation.CommandObjects.Favorite;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

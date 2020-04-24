@@ -1,7 +1,7 @@
 ﻿using Deskberry.Services.Interfaces;
 using Deskberry.SQLite.Data;
-using Deskberry.SQLite.Models;
-using Deskberry.Tools.CommandObjects.HomePage;
+using Deskberry.Common.Models;
+using Deskberry.CommandValidation.CommandObjects.HomePage;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
