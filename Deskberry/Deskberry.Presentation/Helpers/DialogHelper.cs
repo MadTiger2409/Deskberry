@@ -1,4 +1,4 @@
-﻿using Deskberry.Tools.CommandObjects.Note;
+﻿using Deskberry.CommandValidation.CommandObjects.Note;
 using Deskberry.Tools.Enums;
 using Deskberry.UWP.Dialogs;
 using Windows.UI.Xaml;

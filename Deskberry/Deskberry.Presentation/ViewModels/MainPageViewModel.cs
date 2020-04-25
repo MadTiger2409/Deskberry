@@ -1,5 +1,5 @@
-﻿using Deskberry.SQLite.Models;
-using Deskberry.Tools.Services.Interfaces;
+﻿using Deskberry.Common.Models;
+using Deskberry.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;

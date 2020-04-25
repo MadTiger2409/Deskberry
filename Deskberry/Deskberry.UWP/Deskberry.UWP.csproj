@@ -95,74 +95,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Commands\Generic\RelayCommand.cs" />
-    <Compile Include="Commands\RelayCommand.cs" />
-    <Compile Include="Dialogs\StandardDialog.xaml.cs">
-      <DependentUpon>StandardDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\DeleteFavoriteContentDialog.xaml.cs">
-      <DependentUpon>DeleteFavoriteContentDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\DeleteNoteContentDialog.xaml.cs">
-      <DependentUpon>DeleteNoteContentDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\EditNoteContentDialog.xaml.cs">
-      <DependentUpon>EditNoteContentDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Helpers\DialogHelper.cs" />
-    <Compile Include="Helpers\Models\Equation.cs" />
-    <Compile Include="IoC\MainContainer.cs" />
-    <Compile Include="Services\Interfaces\INavigationService.cs" />
-    <Compile Include="Services\Interfaces\INoteNavigationService.cs" />
-    <Compile Include="Services\Interfaces\ISettingNavigationService.cs" />
-    <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Services\NoteNavigationService.cs" />
-    <Compile Include="Services\SettingNavigationService.cs" />
-    <Compile Include="ViewModels\BrowserViewModel.cs" />
-    <Compile Include="ViewModels\CalculatorViewModel.cs" />
-    <Compile Include="ViewModels\DesktopPageViewModel.cs" />
-    <Compile Include="ViewModels\NotesViewModel.cs" />
-    <Compile Include="ViewModels\Notes\AddNotePageViewModel.cs" />
-    <Compile Include="ViewModels\Notes\AllNotesPageViewModel.cs" />
-    <Compile Include="ViewModels\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\Settings\BrowserSettingsPageViewModel.cs" />
-    <Compile Include="ViewModels\Settings\PasswordSettingsPageViewModel.cs" />
-    <Compile Include="ViewModels\Settings\PersonalizationSettingsPageViewModel.cs" />
-    <Compile Include="Views\BrowserPage.xaml.cs">
-      <DependentUpon>BrowserPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CalculatorPage.xaml.cs">
-      <DependentUpon>CalculatorPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DesktopPage.xaml.cs">
-      <DependentUpon>DesktopPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="Views\NotesPage.xaml.cs">
-      <DependentUpon>NotesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Notes\AddNotePage.xaml.cs">
-      <DependentUpon>AddNotePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Notes\AllNotesPage.xaml.cs">
-      <DependentUpon>AllNotesPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\BrowserSettingsPage.xaml.cs">
-      <DependentUpon>BrowserSettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\PasswordSettingsPage.xaml.cs">
-      <DependentUpon>PasswordSettingsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\PersonalizationSettingsPage.xaml.cs">
-      <DependentUpon>PersonalizationSettingsPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -297,71 +230,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Dialogs\StandardDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialogs\DeleteFavoriteContentDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Dialogs\DeleteNoteContentDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Dialogs\EditNoteContentDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Styles\ActionButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\NotesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\BrowserPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CalculatorPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DesktopPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\NotesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Notes\AddNotePage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Notes\AllNotesPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Settings\BrowserSettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Settings\PasswordSettingsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Settings\PersonalizationSettingsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -384,7 +257,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection">
-      <Version>3.1.2</Version>
+      <Version>3.1.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
@@ -406,6 +279,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Deskberry.Presentation\Deskberry.Presentation.csproj">
+      <Project>{607299da-01c4-4fdc-9495-52505f83a5cd}</Project>
+      <Name>Deskberry.Presentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Deskberry.Tools\Deskberry.Tools.csproj">
       <Project>{ed494184-0cd0-42bd-ac92-7fdb231b4cc4}</Project>
       <Name>Deskberry.Tools</Name>

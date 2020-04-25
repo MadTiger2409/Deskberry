@@ -1,6 +1,6 @@
-﻿using Deskberry.Tools.CommandObjects.Note;
-using Deskberry.Tools.Extensions;
-using Deskberry.Tools.Services.Interfaces;
+﻿using Deskberry.CommandValidation.CommandObjects.Note;
+using Deskberry.Helpers;
+using Deskberry.Services.Interfaces;
 using Deskberry.UWP.Commands;
 using System.Threading.Tasks;
 
