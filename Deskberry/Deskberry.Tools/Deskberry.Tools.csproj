@@ -120,31 +120,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CommandObjects\Favorite\CreateFavorite.cs" />
-    <Compile Include="CommandObjects\HomePage\UpdateHomePage.cs" />
-    <Compile Include="CommandObjects\Note\CreateNote.cs" />
-    <Compile Include="CommandObjects\Note\UpdateNote.cs" />
-    <Compile Include="CommandObjects\Password\UpdatePassword.cs" />
-    <Compile Include="Converters\Base64ToImageConverter.cs" />
-    <Compile Include="Enums\DialogEnum.cs" />
-    <Compile Include="Extensions\HelpModels\IconMenuItem.cs" />
-    <Compile Include="Extensions\HelpModels\SymbolMenuItem.cs" />
-    <Compile Include="Extensions\Session.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AccountService.cs" />
-    <Compile Include="Services\AvatarService.cs" />
-    <Compile Include="Services\FavoriteService.cs" />
-    <Compile Include="Services\HomePageService.cs" />
-    <Compile Include="Services\Interfaces\IAccountService.cs" />
-    <Compile Include="Services\Interfaces\IAvatarService.cs" />
-    <Compile Include="Services\Interfaces\IFavoriteService.cs" />
-    <Compile Include="Services\Interfaces\IHomePageService.cs" />
-    <Compile Include="Services\Interfaces\INoteService.cs" />
-    <Compile Include="Services\NoteService.cs" />
-    <Compile Include="Validators\CreateFavoriteValidator.cs" />
-    <Compile Include="Validators\CreateNoteValidator.cs" />
-    <Compile Include="Validators\UpdateHomePageValidator.cs" />
-    <Compile Include="Validators\UpdatePasswordValidator.cs" />
     <EmbeddedResource Include="Properties\Deskberry.Tools.rd.xml" />
   </ItemGroup>
   <ItemGroup>

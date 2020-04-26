@@ -1,9 +1,9 @@
-﻿using Deskberry.SQLite.Models;
-using Deskberry.Tools.CommandObjects.Note;
+﻿using Deskberry.Common.Models;
+using Deskberry.CommandValidation.CommandObjects.Note;
 using Deskberry.Tools.Enums;
-using Deskberry.Tools.Extensions;
-using Deskberry.Tools.Services.Interfaces;
-using Deskberry.UWP.Commands.Generic;
+using Deskberry.Helpers;
+using Deskberry.Services.Interfaces;
+using Deskberry.Helpers.Commands.Generic;
 using Deskberry.UWP.Helpers;
 using System;
 using System.Collections.ObjectModel;

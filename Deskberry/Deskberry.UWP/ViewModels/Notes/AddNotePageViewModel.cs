@@ -1,7 +1,7 @@
-﻿using Deskberry.Tools.CommandObjects.Note;
-using Deskberry.Tools.Extensions;
-using Deskberry.Tools.Services.Interfaces;
-using Deskberry.UWP.Commands;
+﻿using Deskberry.CommandValidation.CommandObjects.Note;
+using Deskberry.Helpers;
+using Deskberry.Services.Interfaces;
+using Deskberry.Helpers.Commands;
 using System.Threading.Tasks;
 
 namespace Deskberry.UWP.ViewModels.Notes

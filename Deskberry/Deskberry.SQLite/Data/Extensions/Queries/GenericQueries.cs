@@ -1,4 +1,4 @@
-﻿using Deskberry.SQLite.Models.Base;
+﻿using Deskberry.Common.Models.Base;
 using System.Linq;
 
 namespace Deskberry.SQLite.Data.Extensions.Queries

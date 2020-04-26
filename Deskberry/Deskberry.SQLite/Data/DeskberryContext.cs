@@ -1,5 +1,5 @@
 ﻿using Deskberry.SQLite.Extensions;
-using Deskberry.SQLite.Models;
+using Deskberry.Common.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 

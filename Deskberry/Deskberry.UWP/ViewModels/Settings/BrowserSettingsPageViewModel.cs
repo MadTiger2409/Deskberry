@@ -1,12 +1,9 @@
-﻿using Deskberry.SQLite.Models;
-using Deskberry.Tools.CommandObjects.HomePage;
-using Deskberry.Tools.Extensions;
-using Deskberry.Tools.Services.Interfaces;
-using Deskberry.UWP.Commands;
+﻿using Deskberry.Common.Models;
+using Deskberry.CommandValidation.CommandObjects.HomePage;
+using Deskberry.Helpers;
+using Deskberry.Services.Interfaces;
+using Deskberry.Helpers.Commands;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Deskberry.UWP.ViewModels.Settings

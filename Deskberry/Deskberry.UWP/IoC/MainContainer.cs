@@ -1,6 +1,6 @@
 ﻿using Deskberry.SQLite.Data;
-using Deskberry.Tools.Services;
-using Deskberry.Tools.Services.Interfaces;
+using Deskberry.Services;
+using Deskberry.Services.Interfaces;
 using Deskberry.UWP.Services;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.ViewModels;

@@ -1,11 +1,9 @@
-﻿using Deskberry.SQLite.Extensions.Security;
-using Deskberry.SQLite.Models;
-using Deskberry.Tools.CommandObjects.Password;
-using Deskberry.Tools.Extensions;
-using Deskberry.Tools.Services.Interfaces;
-using Deskberry.UWP.Commands;
+﻿using Deskberry.Common.Models;
+using Deskberry.CommandValidation.CommandObjects.Password;
+using Deskberry.Helpers;
+using Deskberry.Services.Interfaces;
+using Deskberry.Helpers.Commands;
 using Deskberry.UWP.Helpers;
-using System.ComponentModel;
 using System;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;

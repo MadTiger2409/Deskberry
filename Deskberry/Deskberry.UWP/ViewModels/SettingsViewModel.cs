@@ -1,5 +1,5 @@
 ﻿using Deskberry.Tools.Extensions.HelpModels;
-using Deskberry.UWP.Commands;
+using Deskberry.Helpers.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
