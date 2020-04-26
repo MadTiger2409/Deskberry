@@ -2,7 +2,7 @@
 using Deskberry.CommandValidation.CommandObjects.Password;
 using Deskberry.Helpers;
 using Deskberry.Services.Interfaces;
-using Deskberry.UWP.Commands;
+using Deskberry.Helpers.Commands;
 using Deskberry.UWP.Helpers;
 using System;
 using System.Threading.Tasks;

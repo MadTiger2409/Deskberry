@@ -1,6 +1,6 @@
 ﻿using Deskberry.Common.Models;
 using Deskberry.Services.Interfaces;
-using Deskberry.UWP.Commands;
+using Deskberry.Helpers.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
 using System.Collections.ObjectModel;

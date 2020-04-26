@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Deskberry.UWP.Commands
+namespace Deskberry.Helpers.Commands
 {
     public class RelayCommand : ICommand
     {

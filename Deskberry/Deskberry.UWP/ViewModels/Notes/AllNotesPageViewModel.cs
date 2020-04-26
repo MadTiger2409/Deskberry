@@ -3,7 +3,7 @@ using Deskberry.CommandValidation.CommandObjects.Note;
 using Deskberry.Tools.Enums;
 using Deskberry.Helpers;
 using Deskberry.Services.Interfaces;
-using Deskberry.UWP.Commands.Generic;
+using Deskberry.Helpers.Commands.Generic;
 using Deskberry.UWP.Helpers;
 using System;
 using System.Collections.ObjectModel;

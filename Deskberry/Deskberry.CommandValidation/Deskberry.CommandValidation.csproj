@@ -10,6 +10,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Deskberry.Common\Deskberry.Common.csproj" />
-    <ProjectReference Include="..\Deskberry.Security\Deskberry.Security.csproj" />
   </ItemGroup>
 </Project>

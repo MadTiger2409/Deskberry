@@ -120,9 +120,6 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Converters\Base64ToImageConverter.cs" />
-    <Compile Include="Extensions\HelpModels\IconMenuItem.cs" />
-    <Compile Include="Extensions\HelpModels\SymbolMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Deskberry.Tools.rd.xml" />
   </ItemGroup>

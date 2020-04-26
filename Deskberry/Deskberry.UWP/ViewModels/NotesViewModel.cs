@@ -1,27 +1,28 @@
 ﻿using Deskberry.Tools.Extensions.HelpModels;
-using Deskberry.UWP.Commands;
+using Deskberry.Helpers.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using Windows.UI.Xaml.Controls;
 
 namespace Deskberry.UWP.ViewModels
 {
-    public class SettingsViewModel : INotifyPropertyChanged
+    public class NotesViewModel : INotifyPropertyChanged
     {
-        public IconMenuItem _selectedMenuItem;
+        public SymbolMenuItem _selectedMenuItem;
 
         private INavigationService _navigationService;
-        private ISettingNavigationService _settingNavigationService;
+        private INoteNavigationService _noteNavigationService;
 
-        public SettingsViewModel()
+        public NotesViewModel()
         {
         }
 
-        public SettingsViewModel(INavigationService navigationService, ISettingNavigationService settingNavigationService)
+        public NotesViewModel(INavigationService navigationService, INoteNavigationService noteNavigationService)
         {
             _navigationService = navigationService;
-            _settingNavigationService = settingNavigationService;
+            _noteNavigationService = noteNavigationService;
 
             NoteMenuItems = InitializeMenuItems();
 
@@ -33,9 +34,9 @@ namespace Deskberry.UWP.ViewModels
 
         public RelayCommand CloseSubAppCommand { get; private set; }
         public RelayCommand NavigateBackCommand { get; private set; }
-        public ObservableCollection<IconMenuItem> NoteMenuItems { get; set; }
+        public ObservableCollection<SymbolMenuItem> NoteMenuItems { get; set; }
 
-        public IconMenuItem SelectedMenuItem
+        public SymbolMenuItem SelectedMenuItem
         {
             get { return _selectedMenuItem; }
             set
@@ -44,7 +45,7 @@ namespace Deskberry.UWP.ViewModels
                     return;
 
                 _selectedMenuItem = value;
-                _settingNavigationService.NavigateTo(_selectedMenuItem.Tag);
+                _noteNavigationService.NavigateTo(_selectedMenuItem.Tag);
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedMenuItem)));
             }
         }
@@ -52,19 +53,20 @@ namespace Deskberry.UWP.ViewModels
         public void SetMenuItemOnStart()
         {
             SelectedMenuItem = NoteMenuItems.FirstOrDefault();
-            _settingNavigationService.NavigateTo(SelectedMenuItem.Tag);
+            _noteNavigationService.NavigateTo(SelectedMenuItem.Tag);
         }
 
         private void CloseSubApp() => _navigationService.ClearSubAppsWindow();
 
-        private ObservableCollection<IconMenuItem> InitializeMenuItems()
+        private ObservableCollection<SymbolMenuItem> InitializeMenuItems()
         {
-            return new ObservableCollection<IconMenuItem>
+            var collection = new ObservableCollection<SymbolMenuItem>
             {
-                new IconMenuItem { Name = "Security", Tag = "PasswordSettingsPage", GlyphCode = "\xE72E" },
-                new IconMenuItem { Name = "Personalization", Tag = "PersonalizationSettingsPage", GlyphCode = "\xE771" },
-                new IconMenuItem { Name = "Browser", Tag = "BrowserSettingsPage", GlyphCode = "\xF6FA" }
+                new SymbolMenuItem { Name = "All notes", Tag = "AllNotesPage", Glyph = Symbol.List },
+                new SymbolMenuItem { Name = "Add note", Tag = "AddNotePage", Glyph = Symbol.Add }
             };
+
+            return collection;
         }
 
         private void NavigateBack() => _navigationService.NavigateBackFromSubApp();

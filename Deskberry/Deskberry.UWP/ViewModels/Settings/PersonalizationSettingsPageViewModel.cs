@@ -1,7 +1,7 @@
 using Deskberry.Common.Models;
 using Deskberry.Helpers;
 using Deskberry.Services.Interfaces;
-using Deskberry.UWP.Commands;
+using Deskberry.Helpers.Commands;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
