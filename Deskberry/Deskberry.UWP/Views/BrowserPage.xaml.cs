@@ -18,10 +18,10 @@ namespace Deskberry.UWP.Views
             DataContext = MainContainer.Container.GetService<BrowserViewModel>();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             var viewModel = DataContext as BrowserViewModel;
-            viewModel.RefreshFavoritesCollection();
+            await viewModel.InitializeDataAsync();
         }
 
         // A workaround for accessing parent's command

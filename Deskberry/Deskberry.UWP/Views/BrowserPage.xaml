@@ -1,50 +1,45 @@
-﻿<Page
-    x:Class="Deskberry.UWP.Views.BrowserPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:Deskberry.UWP"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="using:Deskberry.UWP.ViewModels"
-    Background="Transparent"
-    mc:Ignorable="d">
+﻿<Page x:Class="Deskberry.UWP.Views.BrowserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Deskberry.UWP"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewModels="using:Deskberry.UWP.ViewModels"
+      Background="Transparent"
+      mc:Ignorable="d">
 
     <Page.Resources>
         <ResourceDictionary>
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" />
 
             <DataTemplate x:Key="favoritesTemplate">
-                <Grid
-                    Margin="0,3"
-                    Padding="4,0,0,0"
-                    Background="#313131"
-                    BorderBrush="#404040"
-                    BorderThickness="1"
-                    CornerRadius="2">
+                <Grid Margin="0,3"
+                      Padding="4,0,0,0"
+                      Background="#313131"
+                      BorderBrush="#404040"
+                      BorderThickness="1"
+                      CornerRadius="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock
-                        Grid.Column="0"
-                        VerticalAlignment="Center"
-                        Text="{Binding Title}" />
-                    <Button
-                        Grid.Column="1"
-                        Width="30"
-                        Height="30"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Background="Transparent"
-                        CornerRadius="2">
+                    <TextBlock Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="{Binding Title}" />
+                    <Button Grid.Column="1"
+                            Width="30"
+                            Height="30"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Background="Transparent"
+                            CornerRadius="2">
                         <Viewbox>
-                            <Path
-                                Data="M2.384186E-06,24L32.000004,24 32.000004,26 2.384186E-06,26z M0,11.999998L32,11.999998 32,13.999998 0,13.999998z M2.384186E-06,0L32.000004,0 32.000004,2 2.384186E-06,2z"
-                                Fill="LightGray"
-                                RenderTransformOrigin="0.5,0.5"
-                                Stroke="Transparent">
+                            <Path Data="M2.384186E-06,24L32.000004,24 32.000004,26 2.384186E-06,26z M0,11.999998L32,11.999998 32,13.999998 0,13.999998z M2.384186E-06,0L32.000004,0 32.000004,2 2.384186E-06,2z"
+                                  Fill="LightGray"
+                                  RenderTransformOrigin="0.5,0.5"
+                                  Stroke="Transparent">
                                 <Path.RenderTransform>
                                     <TransformGroup>
                                         <TransformGroup.Children>
@@ -59,18 +54,16 @@
                         <Button.Flyout>
                             <Flyout Placement="LeftEdgeAlignedTop">
                                 <StackPanel>
-                                    <Button
-                                        Margin="0,0,0,2"
-                                        HorizontalAlignment="Stretch"
-                                        Click="Button_Click_DeleteFavorite"
-                                        Content="Delete"
-                                        Tag="{Binding Id}" />
-                                    <Button
-                                        Margin="0,2,0,0"
-                                        HorizontalAlignment="Stretch"
-                                        Click="Button_Click_LoadFavorite"
-                                        Content="Load"
-                                        Tag="{Binding Id}" />
+                                    <Button Margin="0,0,0,2"
+                                            HorizontalAlignment="Stretch"
+                                            Click="Button_Click_DeleteFavorite"
+                                            Content="Delete"
+                                            Tag="{Binding Id}" />
+                                    <Button Margin="0,2,0,0"
+                                            HorizontalAlignment="Stretch"
+                                            Click="Button_Click_LoadFavorite"
+                                            Content="Load"
+                                            Tag="{Binding Id}" />
                                 </StackPanel>
                             </Flyout>
                         </Button.Flyout>
@@ -107,55 +100,49 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Border
-            Grid.Row="0"
-            Grid.Column="0"
-            Background="{ThemeResource SystemControlAcrylicElementBrush}"
-            BorderBrush="DarkGray"
-            BorderThickness="0,0,0,0.3">
+        <Border Grid.Row="0"
+                Grid.Column="0"
+                Background="{ThemeResource SystemControlAcrylicElementBrush}"
+                BorderBrush="DarkGray"
+                BorderThickness="0,0,0,0.3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock
-                    Grid.Column="0"
-                    Margin="8,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontWeight="ExtraBold"
-                    Text="Browser" />
+                <TextBlock Grid.Column="0"
+                           Margin="8,0,0,0"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Center"
+                           FontWeight="ExtraBold"
+                           Text="Browser" />
 
-                <TextBlock
-                    Grid.Column="1"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    FontWeight="Bold"
-                    Foreground="DarkGray"
-                    Text="{Binding Title}" />
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           Foreground="DarkGray"
+                           Text="{Binding Title}" />
             </Grid>
         </Border>
 
-        <StackPanel
-            Grid.Row="0"
-            Grid.Column="1"
-            Background="{ThemeResource SystemControlAcrylicElementBrush}"
-            Orientation="Horizontal">
-            <Button
-                Width="40"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Background="Transparent"
-                BorderBrush="DarkGray"
-                BorderThickness="0.2,0,0,0.3"
-                Command="{Binding NavigateBackCommand}">
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Background="{ThemeResource SystemControlAcrylicElementBrush}"
+                    Orientation="Horizontal">
+            <Button Width="40"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    BorderBrush="DarkGray"
+                    BorderThickness="0.2,0,0,0.3"
+                    Command="{Binding NavigateBackCommand}">
                 <Viewbox>
-                    <Path
-                        Data="{StaticResource PreviousArrowGeometry}"
-                        Fill="Transparent"
-                        RenderTransformOrigin="0.6,0.5"
-                        Stroke="LightGray">
+                    <Path Data="{StaticResource PreviousArrowGeometry}"
+                          Fill="Transparent"
+                          RenderTransformOrigin="0.6,0.5"
+                          Stroke="LightGray">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <TransformGroup.Children>
@@ -168,21 +155,19 @@
                 </Viewbox>
             </Button>
 
-            <Button
-                Width="40"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Background="Transparent"
-                BorderBrush="DarkGray"
-                BorderThickness="0.2,0,0,0.3"
-                Command="{Binding CloseSubAppCommand}">
+            <Button Width="40"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Background="Transparent"
+                    BorderBrush="DarkGray"
+                    BorderThickness="0.2,0,0,0.3"
+                    Command="{Binding CloseSubAppCommand}">
                 <Viewbox>
-                    <Path
-                        Data="{StaticResource CloseGeometry}"
-                        Fill="Transparent"
-                        RenderTransformOrigin="0.5,0.4"
-                        Stroke="LightGray"
-                        StrokeThickness="2">
+                    <Path Data="{StaticResource CloseGeometry}"
+                          Fill="Transparent"
+                          RenderTransformOrigin="0.5,0.4"
+                          Stroke="LightGray"
+                          StrokeThickness="2">
                         <Path.RenderTransform>
                             <TransformGroup>
                                 <TransformGroup.Children>
@@ -196,22 +181,20 @@
             </Button>
         </StackPanel>
 
-        <Grid
-            Grid.Row="1"
-            Grid.ColumnSpan="2"
-            Background="Black">
+        <Grid Grid.Row="1"
+              Grid.ColumnSpan="2"
+              Background="Black">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40" />
                 <RowDefinition Height="79*" />
                 <RowDefinition Height="614*" />
             </Grid.RowDefinitions>
 
-            <Grid
-                Grid.Row="0"
-                Padding="4,0,2,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Background="#222222">
+            <Grid Grid.Row="0"
+                  Padding="4,0,2,0"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Background="#222222">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="40" />
@@ -223,19 +206,17 @@
                     <ColumnDefinition Width="40" />
                 </Grid.ColumnDefinitions>
 
-                <Button
-                    Grid.Column="0"
-                    Margin="2,4,2,4"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Command="{Binding GoBackwardCommand}"
-                    ToolTipService.ToolTip="Backward">
+                <Button Grid.Column="0"
+                        Margin="2,4,2,4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Command="{Binding GoBackwardCommand}"
+                        ToolTipService.ToolTip="Backward">
                     <Viewbox>
-                        <Path
-                            Data="{StaticResource UndoGeometry}"
-                            Fill="LightGray"
-                            RenderTransformOrigin="0.5,0.5"
-                            Stroke="Transparent">
+                        <Path Data="{StaticResource UndoGeometry}"
+                              Fill="LightGray"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -247,19 +228,17 @@
                         </Path>
                     </Viewbox>
                 </Button>
-                <Button
-                    Grid.Column="1"
-                    Margin="2,4,2,4"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Command="{Binding GoForwardCommand}"
-                    ToolTipService.ToolTip="Forward">
+                <Button Grid.Column="1"
+                        Margin="2,4,2,4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Command="{Binding GoForwardCommand}"
+                        ToolTipService.ToolTip="Forward">
                     <Viewbox>
-                        <Path
-                            Data="{StaticResource RedoGeometry}"
-                            Fill="LightGray"
-                            RenderTransformOrigin="0.5,0.5"
-                            Stroke="Transparent">
+                        <Path Data="{StaticResource RedoGeometry}"
+                              Fill="LightGray"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -271,19 +250,17 @@
                         </Path>
                     </Viewbox>
                 </Button>
-                <Button
-                    Grid.Column="2"
-                    Margin="2,4,2,4"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Command="{Binding RefreshCommand}"
-                    ToolTipService.ToolTip="Refresh">
+                <Button Grid.Column="2"
+                        Margin="2,4,2,4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Command="{Binding RefreshCommand}"
+                        ToolTipService.ToolTip="Refresh">
                     <Viewbox>
-                        <Path
-                            Data="{StaticResource ReloadGeometry}"
-                            Fill="LightGray"
-                            RenderTransformOrigin="0.5,0.5"
-                            Stroke="Transparent">
+                        <Path Data="{StaticResource ReloadGeometry}"
+                              Fill="LightGray"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -295,19 +272,17 @@
                         </Path>
                     </Viewbox>
                 </Button>
-                <Button
-                    Grid.Column="3"
-                    Margin="2,4,2,4"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Command="{Binding GoHomeCommand}"
-                    ToolTipService.ToolTip="Home Page">
+                <Button Grid.Column="3"
+                        Margin="2,4,2,4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Command="{Binding GoHomeCommand}"
+                        ToolTipService.ToolTip="Home Page">
                     <Viewbox>
-                        <Path
-                            Data="{StaticResource HomeGeometry}"
-                            Fill="LightGray"
-                            RenderTransformOrigin="0.5,0.5"
-                            Stroke="Transparent">
+                        <Path Data="{StaticResource HomeGeometry}"
+                              Fill="LightGray"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -319,26 +294,23 @@
                         </Path>
                     </Viewbox>
                 </Button>
-                <TextBox
-                    Grid.Column="4"
-                    Margin="2,4,2,4"
-                    VerticalAlignment="Stretch"
-                    Background="Gray"
-                    IsSpellCheckEnabled="False"
-                    Text="{Binding Uri, Mode=TwoWay}" />
-                <Button
-                    Grid.Column="5"
-                    Margin="2,4,2,4"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Command="{Binding GoToCommand}"
-                    ToolTipService.ToolTip="Go To">
+                <TextBox Grid.Column="4"
+                         Margin="2,4,2,4"
+                         VerticalAlignment="Stretch"
+                         Background="Gray"
+                         IsSpellCheckEnabled="False"
+                         Text="{Binding Uri, Mode=TwoWay}" />
+                <Button Grid.Column="5"
+                        Margin="2,4,2,4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Command="{Binding GoToCommand}"
+                        ToolTipService.ToolTip="Go To">
                     <Viewbox>
-                        <Path
-                            Data="{StaticResource PreviousArrowGeometry}"
-                            Fill="LightGray"
-                            RenderTransformOrigin="0.5,0.5"
-                            Stroke="Transparent">
+                        <Path Data="{StaticResource PreviousArrowGeometry}"
+                              Fill="LightGray"
+                              RenderTransformOrigin="0.5,0.5"
+                              Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -350,17 +322,15 @@
                         </Path>
                     </Viewbox>
                 </Button>
-                <Button
-                    Grid.Column="6"
-                    Margin="2,4,2,4"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
+                <Button Grid.Column="6"
+                        Margin="2,4,2,4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
                     <Viewbox>
-                        <Path
-                            Data="{StaticResource FavouritesAddGeometry}"
-                            Fill="LightGray"
-                            RenderTransformOrigin="0.34,0.5"
-                            Stroke="Transparent">
+                        <Path Data="{StaticResource FavouritesAddGeometry}"
+                              Fill="LightGray"
+                              RenderTransformOrigin="0.34,0.5"
+                              Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -374,7 +344,8 @@
 
                     <Button.Flyout>
                         <Flyout>
-                            <Grid Width="200" Height="200">
+                            <Grid Width="200"
+                                  Height="200">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
@@ -385,54 +356,49 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Text="Title" />
-                                <TextBox
-                                    Grid.Row="1"
-                                    HorizontalAlignment="Stretch"
-                                    PlaceholderText="Title"
-                                    Text="{Binding FavoriteForm.Title, Mode=TwoWay}" />
-                                <TextBlock
-                                    Grid.Row="2"
-                                    Foreground="Red"
-                                    Text="Enter valid title"
-                                    Visibility="{Binding FavoriteForm.IsTitleErrorVisible, Converter={StaticResource BoolToVisibility}}" />
+                                <TextBlock Grid.Row="0"
+                                           Text="Title" />
+                                <TextBox Grid.Row="1"
+                                         HorizontalAlignment="Stretch"
+                                         PlaceholderText="Title"
+                                         Text="{Binding FavoriteForm.Title, Mode=TwoWay}" />
+                                <TextBlock Grid.Row="2"
+                                           Foreground="Red"
+                                           Text="Enter valid title"
+                                           Visibility="{Binding FavoriteForm.IsTitleErrorVisible, Converter={StaticResource BoolToVisibility}}" />
 
-                                <TextBlock Grid.Row="4" Text="Uri" />
-                                <Border
-                                    Grid.Row="5"
-                                    Background="Black"
-                                    BorderBrush="Gray"
-                                    BorderThickness="2">
-                                    <TextBlock
-                                        Height="22"
-                                        Margin="10,2,10,2"
-                                        HorizontalAlignment="Stretch"
-                                        AllowFocusOnInteraction="False"
-                                        Foreground="Gray"
-                                        Text="{Binding FavoriteForm.Uri}"
-                                        TextWrapping="NoWrap" />
+                                <TextBlock Grid.Row="4"
+                                           Text="Uri" />
+                                <Border Grid.Row="5"
+                                        Background="Black"
+                                        BorderBrush="Gray"
+                                        BorderThickness="2">
+                                    <TextBlock Height="22"
+                                               Margin="10,2,10,2"
+                                               HorizontalAlignment="Stretch"
+                                               AllowFocusOnInteraction="False"
+                                               Foreground="Gray"
+                                               Text="{Binding FavoriteForm.Uri}"
+                                               TextWrapping="NoWrap" />
                                 </Border>
-                                <Button
-                                    Grid.Row="6"
-                                    HorizontalAlignment="Stretch"
-                                    Command="{Binding AddFavoriteCommand}"
-                                    Content="Add"
-                                    Style="{StaticResource ActionButton}" />
+                                <Button Grid.Row="6"
+                                        HorizontalAlignment="Stretch"
+                                        Command="{Binding AddFavoriteCommand}"
+                                        Content="Add"
+                                        Style="{StaticResource ActionButton}" />
                             </Grid>
                         </Flyout>
                     </Button.Flyout>
                 </Button>
-                <Button
-                    Grid.Column="7"
-                    Margin="2,4,2,4"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch">
+                <Button Grid.Column="7"
+                        Margin="2,4,2,4"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
                     <Viewbox>
-                        <Path
-                            Data="{StaticResource FavouritesGeometry}"
-                            Fill="LightGray"
-                            RenderTransformOrigin="0.5,0.3"
-                            Stroke="Transparent">
+                        <Path Data="{StaticResource FavouritesGeometry}"
+                              Fill="LightGray"
+                              RenderTransformOrigin="0.5,0.3"
+                              Stroke="Transparent">
                             <Path.RenderTransform>
                                 <TransformGroup>
                                     <TransformGroup.Children>
@@ -446,22 +412,22 @@
 
                     <Button.Flyout>
                         <Flyout>
-                            <Grid Width="200" Height="350">
+                            <Grid Width="200"
+                                  Height="350">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <TextBlock
-                                    Grid.Row="0"
-                                    Margin="0,0,0,4"
-                                    Text="Favorites" />
+                                <TextBlock Grid.Row="0"
+                                           Margin="0,0,0,4"
+                                           Text="Favorites" />
 
-                                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden">
-                                    <ItemsControl
-                                        x:Name="FavoritesListView"
-                                        ItemTemplate="{StaticResource favoritesTemplate}"
-                                        ItemsSource="{Binding Favorites, Mode=TwoWay}" />
+                                <ScrollViewer Grid.Row="1"
+                                              VerticalScrollBarVisibility="Hidden">
+                                    <ItemsControl x:Name="FavoritesListView"
+                                                  ItemTemplate="{StaticResource favoritesTemplate}"
+                                                  ItemsSource="{Binding Favorites, Mode=TwoWay}" />
                                 </ScrollViewer>
                             </Grid>
                         </Flyout>
@@ -469,14 +435,13 @@
                 </Button>
             </Grid>
 
-            <ContentPresenter
-                Grid.Row="1"
-                Grid.RowSpan="2"
-                Margin="0,0,0,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                Content="{Binding WebView}"
-                ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+            <ContentPresenter Grid.Row="1"
+                              Grid.RowSpan="2"
+                              Margin="0,0,0,0"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              Content="{Binding WebView}"
+                              ScrollViewer.VerticalScrollBarVisibility="Hidden" />
         </Grid>
     </Grid>
 </Page>

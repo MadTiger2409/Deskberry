@@ -21,10 +21,10 @@ namespace Deskberry.UWP.Views.Settings
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            base.OnNavigatedTo(e);
+
             var vm = DataContext as BrowserSettingsPageViewModel;
             await vm.InitializeDataAsync();
-
-            base.OnNavigatedTo(e);
         }
     }
 }

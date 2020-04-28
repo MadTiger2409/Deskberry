@@ -21,19 +21,22 @@ namespace Deskberry.UWP.ViewModels
         private readonly IFavoriteService _favoriteService;
         private readonly INavigationService _navigationService;
         private readonly IAccountService _accountService;
+        private readonly IHomePageService _homePageService;
 
         private string _title;
         private string _uri;
+        private HomePage homePageUri;
 
         public BrowserViewModel()
         {
         }
 
-        public BrowserViewModel(IFavoriteService favoriteService, INavigationService navigationService, IAccountService accountService)
+        public BrowserViewModel(IFavoriteService favoriteService, INavigationService navigationService, IAccountService accountService, IHomePageService homePageService)
         {
             _favoriteService = favoriteService;
             _navigationService = navigationService;
             _accountService = accountService;
+            _homePageService = homePageService;
             FavoriteForm = new CreateFavorite();
             Favorites = new ObservableCollection<Favorite>();
 
@@ -58,6 +61,17 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand NavigateBackCommand { get; private set; }
         public RelayCommand RefreshCommand { get; protected set; }
 
+        public HomePage HomePageUri
+        {
+            get => homePageUri;
+            private set
+            {
+                homePageUri = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(HomePageUri)));
+                GoHomeCommand.RaiseCanExecuteChanged();
+            }
+        }
+
         public string Title
         {
             get { return _title; }
@@ -81,14 +95,23 @@ namespace Deskberry.UWP.ViewModels
 
         public WebView WebView { get; set; }
 
-        public void RefreshFavoritesCollection()
+        public async Task InitializeDataAsync()
         {
-            var favorites = _favoriteService.GetAllForUserAsync(Session.Id).GetAwaiter().GetResult();
+            Favorites = new ObservableCollection<Favorite>(await _favoriteService.GetAllForUserAsync(Session.Id));
 
-            Favorites = new ObservableCollection<Favorite>(favorites);
+            try
+            {
+                HomePageUri = await _homePageService.GetAsync(Session.Id);
+            }
+            catch (Exception)
+            {
+                homePageUri = new HomePage();
+            }
         }
 
         private bool CanGoBackward() => WebView.CanGoBack;
+
+        private bool CanGoHome() => !string.IsNullOrEmpty(HomePageUri.Uri);
 
         private bool CanGoForward() => WebView.CanGoForward;
 
@@ -118,6 +141,12 @@ namespace Deskberry.UWP.ViewModels
             WebView.Navigate(uriBuildder.Uri);
         }
 
+        private void GoToHomePage()
+        {
+            Uri = HomePageUri.Uri;
+            GoTo();
+        }
+
         private void InitializeCommands()
         {
             AddFavoriteCommand = new RelayCommand(async () => await AddFavoriteAsync(), FavoriteForm.IsValid);
@@ -129,6 +158,7 @@ namespace Deskberry.UWP.ViewModels
             LoadFavoriteCommand = new RelayCommand<object>(x => LoadFavorite(x));
             CloseSubAppCommand = new RelayCommand(() => CloseSubApp());
             NavigateBackCommand = new RelayCommand(() => NavigateBack());
+            GoHomeCommand = new RelayCommand(() => GoToHomePage(), CanGoHome);
         }
 
         private void InitializeWebView()
