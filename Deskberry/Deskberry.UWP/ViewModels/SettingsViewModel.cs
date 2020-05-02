@@ -61,9 +61,11 @@ namespace Deskberry.UWP.ViewModels
         {
             return new ObservableCollection<IconMenuItem>
             {
-                new IconMenuItem { Name = "Security", Tag = "PasswordSettingsPage", GlyphCode = "\xE72E" },
+                new IconMenuItem { Name = "Account Manager", Tag = "PersonalizationSettingsPage", GlyphCode = "\uE77B" },
                 new IconMenuItem { Name = "Personalization", Tag = "PersonalizationSettingsPage", GlyphCode = "\xE771" },
-                new IconMenuItem { Name = "Browser", Tag = "BrowserSettingsPage", GlyphCode = "\xF6FA" }
+                new IconMenuItem { Name = "Security", Tag = "PasswordSettingsPage", GlyphCode = "\xE72E" },
+                new IconMenuItem { Name = "Browser", Tag = "BrowserSettingsPage", GlyphCode = "\xF6FA" },
+                new IconMenuItem { Name = "Network", Tag = "NetworkSettingsPage", GlyphCode = "\uEE77" }
             };
         }
 

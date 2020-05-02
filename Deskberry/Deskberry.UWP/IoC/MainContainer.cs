@@ -33,6 +33,7 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<PasswordSettingsPageViewModel>();
             services.AddScoped<PersonalizationSettingsPageViewModel>();
             services.AddScoped<BrowserSettingsPageViewModel>();
+            services.AddScoped<NetworkSettingsPageViewModel>();
 
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IAvatarService, AvatarService>();
@@ -42,6 +43,7 @@ namespace Deskberry.UWP.IoC
             services.AddScoped<INoteService, NoteService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
             services.AddScoped<IHomePageService, HomePageService>();
+            services.AddScoped<IWiFiService, WiFiService>();
 
             Container = services.BuildServiceProvider();
         }

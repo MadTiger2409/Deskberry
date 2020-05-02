@@ -118,9 +118,11 @@
     <Compile Include="Services\Interfaces\INavigationService.cs" />
     <Compile Include="Services\Interfaces\INoteNavigationService.cs" />
     <Compile Include="Services\Interfaces\ISettingNavigationService.cs" />
+    <Compile Include="Services\Interfaces\IWiFiService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\NoteNavigationService.cs" />
     <Compile Include="Services\SettingNavigationService.cs" />
+    <Compile Include="Services\WiFiService.cs" />
     <Compile Include="ViewModels\BrowserViewModel.cs" />
     <Compile Include="ViewModels\CalculatorViewModel.cs" />
     <Compile Include="ViewModels\DesktopPageViewModel.cs" />
@@ -130,6 +132,7 @@
     <Compile Include="ViewModels\Notes\AllNotesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\BrowserSettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\Settings\NetworkSettingsPageViewModel.cs" />
     <Compile Include="ViewModels\Settings\PasswordSettingsPageViewModel.cs" />
     <Compile Include="ViewModels\Settings\PersonalizationSettingsPageViewModel.cs" />
     <Compile Include="Views\BrowserPage.xaml.cs">
@@ -158,6 +161,9 @@
     </Compile>
     <Compile Include="Views\Settings\BrowserSettingsPage.xaml.cs">
       <DependentUpon>BrowserSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\NetworkSettingsPage.xaml.cs">
+      <DependentUpon>NetworkSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\PasswordSettingsPage.xaml.cs">
       <DependentUpon>PasswordSettingsPage.xaml</DependentUpon>
@@ -403,6 +409,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Settings\BrowserSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\NetworkSettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
