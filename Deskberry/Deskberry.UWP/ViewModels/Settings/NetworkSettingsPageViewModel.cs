@@ -1,6 +1,8 @@
 ﻿using Deskberry.UWP.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,35 +10,36 @@ using Windows.Devices.WiFi;
 
 namespace Deskberry.UWP.ViewModels.Settings
 {
-    public class NetworkSettingsPageViewModel
+    public class NetworkSettingsPageViewModel : INotifyPropertyChanged
     {
         private IWiFiService _wiFiService;
 
-        public NetworkSettingsPageViewModel()
+        private string _password;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
+
+        public string Password
         {
+            get { return _password; }
+            set { _password = value; }
         }
 
-        public NetworkSettingsPageViewModel(IWiFiService wiFiService)
+        public async Task InitializeDataAsync()
+        {
+            AvailableNetworks = new ObservableCollection<WiFiAvailableNetwork>(await _wiFiService.GetWiFiAvailableNetworksAsync());
+            PropertyChanged?.Invoke(AvailableNetworks, new PropertyChangedEventArgs(nameof(AvailableNetworks)));
+        }
+
+        public NetworkSettingsPageViewModel()
+        {
+            AvailableNetworks = new ObservableCollection<WiFiAvailableNetwork>();
+        }
+
+        public NetworkSettingsPageViewModel(IWiFiService wiFiService) : this()
         {
             _wiFiService = wiFiService;
         }
-
-        //async Task Get()
-        //{
-        //    var adapters = await WiFiAdapter.FindAllAdaptersAsync();
-        //    var networks = adapters[0].NetworkReport.AvailableNetworks;
-        //}
-
-        //async Task Connect()
-        //{
-        //    var adapters = await WiFiAdapter.FindAllAdaptersAsync();
-        //    adapters[0].ConnectAsync()
-        //}
-
-        //async Task GetStatus()
-        //{
-        //    var adapters = await WiFiAdapter.FindAllAdaptersAsync();
-        //    adapters[0].NetworkAdapter;
-        //}
     }
 }

@@ -13,8 +13,8 @@ namespace Deskberry.UWP.Services.Interfaces
     {
         Task<IEnumerable<WiFiAvailableNetwork>> GetWiFiAvailableNetworksAsync();
 
-        Task<NetworkAdapter> GetNetworkAdapterInformation();
+        NetworkAdapter GetNetworkAdapterInformation();
 
-        Task ConnectAsync(WiFiAvailableNetwork selectedNetwork, PasswordCredential passwordCredential);
+        Task ConnectAsync(WiFiAvailableNetwork selectedNetwork, string networkPassword);
     }
 }

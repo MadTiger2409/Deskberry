@@ -16,15 +16,10 @@ namespace Deskberry.UWP.Views.Settings
         public NetworkSettingsPage()
         {
             this.InitializeComponent();
-            DataContext = MainContainer.Container.GetService<NetworkSettingsPageViewModel>();
-        }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            var vm = DataContext as NetworkSettingsPageViewModel;
-            //await vm.GetWiFi();
-
-            base.OnNavigatedTo(e);
+            var vm = MainContainer.Container.GetService<NetworkSettingsPageViewModel>();
+            vm.InitializeDataAsync();
+            DataContext = vm;
         }
     }
 }

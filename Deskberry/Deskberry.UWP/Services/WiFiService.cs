@@ -19,16 +19,19 @@ namespace Deskberry.UWP.Services
             _adapter = adapter;
         }
 
-        public Task ConnectAsync(WiFiAvailableNetwork selectedNetwork, PasswordCredential passwordCredential) => throw new NotImplementedException();
+        public async Task ConnectAsync(WiFiAvailableNetwork selectedNetwork, string networkPassword)
+        {
+            var credentials = new PasswordCredential() { UserName = "deskberry", Password = networkPassword };
 
-        public Task<NetworkAdapter> GetNetworkAdapterInformation() => throw new NotImplementedException();
+            await _adapter.ConnectAsync(selectedNetwork, WiFiReconnectionKind.Automatic, credentials);
+        }
+
+        public NetworkAdapter GetNetworkAdapterInformation() => _adapter.NetworkAdapter;
 
         public async Task<IEnumerable<WiFiAvailableNetwork>> GetWiFiAvailableNetworksAsync()
         {
-            var scan = _adapter.ScanAsync();
-            await scan;
+            await _adapter.ScanAsync();
 
-            Task.WaitAll(scan.AsTask());
             return _adapter.NetworkReport.AvailableNetworks;
         }
     }
