@@ -19,10 +19,10 @@ namespace Deskberry.UWP.Views.Settings
             DataContext = MainContainer.Container.GetService<NetworkSettingsPageViewModel>();
         }
 
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var vm = DataContext as NetworkSettingsPageViewModel;
-            await vm.GetWiFi();
+            //await vm.GetWiFi();
 
             base.OnNavigatedTo(e);
         }

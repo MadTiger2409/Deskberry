@@ -20,5 +20,23 @@ namespace Deskberry.UWP.ViewModels.Settings
         {
             _wiFiService = wiFiService;
         }
+
+        //async Task Get()
+        //{
+        //    var adapters = await WiFiAdapter.FindAllAdaptersAsync();
+        //    var networks = adapters[0].NetworkReport.AvailableNetworks;
+        //}
+
+        //async Task Connect()
+        //{
+        //    var adapters = await WiFiAdapter.FindAllAdaptersAsync();
+        //    adapters[0].ConnectAsync()
+        //}
+
+        //async Task GetStatus()
+        //{
+        //    var adapters = await WiFiAdapter.FindAllAdaptersAsync();
+        //    adapters[0].NetworkAdapter;
+        //}
     }
 }

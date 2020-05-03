@@ -9,6 +9,7 @@ using Deskberry.UWP.ViewModels.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Windows.Devices.WiFi;
 
 namespace Deskberry.UWP.IoC
 {
@@ -21,6 +22,9 @@ namespace Deskberry.UWP.IoC
             var services = new ServiceCollection();
 
             services.AddDbContextPool<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"), 2);
+
+            //! It's experimental
+            services.AddSingleton(typeof(WiFiAdapter), WiFiAdapter.FindAllAdaptersAsync().GetAwaiter().GetResult()[0]);
 
             services.AddScoped<MainPageViewModel>();
             services.AddScoped<DesktopPageViewModel>();
