@@ -12,8 +12,45 @@
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" />
         <DataTemplate x:Key="networkTemplate">
-            <TextBlock FontSize="20"
-                       Text="{Binding Ssid}" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           FontSize="20"
+                           Text="Network:" />
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           FontSize="20"
+                           Text="{Binding Ssid}" />
+
+                <TextBlock Grid.Row="1"
+                           Grid.Column="0"
+                           FontSize="12"
+                           Text="Strength:" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           FontSize="12"
+                           Text="{Binding SignalBars}" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           FontSize="12"
+                           Text="Up time:" />
+                <TextBlock Grid.Row="2"
+                           Grid.Column="1"
+                           FontSize="12"
+                           Text="{Binding Uptime}" />
+            </Grid>
         </DataTemplate>
     </Page.Resources>
 
