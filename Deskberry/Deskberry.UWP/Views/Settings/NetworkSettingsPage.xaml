@@ -26,17 +26,14 @@
 
                 <TextBlock Grid.Row="0"
                            Grid.Column="0"
-                           FontSize="20"
-                           Text="Network:" />
-                <TextBlock Grid.Row="0"
-                           Grid.Column="1"
+                           Grid.ColumnSpan="2"
                            FontSize="20"
                            Text="{Binding Ssid}" />
 
                 <TextBlock Grid.Row="1"
                            Grid.Column="0"
                            FontSize="12"
-                           Text="Strength:" />
+                           Text="Strength: " />
                 <TextBlock Grid.Row="1"
                            Grid.Column="1"
                            FontSize="12"
@@ -69,6 +66,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -80,7 +78,28 @@
 
         <ListBox Grid.Row="1"
                  Grid.Column="1"
+                 Background="Transparent"
                  ItemTemplate="{StaticResource networkTemplate}"
                  ItemsSource="{Binding AvailableNetworks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0,6,0,16"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button MinWidth="70"
+                    Margin="10,0"
+                    HorizontalAlignment="Right"
+                    Command="{Binding RefreshCommand}"
+                    Content="Refresh"
+                    FontSize="20"
+                    Style="{StaticResource ActionButton}" />
+
+            <Button MinWidth="70"
+                    HorizontalAlignment="Right"
+                    Content="Connect"
+                    FontSize="20"
+                    Style="{StaticResource ActionButton}" />
+        </StackPanel>
     </Grid>
 </Page>

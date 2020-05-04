@@ -1,4 +1,5 @@
-﻿using Deskberry.UWP.Services.Interfaces;
+﻿using Deskberry.Helpers.Commands;
+using Deskberry.UWP.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +19,7 @@ namespace Deskberry.UWP.ViewModels.Settings
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public RelayCommand RefreshCommand { get; protected set; }
         public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
 
         public string Password
@@ -28,8 +30,7 @@ namespace Deskberry.UWP.ViewModels.Settings
 
         public async Task InitializeDataAsync()
         {
-            AvailableNetworks = new ObservableCollection<WiFiAvailableNetwork>(await _wiFiService.GetWiFiAvailableNetworksAsync());
-            PropertyChanged?.Invoke(AvailableNetworks, new PropertyChangedEventArgs(nameof(AvailableNetworks)));
+            await RefreshAvailableNetworks();
         }
 
         public NetworkSettingsPageViewModel()
@@ -40,6 +41,18 @@ namespace Deskberry.UWP.ViewModels.Settings
         public NetworkSettingsPageViewModel(IWiFiService wiFiService) : this()
         {
             _wiFiService = wiFiService;
+            InitializeCommands();
+        }
+
+        private async Task RefreshAvailableNetworks()
+        {
+            AvailableNetworks = new ObservableCollection<WiFiAvailableNetwork>(await _wiFiService.GetWiFiAvailableNetworksAsync());
+            PropertyChanged?.Invoke(AvailableNetworks, new PropertyChangedEventArgs(nameof(AvailableNetworks)));
+        }
+
+        private void InitializeCommands()
+        {
+            RefreshCommand = new RelayCommand(async () => await RefreshAvailableNetworks());
         }
     }
 }
