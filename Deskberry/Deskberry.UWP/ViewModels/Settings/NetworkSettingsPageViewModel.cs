@@ -1,5 +1,6 @@
 ﻿using Deskberry.Helpers.Commands;
 using Deskberry.Tools.Enums;
+using Deskberry.UWP.Dialogs;
 using Deskberry.UWP.Helpers;
 using Deskberry.UWP.Services.Interfaces;
 using System;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.WiFi;
+using Windows.UI.Xaml.Controls;
 
 namespace Deskberry.UWP.ViewModels.Settings
 {
@@ -57,6 +59,11 @@ namespace Deskberry.UWP.ViewModels.Settings
         {
             var dialog = DialogHelper.GetContentDialog(DialogEnum.ConnectNetworkDialog);
             var resoult = await dialog.ShowAsync();
+
+            if (resoult == ContentDialogResult.Primary)
+            {
+                _password = (dialog as ConnectNetworkDialog).Password;
+            }
         }
 
         private void InitializeCommands()

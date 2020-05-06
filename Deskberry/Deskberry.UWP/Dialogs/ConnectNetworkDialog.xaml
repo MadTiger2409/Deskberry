@@ -18,7 +18,8 @@
                    Text="Provide Wi-Fi network password:" />
         <ScrollViewer Grid.Row="1"
                       IsTabStop="True">
-            <PasswordBox PlaceholderText="Password" />
+            <PasswordBox Password="{x:Bind Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         PlaceholderText="Password" />
         </ScrollViewer>
     </Grid>
 </ContentDialog>
