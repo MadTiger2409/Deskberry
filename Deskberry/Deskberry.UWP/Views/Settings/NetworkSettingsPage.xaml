@@ -97,6 +97,7 @@
 
             <Button MinWidth="70"
                     HorizontalAlignment="Right"
+                    Command="{Binding ConnectCommand}"
                     Content="Connect"
                     FontSize="20"
                     Style="{StaticResource ActionButton}" />

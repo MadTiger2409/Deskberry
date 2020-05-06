@@ -105,6 +105,9 @@
     <Compile Include="Dialogs\EditNoteContentDialog.xaml.cs">
       <DependentUpon>EditNoteContentDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\ConnectNetworkDialog.xaml.cs">
+      <DependentUpon>ConnectNetworkDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\StandardDialog.xaml.cs">
       <DependentUpon>StandardDialog.xaml</DependentUpon>
     </Compile>
@@ -361,6 +364,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialogs\EditNoteContentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\ConnectNetworkDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

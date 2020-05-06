@@ -8,7 +8,7 @@ namespace Deskberry.UWP.Helpers
 {
     public static class DialogHelper
     {
-        public static ContentDialog GetContentDialog(DialogEnum dialogType, object dialogContent)
+        public static ContentDialog GetContentDialog(DialogEnum dialogType, object dialogContent = default)
         {
             ContentDialog dialog;
 
@@ -35,6 +35,10 @@ namespace Deskberry.UWP.Helpers
                     {
                         DataContext = dialogContent
                     };
+                    break;
+
+                case DialogEnum.ConnectNetworkDialog:
+                    dialog = new ConnectNetworkDialog();
                     break;
 
                 default:

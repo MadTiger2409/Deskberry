@@ -1,14 +1,13 @@
-﻿<Page
-    x:Class="Deskberry.UWP.Views.Notes.AddNotePage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="using:Deskberry.UWP.Views.Notes"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewModels="using:Deskberry.UWP.ViewModels.Notes"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    mc:Ignorable="d">
+﻿<Page x:Class="Deskberry.UWP.Views.Notes.AddNotePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Deskberry.UWP.Views.Notes"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewModels="using:Deskberry.UWP.ViewModels.Notes"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
 
     <Page.Resources>
         <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" />
@@ -18,7 +17,8 @@
         <viewModels:AddNotePageViewModel />
     </Page.DataContext>
 
-    <Grid Margin="20" Background="#181818">
+    <Grid Margin="20"
+          Background="#181818">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="3*" />
@@ -33,65 +33,57 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="1">
-            <TextBlock
-                Margin="0,0,0,5"
-                FontSize="30"
-                Text="Title" />
-            <TextBox
-                Background="Transparent"
-                PlaceholderText="Put the note title here."
-                Text="{Binding NoteForm.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock
-                Foreground="Red"
-                Text="Title can't be empty and must be from 2 to 300 characters long"
-                Visibility="{Binding NoteForm.IsTitleErrorVisible, Converter={StaticResource BoolToVisibility}}" />
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1">
+            <TextBlock Margin="0,0,0,5"
+                       FontSize="30"
+                       Text="Title" />
+            <TextBox Background="Transparent"
+                     PlaceholderText="Put the note title here."
+                     Text="{Binding NoteForm.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Foreground="Red"
+                       Text="Title can't be empty and must be from 2 to 300 characters long"
+                       Visibility="{Binding NoteForm.IsTitleErrorVisible, Converter={StaticResource BoolToVisibility}}" />
         </StackPanel>
 
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="1"
-            Padding="0,16,0,0"
-            FontSize="30"
-            Text="Content" />
+        <TextBlock Grid.Row="1"
+                   Grid.Column="1"
+                   Padding="0,16,0,0"
+                   FontSize="30"
+                   Text="Content" />
 
-        <TextBox
-            Grid.Row="2"
-            Grid.Column="1"
-            Margin="0,5,0,10"
-            VerticalAlignment="Stretch"
-            AcceptsReturn="True"
-            Background="Transparent"
-            PlaceholderText="Put the note content here."
-            Text="{Binding NoteForm.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            TextWrapping="Wrap" />
+        <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="0,5,0,10"
+                 VerticalAlignment="Stretch"
+                 AcceptsReturn="True"
+                 Background="Transparent"
+                 PlaceholderText="Put the note content here."
+                 Text="{Binding NoteForm.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 TextWrapping="Wrap" />
 
-        <TextBlock
-            Grid.Row="3"
-            Grid.Column="1"
-            Foreground="Red"
-            Text="Description can't be empty and must be from 2 to 500 characters long"
-            Visibility="{Binding NoteForm.IsDescriptionErrorVisible, Converter={StaticResource BoolToVisibility}}" />
+        <TextBlock Grid.Row="3"
+                   Grid.Column="1"
+                   Foreground="Red"
+                   Text="Description can't be empty and must be from 2 to 500 characters long"
+                   Visibility="{Binding NoteForm.IsDescriptionErrorVisible, Converter={StaticResource BoolToVisibility}}" />
 
-        <StackPanel
-            Grid.Row="4"
-            Grid.Column="1"
-            Margin="0,6,0,16"
-            HorizontalAlignment="Right"
-            Orientation="Horizontal">
-            <Button
-                MinWidth="70"
-                Margin="0,0,10,0"
-                Background="Gray"
-                Command="{Binding ResetCommand}"
-                Content="Reset"
-                FontSize="20" />
-            <Button
-                MinWidth="70"
-                Command="{Binding AddCommand}"
-                Content="Add"
-                FontSize="20"
-                Style="{StaticResource ActionButton}" />
+        <StackPanel Grid.Row="4"
+                    Grid.Column="1"
+                    Margin="0,6,0,16"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button MinWidth="70"
+                    Margin="0,0,10,0"
+                    Background="Gray"
+                    Command="{Binding ResetCommand}"
+                    Content="Reset"
+                    FontSize="20" />
+            <Button MinWidth="70"
+                    Command="{Binding AddCommand}"
+                    Content="Add"
+                    FontSize="20"
+                    Style="{StaticResource ActionButton}" />
         </StackPanel>
     </Grid>
 </Page>

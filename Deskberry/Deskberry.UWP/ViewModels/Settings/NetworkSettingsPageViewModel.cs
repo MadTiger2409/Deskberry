@@ -1,4 +1,6 @@
 ﻿using Deskberry.Helpers.Commands;
+using Deskberry.Tools.Enums;
+using Deskberry.UWP.Helpers;
 using Deskberry.UWP.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace Deskberry.UWP.ViewModels.Settings
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand RefreshCommand { get; protected set; }
+        public RelayCommand ConnectCommand { get; protected set; }
         public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
 
         public string Password
@@ -50,9 +53,16 @@ namespace Deskberry.UWP.ViewModels.Settings
             PropertyChanged?.Invoke(AvailableNetworks, new PropertyChangedEventArgs(nameof(AvailableNetworks)));
         }
 
+        private async Task ConnectToSelectedNetworkAsync()
+        {
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.ConnectNetworkDialog);
+            var resoult = await dialog.ShowAsync();
+        }
+
         private void InitializeCommands()
         {
             RefreshCommand = new RelayCommand(async () => await RefreshAvailableNetworks());
+            ConnectCommand = new RelayCommand(async () => await ConnectToSelectedNetworkAsync());
         }
     }
 }
