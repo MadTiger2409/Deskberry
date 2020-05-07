@@ -15,23 +15,15 @@ using Windows.UI.Xaml.Controls;
 
 namespace Deskberry.UWP.ViewModels.Settings
 {
-    public class NetworkSettingsPageViewModel : INotifyPropertyChanged
+    public class NetworkSettingsPageViewModel
     {
         private IWiFiService _wiFiService;
-
-        private string _password;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand RefreshCommand { get; protected set; }
         public RelayCommand ConnectCommand { get; protected set; }
         public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
-
-        public string Password
-        {
-            get { return _password; }
-            set { _password = value; }
-        }
 
         public async Task InitializeDataAsync()
         {
@@ -55,21 +47,28 @@ namespace Deskberry.UWP.ViewModels.Settings
             PropertyChanged?.Invoke(AvailableNetworks, new PropertyChangedEventArgs(nameof(AvailableNetworks)));
         }
 
-        private async Task ConnectToSelectedNetworkAsync()
+        private async Task ConnectToSelectedNetworkAsync(string password)
         {
+        }
+
+        private async Task ConnectToWiFiAsync()
+        {
+            var password = string.Empty;
+
             var dialog = DialogHelper.GetContentDialog(DialogEnum.ConnectNetworkDialog);
             var resoult = await dialog.ShowAsync();
 
             if (resoult == ContentDialogResult.Primary)
             {
-                _password = (dialog as ConnectNetworkDialog).Password;
+                password = (dialog as ConnectNetworkDialog).Password;
+                await ConnectToSelectedNetworkAsync(password);
             }
         }
 
         private void InitializeCommands()
         {
             RefreshCommand = new RelayCommand(async () => await RefreshAvailableNetworks());
-            ConnectCommand = new RelayCommand(async () => await ConnectToSelectedNetworkAsync());
+            ConnectCommand = new RelayCommand(async () => await ConnectToWiFiAsync());
         }
     }
 }
