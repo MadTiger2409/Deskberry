@@ -18,11 +18,26 @@ namespace Deskberry.UWP.ViewModels.Settings
     public class NetworkSettingsPageViewModel
     {
         private IWiFiService _wiFiService;
+        private WiFiAvailableNetwork _selectedNetwork;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RelayCommand RefreshCommand { get; protected set; }
         public RelayCommand ConnectCommand { get; protected set; }
+
+        public WiFiAvailableNetwork SelectedNetwork
+        {
+            get => _selectedNetwork;
+            set
+            {
+                if (value == _selectedNetwork)
+                    return;
+
+                _selectedNetwork = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedNetwork)));
+            }
+        }
+
         public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
 
         public async Task InitializeDataAsync()
@@ -43,12 +58,18 @@ namespace Deskberry.UWP.ViewModels.Settings
 
         private async Task RefreshAvailableNetworks()
         {
-            AvailableNetworks = new ObservableCollection<WiFiAvailableNetwork>(await _wiFiService.GetWiFiAvailableNetworksAsync());
-            PropertyChanged?.Invoke(AvailableNetworks, new PropertyChangedEventArgs(nameof(AvailableNetworks)));
+            var networks = await _wiFiService.GetWiFiAvailableNetworksAsync();
+            UpdateNetworksCollection(networks);
         }
 
-        private async Task ConnectToSelectedNetworkAsync(string password)
+        private void UpdateNetworksCollection(IEnumerable<WiFiAvailableNetwork> networks)
         {
+            AvailableNetworks.Clear();
+
+            foreach (var network in networks)
+            {
+                AvailableNetworks.Add(network);
+            }
         }
 
         private async Task ConnectToWiFiAsync()
@@ -61,7 +82,7 @@ namespace Deskberry.UWP.ViewModels.Settings
             if (resoult == ContentDialogResult.Primary)
             {
                 password = (dialog as ConnectNetworkDialog).Password;
-                await ConnectToSelectedNetworkAsync(password);
+                await _wiFiService.ConnectAsync(SelectedNetwork, password);
             }
         }
 

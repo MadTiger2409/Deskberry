@@ -80,7 +80,8 @@
                  Grid.Column="1"
                  Background="Transparent"
                  ItemTemplate="{StaticResource networkTemplate}"
-                 ItemsSource="{Binding AvailableNetworks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                 ItemsSource="{Binding AvailableNetworks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 SelectedItem="{Binding SelectedNetwork, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <StackPanel Grid.Row="2"
                     Grid.Column="1"
