@@ -19,6 +19,7 @@ namespace Deskberry.UWP.ViewModels.Settings
     {
         private IWiFiService _wiFiService;
         private WiFiAvailableNetwork _selectedNetwork;
+        private string _currentNetworkName;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -38,11 +39,23 @@ namespace Deskberry.UWP.ViewModels.Settings
             }
         }
 
+        public string CurrentNetworkName
+        {
+            get => _currentNetworkName;
+            set
+            {
+                _currentNetworkName = string.IsNullOrEmpty(value) ? "None" : value;
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNetworkName)));
+            }
+        }
+
         public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
 
         public async Task InitializeDataAsync()
         {
             await RefreshAvailableNetworks();
+            CurrentNetworkName = await _wiFiService.GetCurrentNetworkNameAsync();
         }
 
         public NetworkSettingsPageViewModel()
@@ -82,8 +95,17 @@ namespace Deskberry.UWP.ViewModels.Settings
             if (resoult == ContentDialogResult.Primary)
             {
                 password = (dialog as ConnectNetworkDialog).Password;
-                await _wiFiService.ConnectAsync(SelectedNetwork, password);
+                await ConnectToSelecctedWiFiNetworkAsync(SelectedNetwork, password);
+                CurrentNetworkName = await _wiFiService.GetCurrentNetworkNameAsync();
             }
+        }
+
+        private async Task ConnectToSelecctedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
+        {
+            var status = await _wiFiService.ConnectAsync(selectedNetwork, password);
+
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, status);
+            await dialog.ShowAsync();
         }
 
         private void InitializeCommands()
