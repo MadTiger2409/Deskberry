@@ -18,16 +18,15 @@ namespace Deskberry.UWP.Views.Settings
             this.InitializeComponent();
 
             var vm = MainContainer.Container.GetService<NetworkSettingsPageViewModel>();
-            vm.InitializeDataAsync();
             DataContext = vm;
         }
 
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             var vm = DataContext as NetworkSettingsPageViewModel;
-            await vm.InitializeDataAsync();
+            vm.InitializeDataAsync();
         }
     }
 }

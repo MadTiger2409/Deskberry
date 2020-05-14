@@ -7,6 +7,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewModels="using:Deskberry.UWP.ViewModels.Settings"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      NavigationCacheMode="Disabled"
       mc:Ignorable="d">
 
     <Page.Resources>
@@ -86,7 +87,7 @@
                     Orientation="Horizontal">
             <TextBlock Margin="0,0,6,0"
                        Text="Current Network:" />
-            <TextBlock Text="{Binding CurrentNetworkName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ContentPresenter Content="{Binding CurrentNetworkName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <ListBox Grid.Row="2"

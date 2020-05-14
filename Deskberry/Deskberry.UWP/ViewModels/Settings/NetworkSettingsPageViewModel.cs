@@ -17,14 +17,41 @@ namespace Deskberry.UWP.ViewModels.Settings
 {
     public class NetworkSettingsPageViewModel
     {
-        private IWiFiService _wiFiService;
-        private WiFiAvailableNetwork _selectedNetwork;
         private string _currentNetworkName;
+        private WiFiAvailableNetwork _selectedNetwork;
+        private IWiFiService _wiFiService;
+
+        public NetworkSettingsPageViewModel()
+        {
+            AvailableNetworks = new ObservableCollection<WiFiAvailableNetwork>();
+        }
+
+        public NetworkSettingsPageViewModel(IWiFiService wiFiService) : this()
+        {
+            _wiFiService = wiFiService;
+            InitializeCommands();
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public RelayCommand RefreshCommand { get; protected set; }
+        public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
         public RelayCommand ConnectCommand { get; protected set; }
+
+        public string CurrentNetworkName
+        {
+            get => _currentNetworkName;
+            set
+            {
+                if (value == _currentNetworkName)
+                    return;
+
+                _currentNetworkName = value;
+
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNetworkName)));
+            }
+        }
+
+        public RelayCommand RefreshCommand { get; protected set; }
 
         public WiFiAvailableNetwork SelectedNetwork
         {
@@ -39,34 +66,55 @@ namespace Deskberry.UWP.ViewModels.Settings
             }
         }
 
-        public string CurrentNetworkName
-        {
-            get => _currentNetworkName;
-            set
-            {
-                _currentNetworkName = string.IsNullOrEmpty(value) ? "None" : value;
-
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNetworkName)));
-            }
-        }
-
-        public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
-
         public async Task InitializeDataAsync()
         {
             await RefreshAvailableNetworks();
-            CurrentNetworkName = await _wiFiService.GetCurrentNetworkNameAsync();
+            CurrentNetworkName = await GetCurrentNetworkNameAsync();
         }
 
-        public NetworkSettingsPageViewModel()
+        private async Task ConnectToSelecctedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
         {
-            AvailableNetworks = new ObservableCollection<WiFiAvailableNetwork>();
+            var status = await _wiFiService.ConnectAsync(selectedNetwork, password);
+
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, status);
+            await dialog.ShowAsync();
         }
 
-        public NetworkSettingsPageViewModel(IWiFiService wiFiService) : this()
+        private async Task ConnectToWiFiAsync()
         {
-            _wiFiService = wiFiService;
-            InitializeCommands();
+            var password = string.Empty;
+
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.ConnectNetworkDialog);
+            var resoult = await dialog.ShowAsync();
+
+            if (resoult == ContentDialogResult.Primary)
+            {
+                password = (dialog as ConnectNetworkDialog).Password;
+                await ConnectToSelecctedWiFiNetworkAsync(SelectedNetwork, password);
+                CurrentNetworkName = await GetCurrentNetworkNameAsync();
+            }
+        }
+
+        private async Task<string> GetCurrentNetworkNameAsync()
+        {
+            string name;
+
+            try
+            {
+                name = await _wiFiService.GetCurrentNetworkNameAsync();
+            }
+            catch (Exception)
+            {
+                name = "None";
+            }
+
+            return name;
+        }
+
+        private void InitializeCommands()
+        {
+            RefreshCommand = new RelayCommand(async () => await RefreshAvailableNetworks());
+            ConnectCommand = new RelayCommand(async () => await ConnectToWiFiAsync());
         }
 
         private async Task RefreshAvailableNetworks()
@@ -83,35 +131,6 @@ namespace Deskberry.UWP.ViewModels.Settings
             {
                 AvailableNetworks.Add(network);
             }
-        }
-
-        private async Task ConnectToWiFiAsync()
-        {
-            var password = string.Empty;
-
-            var dialog = DialogHelper.GetContentDialog(DialogEnum.ConnectNetworkDialog);
-            var resoult = await dialog.ShowAsync();
-
-            if (resoult == ContentDialogResult.Primary)
-            {
-                password = (dialog as ConnectNetworkDialog).Password;
-                await ConnectToSelecctedWiFiNetworkAsync(SelectedNetwork, password);
-                CurrentNetworkName = await _wiFiService.GetCurrentNetworkNameAsync();
-            }
-        }
-
-        private async Task ConnectToSelecctedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
-        {
-            var status = await _wiFiService.ConnectAsync(selectedNetwork, password);
-
-            var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, status);
-            await dialog.ShowAsync();
-        }
-
-        private void InitializeCommands()
-        {
-            RefreshCommand = new RelayCommand(async () => await RefreshAvailableNetworks());
-            ConnectCommand = new RelayCommand(async () => await ConnectToWiFiAsync());
         }
     }
 }
