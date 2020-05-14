@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Controls;
 
 namespace Deskberry.UWP.ViewModels.Settings
 {
-    public class NetworkSettingsPageViewModel
+    public class NetworkSettingsPageViewModel : INotifyPropertyChanged
     {
         private string _currentNetworkName;
         private WiFiAvailableNetwork _selectedNetwork;
@@ -46,7 +46,6 @@ namespace Deskberry.UWP.ViewModels.Settings
                     return;
 
                 _currentNetworkName = value;
-
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNetworkName)));
             }
         }
@@ -72,7 +71,7 @@ namespace Deskberry.UWP.ViewModels.Settings
             CurrentNetworkName = await GetCurrentNetworkNameAsync();
         }
 
-        private async Task ConnectToSelecctedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
+        private async Task ConnectToSelectedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
         {
             var status = await _wiFiService.ConnectAsync(selectedNetwork, password);
 
@@ -90,25 +89,30 @@ namespace Deskberry.UWP.ViewModels.Settings
             if (resoult == ContentDialogResult.Primary)
             {
                 password = (dialog as ConnectNetworkDialog).Password;
-                await ConnectToSelecctedWiFiNetworkAsync(SelectedNetwork, password);
-                CurrentNetworkName = await GetCurrentNetworkNameAsync();
+                await ConnectToSelectedWiFiNetworkAsync(SelectedNetwork, password);
+                var name = await GetCurrentNetworkNameAsync();
+                CurrentNetworkName = name;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNetworkName)));
             }
         }
 
         private async Task<string> GetCurrentNetworkNameAsync()
         {
-            string name;
+            //string name;
 
-            try
-            {
-                name = await _wiFiService.GetCurrentNetworkNameAsync();
-            }
-            catch (Exception)
-            {
-                name = "None";
-            }
+            //try
+            //{
+            //    name = await _wiFiService.GetCurrentNetworkNameAsync();
+            //}
+            //catch (Exception)
+            //{
+            //    name = "None";
+            //}
 
-            return name;
+            //return name;
+
+            var x = new Random().Next(0, 100).ToString();
+            return x;
         }
 
         private void InitializeCommands()

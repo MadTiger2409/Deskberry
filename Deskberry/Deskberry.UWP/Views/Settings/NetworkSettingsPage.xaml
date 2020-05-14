@@ -87,7 +87,7 @@
                     Orientation="Horizontal">
             <TextBlock Margin="0,0,6,0"
                        Text="Current Network:" />
-            <ContentPresenter Content="{Binding CurrentNetworkName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ContentPresenter Content="{Binding CurrentNetworkName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <ListBox Grid.Row="2"

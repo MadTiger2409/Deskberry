@@ -21,12 +21,12 @@ namespace Deskberry.UWP.Views.Settings
             DataContext = vm;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             var vm = DataContext as NetworkSettingsPageViewModel;
-            vm.InitializeDataAsync();
+            await vm.InitializeDataAsync();
         }
     }
 }
