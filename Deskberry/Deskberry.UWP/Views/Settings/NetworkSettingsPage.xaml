@@ -87,7 +87,8 @@
                     Orientation="Horizontal">
             <TextBlock Margin="0,0,6,0"
                        Text="Current Network:" />
-            <ContentPresenter Content="{Binding CurrentNetworkName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+            <ContentPresenter x:Name="currentNetworkNameContentPresenter"
+                              Content="{Binding CurrentNetworkName, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
 
         <ListBox Grid.Row="2"
@@ -118,7 +119,7 @@
 
             <Button MinWidth="70"
                     HorizontalAlignment="Right"
-                    Command="{Binding ConnectCommand}"
+                    Click="ConnectButtonClicked"
                     Content="Connect"
                     FontSize="20"
                     Style="{StaticResource ActionButton}" />

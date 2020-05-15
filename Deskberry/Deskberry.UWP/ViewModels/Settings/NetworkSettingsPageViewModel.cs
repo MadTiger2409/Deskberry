@@ -35,7 +35,6 @@ namespace Deskberry.UWP.ViewModels.Settings
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<WiFiAvailableNetwork> AvailableNetworks { get; set; }
-        public RelayCommand ConnectCommand { get; protected set; }
 
         public string CurrentNetworkName
         {
@@ -79,7 +78,8 @@ namespace Deskberry.UWP.ViewModels.Settings
             await dialog.ShowAsync();
         }
 
-        private async Task ConnectToWiFiAsync()
+        // This is public because MVVM/Command way didn't work. This is called from code behind of view.
+        public async Task ConnectToWiFiAsync()
         {
             var password = string.Empty;
 
@@ -98,27 +98,23 @@ namespace Deskberry.UWP.ViewModels.Settings
 
         private async Task<string> GetCurrentNetworkNameAsync()
         {
-            //string name;
+            string name;
 
-            //try
-            //{
-            //    name = await _wiFiService.GetCurrentNetworkNameAsync();
-            //}
-            //catch (Exception)
-            //{
-            //    name = "None";
-            //}
+            try
+            {
+                name = await _wiFiService.GetCurrentNetworkNameAsync();
+            }
+            catch (Exception)
+            {
+                name = "None";
+            }
 
-            //return name;
-
-            var x = new Random().Next(0, 100).ToString();
-            return x;
+            return name;
         }
 
         private void InitializeCommands()
         {
             RefreshCommand = new RelayCommand(async () => await RefreshAvailableNetworks());
-            ConnectCommand = new RelayCommand(async () => await ConnectToWiFiAsync());
         }
 
         private async Task RefreshAvailableNetworks()

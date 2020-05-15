@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Windows.UI.Xaml.Navigation;
 using Deskberry.UWP.IoC;
 using Deskberry.UWP.ViewModels.Settings;
+using Windows.UI.Xaml;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,10 +24,19 @@ namespace Deskberry.UWP.Views.Settings
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            base.OnNavigatedTo(e);
-
             var vm = DataContext as NetworkSettingsPageViewModel;
             await vm.InitializeDataAsync();
+
+            // Sometimes OnNavigatedTo isn't working as designed so this line exists
+            currentNetworkNameContentPresenter.Content = vm.CurrentNetworkName;
+        }
+
+        private async void ConnectButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var vm = DataContext as NetworkSettingsPageViewModel;
+
+            await vm.ConnectToWiFiAsync();
+            currentNetworkNameContentPresenter.Content = vm.CurrentNetworkName;
         }
     }
 }
