@@ -68,6 +68,7 @@ namespace Deskberry.UWP.ViewModels.Settings
         {
             await RefreshAvailableNetworks();
             CurrentNetworkName = await GetCurrentNetworkNameAsync();
+            SelectedNetwork = AvailableNetworks.FirstOrDefault();
         }
 
         private async Task ConnectToSelectedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
@@ -121,6 +122,7 @@ namespace Deskberry.UWP.ViewModels.Settings
         {
             var networks = await _wiFiService.GetWiFiAvailableNetworksAsync();
             UpdateNetworksCollection(networks);
+            SelectedNetwork = AvailableNetworks.FirstOrDefault();
         }
 
         private void UpdateNetworksCollection(IEnumerable<WiFiAvailableNetwork> networks)
