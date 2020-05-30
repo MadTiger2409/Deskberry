@@ -6,6 +6,7 @@ using Deskberry.UWP.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Deskberry.Helpers;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -64,21 +65,6 @@ namespace Deskberry.UWP.ViewModels.Settings
             }
         }
 
-        public async Task InitializeDataAsync()
-        {
-            await RefreshAvailableNetworks();
-            CurrentNetworkName = await GetCurrentNetworkNameAsync();
-            SelectedNetwork = AvailableNetworks.FirstOrDefault();
-        }
-
-        private async Task ConnectToSelectedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
-        {
-            var status = await _wiFiService.ConnectAsync(selectedNetwork, password);
-
-            var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, status);
-            await dialog.ShowAsync();
-        }
-
         // This is public because MVVM/Command way didn't work. This is called from code behind of view.
         public async Task ConnectToWiFiAsync()
         {
@@ -95,6 +81,21 @@ namespace Deskberry.UWP.ViewModels.Settings
                 CurrentNetworkName = name;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentNetworkName)));
             }
+        }
+
+        public async Task InitializeDataAsync()
+        {
+            await RefreshAvailableNetworks();
+            CurrentNetworkName = await GetCurrentNetworkNameAsync();
+            SelectedNetwork = AvailableNetworks.FirstOrDefault();
+        }
+
+        private async Task ConnectToSelectedWiFiNetworkAsync(WiFiAvailableNetwork selectedNetwork, string password)
+        {
+            var status = await _wiFiService.ConnectAsync(selectedNetwork, password);
+
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.StandardDialog, status);
+            await dialog.ShowAsync();
         }
 
         private async Task<string> GetCurrentNetworkNameAsync()
@@ -121,18 +122,9 @@ namespace Deskberry.UWP.ViewModels.Settings
         private async Task RefreshAvailableNetworks()
         {
             var networks = await _wiFiService.GetWiFiAvailableNetworksAsync();
-            UpdateNetworksCollection(networks);
-            SelectedNetwork = AvailableNetworks.FirstOrDefault();
-        }
-
-        private void UpdateNetworksCollection(IEnumerable<WiFiAvailableNetwork> networks)
-        {
             AvailableNetworks.Clear();
-
-            foreach (var network in networks)
-            {
-                AvailableNetworks.Add(network);
-            }
+            AvailableNetworks.AddRange(networks);
+            SelectedNetwork = AvailableNetworks.FirstOrDefault();
         }
     }
 }

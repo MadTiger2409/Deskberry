@@ -1,4 +1,5 @@
-﻿using Deskberry.Common.Models;
+﻿using Deskberry.CommandValidation.CommandObjects.Account;
+using Deskberry.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,6 +12,10 @@ namespace Deskberry.Services.Interfaces
         Task<bool> AreCredentialsValidAsync(Account account, string password);
 
         Task<bool> CanLogInAsync(Account account, string password);
+
+        Task AddAccountAsync(CreateAccount command);
+
+        Task DeleteAccountAsync(int id);
 
         Task<Account> GetAsync(int id);
 

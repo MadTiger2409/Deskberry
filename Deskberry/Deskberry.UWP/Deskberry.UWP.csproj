@@ -134,6 +134,7 @@
     <Compile Include="ViewModels\Notes\AddNotePageViewModel.cs" />
     <Compile Include="ViewModels\Notes\AllNotesPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\AccountManagerPageViewModel.cs" />
     <Compile Include="ViewModels\Settings\BrowserSettingsPageViewModel.cs" />
     <Compile Include="ViewModels\Settings\NetworkSettingsPageViewModel.cs" />
     <Compile Include="ViewModels\Settings\PasswordSettingsPageViewModel.cs" />
@@ -161,6 +162,9 @@
     </Compile>
     <Compile Include="Views\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Settings\AccountManagerPage.xaml.cs">
+      <DependentUpon>AccountManagerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\BrowserSettingsPage.xaml.cs">
       <DependentUpon>BrowserSettingsPage.xaml</DependentUpon>
@@ -414,6 +418,10 @@
     <Page Include="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Settings\AccountManagerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings\BrowserSettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>

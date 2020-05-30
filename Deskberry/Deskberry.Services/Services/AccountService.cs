@@ -7,6 +7,8 @@ using Deskberry.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Deskberry.CommandValidation.CommandObjects.Account;
+using System;
 
 namespace Deskberry.Services
 {
@@ -19,6 +21,22 @@ namespace Deskberry.Services
         {
             _context = context;
             _passwordManager = new PasswordManager();
+        }
+
+        public async Task AddAccountAsync(CreateAccount command)
+        {
+            if (command == null)
+                throw new ArgumentNullException(nameof(command));
+
+            byte[] passwordSalt, passwordHash;
+
+            var avatar = await _context.Avatars.FirstOrDefaultAsync();
+            _passwordManager.CalculatePasswordHash(command.Password, out passwordSalt, out passwordHash);
+
+            var account = new Account(command.Login, passwordHash, passwordSalt, avatar);
+
+            await _context.Accounts.AddAsync(account);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<bool> AreCredentialsValidAsync(Account account, string password)
@@ -40,6 +58,8 @@ namespace Deskberry.Services
 
             return areValid;
         }
+
+        public Task DeleteAccountAsync(int id) => throw new System.NotImplementedException();
 
         public async Task<Account> GetAsync(int id) => await _context.Accounts.GetById(id).SingleOrDefaultAsync();
 

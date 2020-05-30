@@ -1,0 +1,90 @@
+﻿<Page x:Class="Deskberry.UWP.Views.Settings.AccountManagerPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Deskberry.UWP.Views.Settings"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:viewModels="using:Deskberry.UWP.ViewModels.Settings"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      NavigationCacheMode="Disabled"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+        <DataTemplate x:Key="accountTemplate">
+            <Grid Margin="0,0.2"
+                  Padding="4"
+                  HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Page.DataContext>
+        <viewModels:AccountManagerPageViewModel />
+    </Page.DataContext>
+
+    <Grid Margin="20"
+          Background="#181818">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Grid.Column="1"
+                   Margin="0,0,0,5"
+                   FontSize="30"
+                   FontWeight="ExtraBold"
+                   Text="Account Manager" />
+
+        <ListBox Grid.Row="1"
+                 Grid.Column="1"
+                 Background="Transparent"
+                 ItemTemplate="{StaticResource accountTemplate}"
+                 ItemsSource="{Binding Accounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 SelectedItem="{Binding SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0,6,0,16"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button MinWidth="70"
+                    Margin="10,0"
+                    HorizontalAlignment="Right"
+                    Command="{Binding DeleteCommand}"
+                    Content="Delete"
+                    FontSize="20"
+                    Style="{StaticResource ActionButton}" />
+
+            <Button MinWidth="70"
+                    HorizontalAlignment="Right"
+                    Command="{Binding CreateCommand}"
+                    Content="Create"
+                    FontSize="20"
+                    Style="{StaticResource ActionButton}" />
+        </StackPanel>
+    </Grid>
+</Page>
