@@ -20,6 +20,9 @@ namespace Deskberry.UWP.ViewModels.Settings
 
         public AccountManagerPageViewModel()
         {
+            Accounts = new ObservableCollection<Account>();
+            SelectedAccount = new Account();
+
             InitializeCommands();
         }
 

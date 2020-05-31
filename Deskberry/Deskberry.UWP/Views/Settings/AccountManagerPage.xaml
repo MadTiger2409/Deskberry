@@ -24,6 +24,9 @@
                     <ColumnDefinition Width="80" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1"
+                           Text="{Binding Login, Mode=TwoWay}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>

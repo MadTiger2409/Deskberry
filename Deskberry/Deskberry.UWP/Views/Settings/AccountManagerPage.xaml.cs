@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Deskberry.UWP.IoC;
+using System;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Deskberry.UWP.ViewModels.Settings;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +28,15 @@ namespace Deskberry.UWP.Views.Settings
         public AccountManagerPage()
         {
             this.InitializeComponent();
+
+            var vm = MainContainer.Container.GetService<AccountManagerPageViewModel>();
+            DataContext = vm;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            var vm = DataContext as AccountManagerPageViewModel;
+            vm.InitializeDataAsync();
         }
     }
 }
