@@ -31,10 +31,9 @@ namespace Deskberry.UWP.ViewModels.Settings
             _accountService = accountService;
         }
 
-        public RelayCommand DeleteCommand { get; protected set; }
-        public RelayCommand CreateCommand { get; protected set; }
-
         public ObservableCollection<Account> Accounts { get; set; }
+        public RelayCommand CreateCommand { get; protected set; }
+        public RelayCommand DeleteCommand { get; protected set; }
 
         public Account SelectedAccount
         {
@@ -49,24 +48,27 @@ namespace Deskberry.UWP.ViewModels.Settings
             SelectedAccount = Accounts.FirstOrDefault();
         }
 
-        private async Task DeleteSelectedAccountAsync()
-        {
-            //TODO Implement rest of this method
+        private bool CanCreateAccount() => Accounts.Count < 4;
 
-            await _accountService.DeleteAccountAsync(SelectedAccount.Id);
-        }
+        private bool CanDeleteAccount() => Accounts.Count > 1;
 
         private async Task CreateAccountAsync()
         {
-            //TODO Implement rest of this method
+            await _accountService.AddAccountAsync(new CreateAccount() { Login = "Test", Password = "Test" });
+            await InitializeDataAsync();
+        }
 
-            await _accountService.AddAccountAsync(new CreateAccount());
+        private async Task DeleteSelectedAccountAsync()
+        {
+            var acccountToRemove = SelectedAccount;
+            await _accountService.DeleteAccountAsync(SelectedAccount.Id);
+            Accounts.Remove(SelectedAccount);
         }
 
         private void InitializeCommands()
         {
-            DeleteCommand = new RelayCommand(async () => await DeleteSelectedAccountAsync());
-            CreateCommand = new RelayCommand(async () => await CreateAccountAsync());
+            DeleteCommand = new RelayCommand(async () => await DeleteSelectedAccountAsync(), CanDeleteAccount);
+            CreateCommand = new RelayCommand(async () => await CreateAccountAsync(), CanCreateAccount);
         }
     }
 }

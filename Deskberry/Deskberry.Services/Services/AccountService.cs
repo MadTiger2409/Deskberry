@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Deskberry.CommandValidation.CommandObjects.Account;
 using System;
+using System.Linq;
 
 namespace Deskberry.Services
 {
@@ -59,11 +60,18 @@ namespace Deskberry.Services
             return areValid;
         }
 
-        public Task DeleteAccountAsync(int id) => throw new System.NotImplementedException();
+        public async Task DeleteAccountAsync(int id)
+        {
+            var account = await GetAsync(id);
+            account.Delete();
+
+            _context.Accounts.Update(account);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task<Account> GetAsync(int id) => await _context.Accounts.GetById(id).SingleOrDefaultAsync();
 
-        public async Task<List<Account>> GetAsync() => await _context.Accounts.Include(x => x.Avatar).ToListAsync();
+        public async Task<List<Account>> GetAsync() => await _context.Accounts.Where(x => x.IsActive == true).Include(x => x.Avatar).ToListAsync();
 
         public void LogOut() => Session.Clear();
 

@@ -11,6 +11,7 @@ namespace Deskberry.Common.Models
         public string Login { get; protected set; }
         public byte[] PasswordHash { get; protected set; }
         public byte[] Salt { get; protected set; }
+        public bool IsActive { get; protected set; }
 
         public int AvatarId { get; set; }
         public Avatar Avatar { get; set; }
@@ -22,6 +23,8 @@ namespace Deskberry.Common.Models
         {
         }
 
+        public Account(bool isActive = true) : this() => IsActive = isActive;
+
         /// <summary>
         /// Constructor used to popule database with the account
         /// </summary>
@@ -29,7 +32,7 @@ namespace Deskberry.Common.Models
         /// <param name="password"></param>
         /// <param name="id"></param>
         /// <param name="avatarId"></param>
-        public Account(string login, string password, int id, int avatarId) : base()
+        public Account(string login, string password, int id, int avatarId, bool isActive = true) : this(isActive)
         {
             var manager = new PasswordManager();
             var passData = manager.CalculatePasswordHash(password);
@@ -41,14 +44,14 @@ namespace Deskberry.Common.Models
             AvatarId = avatarId;
         }
 
-        public Account(string login, byte[] passwordHash, byte[] salt) : base()
+        public Account(string login, byte[] passwordHash, byte[] salt, bool isActive = true) : this(isActive)
         {
             Login = login;
             PasswordHash = passwordHash;
             Salt = salt;
         }
 
-        public Account(string login, byte[] passwordHash, byte[] salt, Avatar avatar) : this(login, passwordHash, salt)
+        public Account(string login, byte[] passwordHash, byte[] salt, Avatar avatar, bool isActive = true) : this(login, passwordHash, salt, isActive)
         {
             Avatar = avatar;
             AvatarId = avatar.Id;
@@ -62,5 +65,7 @@ namespace Deskberry.Common.Models
 
             PasswordHash = passHash;
         }
+
+        public void Delete() => IsActive = false;
     }
 }

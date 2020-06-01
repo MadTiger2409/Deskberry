@@ -4,8 +4,10 @@ using Deskberry.Helpers.Commands;
 using Deskberry.UWP.Services.Interfaces;
 using Deskberry.UWP.Views;
 using System.Collections.ObjectModel;
+using Deskberry.Helpers;
 using System.ComponentModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Deskberry.UWP.ViewModels
 {
@@ -20,9 +22,17 @@ namespace Deskberry.UWP.ViewModels
 
         public MainPageViewModel()
         {
+            Accounts = new ObservableCollection<Account>();
+            SelectedAccount = new Account();
         }
 
-        public MainPageViewModel(IAccountService accountService, INavigationService navigationService)
+        public async Task RefreshAccounts()
+        {
+            Accounts.Clear();
+            Accounts.AddRange(await _accountService.GetAsync());
+        }
+
+        public MainPageViewModel(IAccountService accountService, INavigationService navigationService) : this()
         {
             _accountService = accountService;
             _navigationService = navigationService;

@@ -26,5 +26,20 @@ namespace Deskberry.UWP.Views
             passwordBox.Password = "";
             passwordBox.PlaceholderText = "Password";
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            try
+            {
+                base.OnNavigatedTo(e);
+
+                var vm = DataContext as MainPageViewModel;
+                vm.RefreshAccounts();
+            }
+            catch (System.Exception ex)
+            {
+                var meessage = ex.Message;
+            }
+        }
     }
 }
