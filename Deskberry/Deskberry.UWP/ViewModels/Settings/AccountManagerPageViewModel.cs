@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Deskberry.Helpers;
 using Deskberry.CommandValidation.CommandObjects.Account;
+using System.ComponentModel;
 
 namespace Deskberry.UWP.ViewModels.Settings
 {
-    public class AccountManagerPageViewModel
+    public class AccountManagerPageViewModel : INotifyPropertyChanged
     {
         private readonly IAccountService _accountService;
 
@@ -31,6 +32,8 @@ namespace Deskberry.UWP.ViewModels.Settings
             _accountService = accountService;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public ObservableCollection<Account> Accounts { get; set; }
         public RelayCommand CreateCommand { get; protected set; }
         public RelayCommand DeleteCommand { get; protected set; }
@@ -38,7 +41,14 @@ namespace Deskberry.UWP.ViewModels.Settings
         public Account SelectedAccount
         {
             get { return _selectedAccount; }
-            set { _selectedAccount = value; }
+            set
+            {
+                if (value == _selectedAccount)
+                    return;
+
+                _selectedAccount = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedAccount)));
+            }
         }
 
         public async Task InitializeDataAsync()
@@ -46,6 +56,7 @@ namespace Deskberry.UWP.ViewModels.Settings
             Accounts.Clear();
             Accounts.AddRange(await _accountService.GetAsync());
             SelectedAccount = Accounts.FirstOrDefault();
+            DeleteCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanCreateAccount() => Accounts.Count < 4;
@@ -63,6 +74,7 @@ namespace Deskberry.UWP.ViewModels.Settings
             var acccountToRemove = SelectedAccount;
             await _accountService.DeleteAccountAsync(SelectedAccount.Id);
             Accounts.Remove(SelectedAccount);
+            DeleteCommand.RaiseCanExecuteChanged();
         }
 
         private void InitializeCommands()
