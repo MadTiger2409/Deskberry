@@ -20,6 +20,8 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
+                   Margin="0,0,0,4"
+                   FontSize="16"
                    Text="Login" />
         <TextBox Grid.Row="1"
                  PlaceholderText="User" />
@@ -27,9 +29,11 @@
                    Foreground="Red"
                    Text="Login can't be empty and needs to be at least 3 characters long." />
         <TextBlock Grid.Row="3"
-                   Margin="0,12,0,0"
+                   Margin="0,12,0,4"
+                   FontSize="16"
                    Text="Password" />
-        <PasswordBox Grid.Row="4" />
+        <PasswordBox Grid.Row="4"
+                     PlaceholderText="Password" />
         <TextBlock Grid.Row="5"
                    Foreground="Red"
                    Text="Password can't be empty." />
