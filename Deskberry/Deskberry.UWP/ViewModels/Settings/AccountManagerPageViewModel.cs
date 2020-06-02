@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Deskberry.Helpers;
 using Deskberry.CommandValidation.CommandObjects.Account;
 using System.ComponentModel;
+using Deskberry.UWP.Helpers;
+using Deskberry.Tools.Enums;
 
 namespace Deskberry.UWP.ViewModels.Settings
 {
@@ -65,7 +67,10 @@ namespace Deskberry.UWP.ViewModels.Settings
 
         private async Task CreateAccountAsync()
         {
-            await _accountService.AddAccountAsync(new CreateAccount() { Login = "Test", Password = "Test" });
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.CreateUserDialog, new CreateAccount());
+            await dialog.ShowAsync();
+
+            // await _accountService.AddAccountAsync(new CreateAccount() { Login = "Test", Password = "Test" });
             await InitializeDataAsync();
         }
 

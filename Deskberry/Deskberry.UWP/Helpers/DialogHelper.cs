@@ -1,4 +1,5 @@
-﻿using Deskberry.CommandValidation.CommandObjects.Note;
+﻿using Deskberry.CommandValidation.CommandObjects.Account;
+using Deskberry.CommandValidation.CommandObjects.Note;
 using Deskberry.Tools.Enums;
 using Deskberry.UWP.Dialogs;
 using Windows.UI.Xaml;
@@ -39,6 +40,15 @@ namespace Deskberry.UWP.Helpers
 
                 case DialogEnum.ConnectNetworkDialog:
                     dialog = new ConnectNetworkDialog();
+                    break;
+
+                case DialogEnum.CreateUserDialog:
+                    dialog = new CreateUserDialog
+                    {
+                        Height = Window.Current.Bounds.Height,
+                        Width = Window.Current.Bounds.Width,
+                        DataContext = (CreateAccount)dialogContent
+                    };
                     break;
 
                 default:

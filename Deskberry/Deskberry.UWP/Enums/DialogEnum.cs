@@ -6,6 +6,7 @@
         DeleteNoteDialog = 1,
         DeleteFavoriteDialog = 2,
         StandardDialog = 3,
-        ConnectNetworkDialog = 4
+        ConnectNetworkDialog = 4,
+        CreateUserDialog = 5
     }
 }

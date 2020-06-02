@@ -96,6 +96,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\Base64ToImageConverter.cs" />
+    <Compile Include="Dialogs\CreateUserDialog.xaml.cs">
+      <DependentUpon>CreateUserDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\DeleteFavoriteContentDialog.xaml.cs">
       <DependentUpon>DeleteFavoriteContentDialog.xaml</DependentUpon>
     </Compile>
@@ -352,6 +355,10 @@
     <Page Include="Assets\Paths\Undo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\CreateUserDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\DeleteFavoriteContentDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
