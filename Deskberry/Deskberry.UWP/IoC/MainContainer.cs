@@ -26,7 +26,7 @@ namespace Deskberry.UWP.IoC
             //! It's experimental
             services.AddSingleton(typeof(WiFiAdapter), WiFiAdapter.FindAllAdaptersAsync().GetAwaiter().GetResult()[0]);
 
-            services.AddScoped<MainPageViewModel>();
+            services.AddTransient<MainPageViewModel>();
             services.AddScoped<DesktopPageViewModel>();
             services.AddScoped<NotesViewModel>();
             services.AddScoped<AddNotePageViewModel>();

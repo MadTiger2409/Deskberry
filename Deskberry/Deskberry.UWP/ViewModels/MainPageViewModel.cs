@@ -26,12 +26,6 @@ namespace Deskberry.UWP.ViewModels
             SelectedAccount = new Account();
         }
 
-        public async Task RefreshAccounts()
-        {
-            Accounts.Clear();
-            Accounts.AddRange(await _accountService.GetAsync());
-        }
-
         public MainPageViewModel(IAccountService accountService, INavigationService navigationService) : this()
         {
             _accountService = accountService;
