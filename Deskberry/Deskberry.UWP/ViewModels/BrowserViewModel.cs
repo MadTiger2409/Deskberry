@@ -43,7 +43,7 @@ namespace Deskberry.UWP.ViewModels
             InitializeWebView();
             InitializeCommands();
 
-            FavoriteForm.CanExecutedChanged = AddFavoriteCommand.RaiseCanExecuteChanged;
+            FavoriteForm.CanExecuteChanged = AddFavoriteCommand.RaiseCanExecuteChanged;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

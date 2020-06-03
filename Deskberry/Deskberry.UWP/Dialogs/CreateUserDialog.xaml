@@ -24,7 +24,8 @@
                    FontSize="16"
                    Text="Login" />
         <TextBox Grid.Row="1"
-                 PlaceholderText="User" />
+                 PlaceholderText="User"
+                 Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Grid.Row="2"
                    Foreground="Red"
                    Text="Login can't be empty and needs to be at least 3 characters long." />
@@ -33,6 +34,7 @@
                    FontSize="16"
                    Text="Password" />
         <PasswordBox Grid.Row="4"
+                     Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PlaceholderText="Password" />
         <TextBlock Grid.Row="5"
                    Foreground="Red"

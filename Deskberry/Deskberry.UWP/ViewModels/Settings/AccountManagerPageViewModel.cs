@@ -12,6 +12,7 @@ using Deskberry.CommandValidation.CommandObjects.Account;
 using System.ComponentModel;
 using Deskberry.UWP.Helpers;
 using Deskberry.Tools.Enums;
+using Windows.UI.Xaml.Controls;
 
 namespace Deskberry.UWP.ViewModels.Settings
 {
@@ -68,15 +69,19 @@ namespace Deskberry.UWP.ViewModels.Settings
         private async Task CreateAccountAsync()
         {
             var dialog = DialogHelper.GetContentDialog(DialogEnum.CreateUserDialog, new CreateAccount());
-            await dialog.ShowAsync();
+            var result = await dialog.ShowAsync();
 
-            // await _accountService.AddAccountAsync(new CreateAccount() { Login = "Test", Password = "Test" });
+            if (result == ContentDialogResult.Primary)
+            {
+                var context = (CreateAccount)dialog.DataContext;
+                await _accountService.AddAccountAsync(context);
+            }
+
             await InitializeDataAsync();
         }
 
         private async Task DeleteSelectedAccountAsync()
         {
-            var acccountToRemove = SelectedAccount;
             await _accountService.DeleteAccountAsync(SelectedAccount.Id);
             Accounts.Remove(SelectedAccount);
             DeleteCommand.RaiseCanExecuteChanged();

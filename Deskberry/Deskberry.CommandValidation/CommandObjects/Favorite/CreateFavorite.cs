@@ -22,11 +22,11 @@ namespace Deskberry.CommandValidation.CommandObjects.Favorite
             _validator = new CreateFavoriteValidator();
         }
 
-        public CreateFavorite(Action canExecutedCommand) : base() => CanExecutedChanged = canExecutedCommand;
+        public CreateFavorite(Action canExecuteCommand) : base() => CanExecuteChanged = canExecuteCommand;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Action CanExecutedChanged { get; set; }
+        public Action CanExecuteChanged { get; set; }
 
         public bool IsTitleErrorVisible
         {
@@ -65,7 +65,7 @@ namespace Deskberry.CommandValidation.CommandObjects.Favorite
                 _title = value;
 
                 IsTitleErrorVisible = !_validator.Validate(this, ruleSet: "Title").IsValid;
-                CanExecutedChanged.Invoke();
+                CanExecuteChanged.Invoke();
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Title)));
             }
@@ -82,7 +82,7 @@ namespace Deskberry.CommandValidation.CommandObjects.Favorite
                 _uri = value;
 
                 IsUriErrorVisible = !_validator.Validate(this, ruleSet: "Uri").IsValid;
-                CanExecutedChanged.Invoke();
+                CanExecuteChanged.Invoke();
 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Uri)));
             }
