@@ -62,7 +62,7 @@ namespace Deskberry.UWP.ViewModels.Settings
             CreateCommand.RaiseCanExecuteChanged();
         }
 
-        private bool CanCreateAccount() => Accounts.Count < 4;
+        private bool CanCreateAccount() => Accounts.Count < 2;
 
         private bool CanDeleteAccount() => Accounts.Count > 1 && SelectedAccount.Id != Session.Id;
 

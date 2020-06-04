@@ -93,6 +93,7 @@
                   CornerRadius="10"
                   ItemTemplate="{StaticResource accountDataTemplate}"
                   ItemsSource="{Binding Accounts}"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
                   SelectedItem="{Binding SelectedAccount, Mode=TwoWay}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>

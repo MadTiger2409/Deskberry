@@ -18,11 +18,10 @@ namespace Deskberry.UWP.ViewModels
 {
     public class BrowserViewModel : INotifyPropertyChanged
     {
-        private readonly IFavoriteService _favoriteService;
-        private readonly INavigationService _navigationService;
         private readonly IAccountService _accountService;
+        private readonly IFavoriteService _favoriteService;
         private readonly IHomePageService _homePageService;
-
+        private readonly INavigationService _navigationService;
         private string _title;
         private string _uri;
         private HomePage homePageUri;
@@ -43,6 +42,7 @@ namespace Deskberry.UWP.ViewModels
             InitializeWebView();
             InitializeCommands();
 
+            HomePageUri = new HomePage();
             FavoriteForm.CanExecuteChanged = AddFavoriteCommand.RaiseCanExecuteChanged;
         }
 
@@ -51,15 +51,12 @@ namespace Deskberry.UWP.ViewModels
         public RelayCommand AddFavoriteCommand { get; protected set; }
         public RelayCommand CloseSubAppCommand { get; protected set; }
         public RelayCommand<object> DeleteFavoriteCommand { get; protected set; }
-        public RelayCommand<object> LoadFavoriteCommand { get; protected set; }
         public CreateFavorite FavoriteForm { get; set; }
         public ObservableCollection<Favorite> Favorites { get; set; }
         public RelayCommand GoBackwardCommand { get; protected set; }
         public RelayCommand GoForwardCommand { get; protected set; }
         public RelayCommand GoHomeCommand { get; protected set; }
         public RelayCommand GoToCommand { get; protected set; }
-        public RelayCommand NavigateBackCommand { get; private set; }
-        public RelayCommand RefreshCommand { get; protected set; }
 
         public HomePage HomePageUri
         {
@@ -71,6 +68,10 @@ namespace Deskberry.UWP.ViewModels
                 GoHomeCommand.RaiseCanExecuteChanged();
             }
         }
+
+        public RelayCommand<object> LoadFavoriteCommand { get; protected set; }
+        public RelayCommand NavigateBackCommand { get; private set; }
+        public RelayCommand RefreshCommand { get; protected set; }
 
         public string Title
         {
@@ -109,11 +110,19 @@ namespace Deskberry.UWP.ViewModels
             }
         }
 
+        private async Task AddFavoriteAsync()
+        {
+            var account = await _accountService.GetAsync(Session.Id);
+
+            var favorite = await _favoriteService.AddAsync(FavoriteForm, account);
+            Favorites.Add(favorite);
+        }
+
         private bool CanGoBackward() => WebView.CanGoBack;
 
-        private bool CanGoHome() => !string.IsNullOrEmpty(HomePageUri.Uri);
-
         private bool CanGoForward() => WebView.CanGoForward;
+
+        private bool CanGoHome() => (HomePageUri != null && homePageUri.Uri != null);
 
         private bool CanGoTo() => !string.IsNullOrWhiteSpace(Uri);
 
@@ -169,6 +178,15 @@ namespace Deskberry.UWP.ViewModels
             WebView.NavigationCompleted += WebView_OnNavigationCompleted;
         }
 
+        private void LoadFavorite(object id)
+        {
+            var favoriteId = (int)id;
+
+            Uri = Favorites.Where(x => x.Id == favoriteId).Select(y => y.Uri).SingleOrDefault();
+
+            GoTo();
+        }
+
         private void NavigateBack() => _navigationService.NavigateBackFromSubApp();
 
         private async void WebView_OnNavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs e)
@@ -197,23 +215,6 @@ namespace Deskberry.UWP.ViewModels
         {
             WebView.Navigate(e.Uri);
             e.Handled = true;
-        }
-
-        private async Task AddFavoriteAsync()
-        {
-            var account = await _accountService.GetAsync(Session.Id);
-
-            var favorite = await _favoriteService.AddAsync(FavoriteForm, account);
-            Favorites.Add(favorite);
-        }
-
-        private void LoadFavorite(object id)
-        {
-            var favoriteId = (int)id;
-
-            Uri = Favorites.Where(x => x.Id == favoriteId).Select(y => y.Uri).SingleOrDefault();
-
-            GoTo();
         }
     }
 }

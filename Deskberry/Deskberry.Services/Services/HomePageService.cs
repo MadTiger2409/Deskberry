@@ -40,8 +40,8 @@ namespace Deskberry.Services
         {
             var homePage = await _context.HomePages.Where(x => x.AccountId == accountId).SingleOrDefaultAsync();
 
-            if (homePage == null)
-                throw new NullReferenceException();
+            //if (homePage == null)
+            //    throw new NullReferenceException();
 
             return homePage;
         }
