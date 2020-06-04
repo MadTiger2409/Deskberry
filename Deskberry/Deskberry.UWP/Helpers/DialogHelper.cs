@@ -31,6 +31,13 @@ namespace Deskberry.UWP.Helpers
                     };
                     break;
 
+                case DialogEnum.DeleteAccountDialog:
+                    dialog = new DeleteAccountContentDialog
+                    {
+                        DataContext = dialogContent
+                    };
+                    break;
+
                 case DialogEnum.DeleteFavoriteDialog:
                     dialog = new DeleteFavoriteContentDialog
                     {

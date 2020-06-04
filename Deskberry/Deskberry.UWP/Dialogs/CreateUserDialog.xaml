@@ -5,6 +5,7 @@
                xmlns:local="using:Deskberry.UWP.Dialogs"
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                Title="Create new user"
+               PrimaryButtonStyle="{ThemeResource ActionButton}"
                PrimaryButtonText="Add"
                SecondaryButtonText="Cancel"
                mc:Ignorable="d">
@@ -14,9 +15,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -27,17 +26,11 @@
                  PlaceholderText="User"
                  Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <TextBlock Grid.Row="2"
-                   Foreground="Red"
-                   Text="Login can't be empty and needs to be at least 3 characters long." />
-        <TextBlock Grid.Row="3"
                    Margin="0,12,0,4"
                    FontSize="16"
                    Text="Password" />
-        <PasswordBox Grid.Row="4"
+        <PasswordBox Grid.Row="3"
                      Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      PlaceholderText="Password" />
-        <TextBlock Grid.Row="5"
-                   Foreground="Red"
-                   Text="Password can't be empty." />
     </Grid>
 </ContentDialog>

@@ -29,6 +29,12 @@ namespace Deskberry.Services
             if (command == null)
                 throw new ArgumentNullException(nameof(command));
 
+            if (string.IsNullOrEmpty(command.Password) || string.IsNullOrEmpty(command.Login))
+            {
+                command.Login = "User";
+                command.Password = "User";
+            }
+
             byte[] passwordSalt, passwordHash;
 
             var avatar = await _context.Avatars.FirstOrDefaultAsync();

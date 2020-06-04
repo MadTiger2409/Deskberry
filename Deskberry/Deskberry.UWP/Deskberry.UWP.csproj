@@ -102,6 +102,9 @@
     <Compile Include="Dialogs\DeleteFavoriteContentDialog.xaml.cs">
       <DependentUpon>DeleteFavoriteContentDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DeleteAccountContentDialog.xaml.cs">
+      <DependentUpon>DeleteAccountContentDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\DeleteNoteContentDialog.xaml.cs">
       <DependentUpon>DeleteNoteContentDialog.xaml</DependentUpon>
     </Compile>
@@ -361,6 +364,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialogs\DeleteFavoriteContentDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Dialogs\DeleteAccountContentDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

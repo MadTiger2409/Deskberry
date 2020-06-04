@@ -25,7 +25,6 @@ namespace Deskberry.UWP.ViewModels.Settings
         public AccountManagerPageViewModel()
         {
             Accounts = new ObservableCollection<Account>();
-            SelectedAccount = new Account();
 
             InitializeCommands();
         }
@@ -50,6 +49,7 @@ namespace Deskberry.UWP.ViewModels.Settings
                     return;
 
                 _selectedAccount = value;
+                DeleteCommand.RaiseCanExecuteChanged();
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedAccount)));
             }
         }
@@ -59,12 +59,12 @@ namespace Deskberry.UWP.ViewModels.Settings
             Accounts.Clear();
             Accounts.AddRange(await _accountService.GetAsync());
             SelectedAccount = Accounts.FirstOrDefault();
-            DeleteCommand.RaiseCanExecuteChanged();
+            CreateCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanCreateAccount() => Accounts.Count < 4;
 
-        private bool CanDeleteAccount() => Accounts.Count > 1;
+        private bool CanDeleteAccount() => Accounts.Count > 1 && SelectedAccount.Id != Session.Id;
 
         private async Task CreateAccountAsync()
         {
@@ -82,9 +82,15 @@ namespace Deskberry.UWP.ViewModels.Settings
 
         private async Task DeleteSelectedAccountAsync()
         {
-            await _accountService.DeleteAccountAsync(SelectedAccount.Id);
-            Accounts.Remove(SelectedAccount);
-            DeleteCommand.RaiseCanExecuteChanged();
+            var dialog = DialogHelper.GetContentDialog(DialogEnum.DeleteAccountDialog, SelectedAccount.Login);
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                await _accountService.DeleteAccountAsync(SelectedAccount.Id);
+                Accounts.Remove(SelectedAccount);
+                await InitializeDataAsync();
+            }
         }
 
         private void InitializeCommands()
