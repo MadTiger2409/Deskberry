@@ -24,6 +24,9 @@ namespace Deskberry.Services
             try
             {
                 homePage = await GetAsync(account.Id);
+
+                if (homePage == null)
+                    homePage = Add(account, homePage);
             }
             catch (NullReferenceException)
             {
@@ -36,15 +39,7 @@ namespace Deskberry.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task<HomePage> GetAsync(int accountId)
-        {
-            var homePage = await _context.HomePages.Where(x => x.AccountId == accountId).SingleOrDefaultAsync();
-
-            //if (homePage == null)
-            //    throw new NullReferenceException();
-
-            return homePage;
-        }
+        public async Task<HomePage> GetAsync(int accountId) => await _context.HomePages.Where(x => x.AccountId == accountId).SingleOrDefaultAsync();
 
         private HomePage Add(Account account, HomePage homePage)
         {
