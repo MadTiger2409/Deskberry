@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Deskberry.SQLite\Deskberry.SQLite.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\UnitTests\Models\" />
+  </ItemGroup>
+
 </Project>
