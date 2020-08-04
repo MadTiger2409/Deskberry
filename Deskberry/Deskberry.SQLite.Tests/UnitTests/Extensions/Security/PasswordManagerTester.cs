@@ -1,5 +1,5 @@
 ﻿using Deskberry.SQLite.Extensions;
-using Deskberry.SQLite.Extensions.Security;
+using Deskberry.Security;
 using Deskberry.SQLite.Tests.Resources.UnitTests.PasswordManager;
 using Moq;
 using System;

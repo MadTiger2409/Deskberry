@@ -1,5 +1,5 @@
 ﻿using Deskberry.SQLite.Data.Extensions.Queries;
-using Deskberry.SQLite.Models;
+using Deskberry.Common.Models;
 using Deskberry.SQLite.Tests.Resources.Databases;
 using Deskberry.SQLite.Tests.Resources.UnitTests.AccountQueries;
 using System.Linq;
