@@ -1,11 +1,11 @@
 ﻿using Deskberry.SQLite.Data.Extensions.Queries;
 using Deskberry.Common.Models;
-using Deskberry.SQLite.Tests.Resources.Databases;
-using Deskberry.SQLite.Tests.Resources.UnitTests.AccountQueries;
 using System.Linq;
 using Xunit;
+using Deskberry.Tests.Resources.Databases;
+using Deskberry.Tests.Resources.UnitTestsData.AccountQueries;
 
-namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Queries
+namespace Deskberry.Tests.UnitTests.Extensions.Queries
 {
     [Collection("Generic Queries Tests")]
     public class GenericQueriesTester : SQLiteDatabaseFixture

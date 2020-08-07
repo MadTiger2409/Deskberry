@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using Xunit.Sdk;
 
-namespace Deskberry.SQLite.Tests.Resources.UnitTests.AccountQueries
+namespace Deskberry.Tests.Resources.UnitTestsData.AccountQueries
 {
     public class AccountGetByIdQueryDataAttribute : DataAttribute
     {

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Xunit.Sdk;
 
-namespace Deskberry.SQLite.Tests.Resources.UnitTests.PasswordManager
+namespace Deskberry.Tests.Resources.UnitTestsData.PasswordManager
 {
     public class VerifyPasswordHashValidDataAttribute : DataAttribute
     {

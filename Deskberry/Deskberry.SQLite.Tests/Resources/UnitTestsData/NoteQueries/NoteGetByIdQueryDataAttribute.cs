@@ -4,20 +4,22 @@ using System.Reflection;
 using System.Text;
 using Xunit.Sdk;
 
-namespace Deskberry.SQLite.Tests.Resources.UnitTests.PasswordManager
+namespace Deskberry.Tests.Resources.UnitTestsData.NoteQueries
 {
-    public class CalculateHashDataAttribute : DataAttribute
+    public class NoteGetByIdQueryDataAttribute : DataAttribute
     {
         public override IEnumerable<object[]> GetData(MethodInfo testMethod)
         {
             yield return new object[]
             {
-                "Admin"
+                "Test note",
+                "This is test note"
             };
 
             yield return new object[]
             {
-                "hhu@#.1445"
+                "Shopping",
+                "Buy some apples, meat and milk."
             };
         }
     }

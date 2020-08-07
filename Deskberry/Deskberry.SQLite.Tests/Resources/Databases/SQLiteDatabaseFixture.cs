@@ -3,7 +3,7 @@ using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace Deskberry.SQLite.Tests.Resources.Databases
+namespace Deskberry.Tests.Resources.Databases
 {
     public class SQLiteDatabaseFixture : IDisposable
     {

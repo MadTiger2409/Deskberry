@@ -19,6 +19,9 @@ namespace Deskberry.Common.Models
         public List<Favorite> Favorites { get; set; }
         public List<Note> Notes { get; set; }
 
+        /// <summary>
+        /// Default constructor. Used mostly by Entity Framework Core.
+        /// </summary>
         public Account() : base()
         {
         }

@@ -1,7 +1,7 @@
 ﻿using Deskberry.SQLite.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Deskberry.SQLite.Tests.Resources.Databases
+namespace Deskberry.Tests.Resources.Databases
 {
     public class TestDeskberryContext : DeskberryContext
     {

@@ -1,13 +1,13 @@
 ﻿using Deskberry.SQLite.Extensions;
 using Deskberry.Security;
-using Deskberry.SQLite.Tests.Resources.UnitTests.PasswordManager;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
+using Deskberry.Tests.Resources.UnitTestsData.PasswordManager;
 
-namespace Deskberry.SQLite.Tests.UnitTests.Extensions.Security
+namespace Deskberry.Tests.UnitTests.Extensions.Security
 {
     [Collection("Password Manager Tests")]
     public class PasswordManagerTester
