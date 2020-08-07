@@ -10,7 +10,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
     public class ModelBaseTester
     {
         [Fact]
-        public void ModelBase_Create_Success()
+        public void ModelBase_CreateDefault()
         {
             // Arrange
             ModelBase model;

@@ -10,7 +10,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
     public class AccountTester
     {
         [Fact]
-        public void Account_CreateDefault_Success()
+        public void Account_CreateDefault()
         {
             // Arrange
             Account account;
@@ -20,6 +20,38 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             account = new Account();
 
             // Assert
+            Assert.NotEqual(default, account.CreatedAt);
+            Assert.True(account.CreatedAt.Ticks > startDate.Ticks);
+        }
+
+        [Fact]
+        public void Account_CreateActive()
+        {
+            // Arrange
+            Account account;
+            var startDate = DateTime.UtcNow;
+
+            // Act
+            account = new Account(true);
+
+            // Assert
+            Assert.True(account.IsActive);
+            Assert.NotEqual(default, account.CreatedAt);
+            Assert.True(account.CreatedAt.Ticks > startDate.Ticks);
+        }
+
+        [Fact]
+        public void Account_CreateInactive()
+        {
+            // Arrange
+            Account account;
+            var startDate = DateTime.UtcNow;
+
+            // Act
+            account = new Account(false);
+
+            // Assert
+            Assert.False(account.IsActive);
             Assert.NotEqual(default, account.CreatedAt);
             Assert.True(account.CreatedAt.Ticks > startDate.Ticks);
         }
