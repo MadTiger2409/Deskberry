@@ -21,8 +21,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             account = new Account();
 
             // Assert
-            Assert.NotEqual(default, account.CreatedAt);
-            Assert.True(account.CreatedAt.Ticks > startDate.Ticks);
+            Assert.True(CheckTime(account, startDate));
         }
 
         [Theory]
@@ -38,8 +37,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
 
             // Assert
             Assert.Equal(isActive, account.IsActive);
-            Assert.NotEqual(default, account.CreatedAt);
-            Assert.True(account.CreatedAt.Ticks > startDate.Ticks);
+            Assert.True(CheckTime(account, startDate));
         }
 
         [Theory]
@@ -58,10 +56,50 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             Assert.Equal(login, account.Login);
             Assert.Equal(avatarId, account.AvatarId);
             Assert.Equal(isActive, account.IsActive);
-            Assert.NotEqual(default, account.CreatedAt);
-            Assert.True(account.CreatedAt.Ticks > startDate.Ticks);
+            Assert.True(CheckTime(account, startDate));
             Assert.True(account.Salt != null && account.Salt.Length > 0);
             Assert.True(account.PasswordHash != null && account.PasswordHash.Length > 0);
         }
+
+        [Theory]
+        [AccountNormalConstructorData]
+        public void Account_Create_NormalConstructor(string login, bool isActive)
+        {
+            // Arrange
+            Account account;
+            var startDate = DateTime.UtcNow;
+            var hash = new byte[] { 1, 15, 55, 230, 17, 215, 5, 20, 0, 15, 68, 89 };
+            var salt = new byte[] { 17, 215, 5, 20, 80, 215, 5, 20, 0, 15, 68, 145, 138, 9 };
+
+            // Act
+            account = new Account(login, hash, salt, isActive);
+
+            // Assert
+            Assert.Equal(login, account.Login);
+            Assert.Equal(isActive, account.IsActive);
+            Assert.True(CheckTime(account, startDate));
+            Assert.True(account.Salt == salt);
+            Assert.True(account.PasswordHash == hash);
+        }
+
+        [Fact]
+        public void Account_Create_AvatarConstructor()
+        { }
+
+        [Fact]
+        public void Account_UpdatePassword()
+        { }
+
+        [Theory]
+        [AccountDeleteData]
+        public void Account_Delete(Account account)
+        {
+            // Act
+            account.Delete();
+
+            Assert.False(account.IsActive);
+        }
+
+        private bool CheckTime(Account account, DateTime testStartTime) => (account.CreatedAt != default) && (account.CreatedAt.Ticks > testStartTime.Ticks);
     }
 }
