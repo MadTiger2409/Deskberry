@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deskberry.SQLite", "Deskber
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deskberry.UWP", "Deskberry.UWP\Deskberry.UWP.csproj", "{BAF071B8-3F50-422E-B815-1B72ED12D721}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deskberry.SQLite.Tests", "Deskberry.SQLite.Tests\Deskberry.SQLite.Tests.csproj", "{A113B681-0ED4-4669-B9E9-C1957725E2A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deskberry.Tests", "Deskberry.SQLite.Tests\Deskberry.Tests.csproj", "{A113B681-0ED4-4669-B9E9-C1957725E2A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deskberry.Services", "Deskberry.Services\Deskberry.Services.csproj", "{998C98EA-F16B-433F-8363-5D0B9525A5AB}"
 EndProject
