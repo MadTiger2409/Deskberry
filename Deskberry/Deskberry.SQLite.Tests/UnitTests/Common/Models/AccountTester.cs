@@ -1,5 +1,6 @@
 ﻿using Deskberry.Common.Models;
 using Deskberry.Tests.Resources.UnitTestsData.Models.Account;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -67,6 +68,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
         {
             // Arrange
             Account account;
+
             var startDate = DateTime.UtcNow;
             var hash = new byte[] { 1, 15, 55, 230, 17, 215, 5, 20, 0, 15, 68, 89 };
             var salt = new byte[] { 17, 215, 5, 20, 80, 215, 5, 20, 0, 15, 68, 145, 138, 9 };
@@ -82,13 +84,36 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             Assert.True(account.PasswordHash == hash);
         }
 
-        [Fact]
-        public void Account_Create_AvatarConstructor()
-        { }
+        [Theory]
+        [AccountNormalConstructorData]
+        public void Account_Create_AvatarConstructor(string login, bool isActive)
+        {
+            // Arrange
+            Account account;
+
+            var startDate = DateTime.UtcNow;
+            var hash = new byte[] { 1, 15, 55, 230, 17, 215, 5, 20, 0, 15, 68, 89 };
+            var salt = new byte[] { 17, 215, 5, 20, 80, 215, 5, 20, 0, 15, 68, 145, 138, 9 };
+
+            var avatar = new Avatar();
+            avatar.GetType().GetProperty("Id").SetValue(avatar, 10);
+
+            // Act
+            account = new Account(login, hash, salt, avatar, isActive);
+
+            // Assert
+            Assert.Equal(login, account.Login);
+            Assert.Equal(isActive, account.IsActive);
+            Assert.True(CheckTime(account, startDate));
+            Assert.True(account.Salt == salt);
+            Assert.True(account.PasswordHash == hash);
+            Assert.Equal(avatar.Id, account.AvatarId);
+        }
 
         [Fact]
         public void Account_UpdatePassword()
-        { }
+        {
+        }
 
         [Theory]
         [AccountDeleteData]
