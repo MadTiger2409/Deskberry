@@ -3,6 +3,7 @@ using Deskberry.Tests.Resources.UnitTestsData.Models.Account;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -110,9 +111,19 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             Assert.Equal(avatar.Id, account.AvatarId);
         }
 
-        [Fact]
-        public void Account_UpdatePassword()
+        [Theory]
+        [AccountUpdatePasswordData]
+        public void Account_UpdatePassword(string login, string password, int id, int avatarId, bool isActive, string newPassword)
         {
+            // Arrange
+            var account = new Account(login, password, id, avatarId, isActive);
+            var beforeUpdateHash = account.PasswordHash.ToArray();
+
+            // Act
+            account.UpdatePassword(newPassword);
+
+            // Assert
+            Assert.NotEqual(beforeUpdateHash, account.PasswordHash);
         }
 
         [Theory]
