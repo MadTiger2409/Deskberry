@@ -136,6 +136,6 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             Assert.False(account.IsActive);
         }
 
-        private bool CheckTime(Account account, DateTime testStartTime) => (account.CreatedAt != default) && (account.CreatedAt.Ticks > testStartTime.Ticks);
+        private bool CheckTime(Account account, DateTime testStartTime) => (account.CreatedAt != default) && (account.CreatedAt.Ticks >= testStartTime.Ticks);
     }
 }
