@@ -1,4 +1,5 @@
 ﻿using Deskberry.Common.Models;
+using Deskberry.Tests.Resources.Helpers;
 using Deskberry.Tests.Resources.UnitTestsData.Models.Account;
 using Moq;
 using System;
@@ -23,7 +24,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             account = new Account();
 
             // Assert
-            Assert.True(CheckTime(account, startDate));
+            Assert.True(ModelTestHelpers.CheckTime(account, startDate));
         }
 
         [Theory]
@@ -39,7 +40,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
 
             // Assert
             Assert.Equal(isActive, account.IsActive);
-            Assert.True(CheckTime(account, startDate));
+            Assert.True(ModelTestHelpers.CheckTime(account, startDate));
         }
 
         [Theory]
@@ -58,7 +59,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             Assert.Equal(login, account.Login);
             Assert.Equal(avatarId, account.AvatarId);
             Assert.Equal(isActive, account.IsActive);
-            Assert.True(CheckTime(account, startDate));
+            Assert.True(ModelTestHelpers.CheckTime(account, startDate));
             Assert.True(account.Salt != null && account.Salt.Length > 0);
             Assert.True(account.PasswordHash != null && account.PasswordHash.Length > 0);
         }
@@ -80,7 +81,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             // Assert
             Assert.Equal(login, account.Login);
             Assert.Equal(isActive, account.IsActive);
-            Assert.True(CheckTime(account, startDate));
+            Assert.True(ModelTestHelpers.CheckTime(account, startDate));
             Assert.True(account.Salt == salt);
             Assert.True(account.PasswordHash == hash);
         }
@@ -105,7 +106,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             // Assert
             Assert.Equal(login, account.Login);
             Assert.Equal(isActive, account.IsActive);
-            Assert.True(CheckTime(account, startDate));
+            Assert.True(ModelTestHelpers.CheckTime(account, startDate));
             Assert.True(account.Salt == salt);
             Assert.True(account.PasswordHash == hash);
             Assert.Equal(avatar.Id, account.AvatarId);
@@ -133,9 +134,8 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             // Act
             account.Delete();
 
+            // Assert
             Assert.False(account.IsActive);
         }
-
-        private bool CheckTime(Account account, DateTime testStartTime) => (account.CreatedAt != default) && (account.CreatedAt.Ticks >= testStartTime.Ticks);
     }
 }
