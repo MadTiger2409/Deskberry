@@ -5,13 +5,14 @@ namespace Deskberry.Common.Models
 {
     public class HomePage : ModelBase
     {
-        public HomePage()
+        public HomePage() : base()
         {
         }
 
-        public HomePage(string uri) : base() => Uri = uri;
+        public HomePage(string uri) : this() => Uri = uri;
 
-        public HomePage(Uri uri) : base() => Uri = uri.AbsoluteUri;
+        public HomePage(Uri uri) : this(uri.AbsoluteUri)
+        { }
 
         public Account Account { get; set; }
         public int? AccountId { get; set; }
@@ -19,6 +20,6 @@ namespace Deskberry.Common.Models
 
         public void Update(string uri) => Uri = uri;
 
-        public void Update(Uri uri) => Uri = uri.AbsoluteUri;
+        public void Update(Uri uri) => Update(uri.AbsoluteUri);
     }
 }
