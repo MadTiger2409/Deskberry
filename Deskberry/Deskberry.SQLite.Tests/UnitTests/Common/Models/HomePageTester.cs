@@ -60,5 +60,19 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             Assert.Equal(uri, homePage.Uri);
             Assert.True(ModelTestHelpers.CheckTime(homePage, startDate));
         }
+
+        [Theory]
+        [HomePageUpdateUriData]
+        public void HomePage_UpdateUri_String(string uri, string newUri)
+        {
+            // Arrange
+            HomePage homePage = new HomePage(uri);
+
+            // Act
+            homePage.Update(newUri);
+
+            // Assert
+            Assert.Equal(newUri, homePage.Uri);
+        }
     }
 }
