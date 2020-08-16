@@ -21,4 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Deskberry.SQLite\Deskberry.SQLite.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Resources\UnitTestsData\Services\" />
+  </ItemGroup>
 </Project>

@@ -5,7 +5,7 @@ using Xunit;
 using Deskberry.Tests.Resources.Databases;
 using Deskberry.Tests.Resources.UnitTestsData.AccountQueries;
 
-namespace Deskberry.Tests.UnitTests.Extensions.Queries
+namespace Deskberry.Tests.UnitTests.SQLite.Queries
 {
     [Collection("Generic Queries Tests")]
     public class GenericQueriesTester : SQLiteDatabaseFixture

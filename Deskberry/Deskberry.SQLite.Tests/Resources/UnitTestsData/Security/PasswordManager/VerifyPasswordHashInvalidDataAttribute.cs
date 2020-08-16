@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Text;
 using Xunit.Sdk;
 
-namespace Deskberry.Tests.Resources.UnitTestsData.PasswordManager
+namespace Deskberry.Tests.Resources.UnitTestsData.Security.PasswordManager
 {
     public class VerifyPasswordHashInvalidDataAttribute : DataAttribute
     {
