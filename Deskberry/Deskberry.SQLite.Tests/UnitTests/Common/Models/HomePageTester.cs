@@ -74,5 +74,20 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             // Assert
             Assert.Equal(newUri, homePage.Uri);
         }
+
+        [Theory]
+        [HomePageUpdateUriData]
+        public void HomePage_UpdateUri_Object(string uri, string newUri)
+        {
+            // Arrange
+            HomePage homePage = new HomePage(uri);
+            Uri newUriObject = new Uri(newUri);
+
+            // Act
+            homePage.Update(newUriObject);
+
+            // Assert
+            Assert.Equal(newUri, homePage.Uri);
+        }
     }
 }
