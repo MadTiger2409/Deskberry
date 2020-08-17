@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Deskberry.CommandValidation\Deskberry.CommandValidation.csproj" />
+    <ProjectReference Include="..\Deskberry.Services\Deskberry.Services.csproj" />
     <ProjectReference Include="..\Deskberry.SQLite\Deskberry.SQLite.csproj" />
   </ItemGroup>
 
