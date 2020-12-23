@@ -75,6 +75,22 @@ namespace Deskberry.Tests.UnitTests.Services
             bool? result;
 
             // Act
+            result = await accountService.AreCredentialsValidAsync(account, password);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(expectedOutput, result);
+        }
+
+        [Theory]
+        [CheckCredentialsData]
+        public async Task AccountService_CanLogInAsync(Account account, string password, bool expectedOutput)
+        {
+            // Arrange
+            AccountService accountService = new AccountService(DbContext);
+            bool? result;
+
+            // Act
             result = await accountService.CanLogInAsync(account, password);
 
             // Assert
