@@ -21,10 +21,16 @@ namespace Deskberry.UWP.IoC
         {
             var services = new ServiceCollection();
 
-            services.AddDbContextPool<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"), 2);
+            services.AddDbContext<DeskberryContext>(options => options.UseSqlite(@"Data Source=deskberry.db"));
 
             //! It's experimental
-            services.AddSingleton(typeof(WiFiAdapter), WiFiAdapter.FindAllAdaptersAsync().GetAwaiter().GetResult()[0]);
+            try
+            {
+                services.AddSingleton(typeof(WiFiAdapter), WiFiAdapter.FindAllAdaptersAsync().GetAwaiter().GetResult()[0]);
+            }
+            catch (Exception)
+            {
+            }
 
             services.AddTransient<MainPageViewModel>();
             services.AddScoped<DesktopPageViewModel>();
