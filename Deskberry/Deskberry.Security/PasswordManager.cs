@@ -21,18 +21,18 @@ namespace Deskberry.Security
 
         public AccountPasswordData CalculatePasswordHash(string password)
         {
-            byte[] passwordSalt, passwordHash;
-            CalculatePasswordHash(password, out passwordSalt, out passwordHash);
+            CalculatePasswordHash(password, out byte[] passwordSalt, out byte[] passwordHash);
 
             return new AccountPasswordData(passwordHash, passwordSalt);
         }
 
         public bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            var hmac512 = new HMACSHA512(passwordSalt);
-            var computedHash = hmac512.ComputeHash(Encoding.UTF8.GetBytes(password));
+            CalculatePasswordHash(password, passwordSalt, out byte[] computedHash);
+
             for (int i = 0; i < passwordHash.Length; i++)
                 if (computedHash[i] != passwordHash[i]) return false;
+
             return true;
         }
 
