@@ -31,8 +31,7 @@ namespace Deskberry.CommandValidation.Validators
             return RuleFor(expression)
                 .NotEmpty()
                 .MinimumLength(2)
-                .MaximumLength(300)
-                .WithMessage("Title can't be empty and must be from 2 to 300 characters long");
+                .MaximumLength(300);
         }
 
         protected IRuleBuilderOptions<CreateFavorite, string> RuleForUri<TProperty>(Expression<Func<CreateFavorite, string>> expression)
@@ -40,8 +39,7 @@ namespace Deskberry.CommandValidation.Validators
             return RuleFor(expression)
                 .NotEmpty()
                 .MinimumLength(4)
-                .MaximumLength(400)
-                .WithMessage("Uri can't be empty and must be from 4 to 400 characters long");
+                .MaximumLength(400);
         }
     }
 }
