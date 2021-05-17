@@ -53,25 +53,25 @@ namespace Deskberry.SQLite.Data
                 .HasData(new
                 {
                     Id = 1,
-                    Content = AvatarRoot.ToByteArray(AvatarRoot.Dog),
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.DogImageBase64),
                     CreatedAt = DateTime.UtcNow
                 },
                 new
                 {
                     Id = 2,
-                    Content = AvatarRoot.ToByteArray(AvatarRoot.Bird),
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.BirdImageBase64),
                     CreatedAt = DateTime.UtcNow
                 },
                 new
                 {
                     Id = 3,
-                    Content = AvatarRoot.ToByteArray(AvatarRoot.Cats),
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.CatsImageBase64),
                     CreatedAt = DateTime.UtcNow
                 },
                 new
                 {
                     Id = 4,
-                    Content = AvatarRoot.ToByteArray(AvatarRoot.Wolf),
+                    Content = AvatarRoot.ToByteArray(AvatarRoot.WolfImageBase64),
                     CreatedAt = DateTime.UtcNow
                 });
 
