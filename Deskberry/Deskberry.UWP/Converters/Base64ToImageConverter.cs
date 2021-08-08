@@ -11,12 +11,12 @@ namespace Deskberry.Tools.Converters
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var imageBytes = (byte[])value;
-            return ConvertByteToImage(imageBytes).Result;
+            return BytesToImageAsync(imageBytes).Result;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
 
-        private async Task<BitmapImage> ConvertByteToImage(byte[] imageBytes)
+        private async Task<BitmapImage> BytesToImageAsync(byte[] imageBytes)
         {
             var image = new BitmapImage();
             using (var randomAccessStream = new InMemoryRandomAccessStream())

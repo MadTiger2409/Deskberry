@@ -28,8 +28,9 @@ namespace Deskberry.UWP.IoC
             {
                 services.AddSingleton(typeof(WiFiAdapter), WiFiAdapter.FindAllAdaptersAsync().GetAwaiter().GetResult()[0]);
             }
-            catch (Exception)
+            catch (NullReferenceException)
             {
+                services.AddSingleton(typeof(WiFiAdapter), new object());
             }
 
             services.AddTransient<MainPageViewModel>();
