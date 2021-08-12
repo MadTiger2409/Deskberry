@@ -32,8 +32,6 @@ namespace Deskberry.UWP.Views
             set { DesktopFrame = value; }
         }
 
-        Task DateTimeTask;
-
         public DesktopPage()
         {
             this.InitializeComponent();
@@ -44,7 +42,7 @@ namespace Deskberry.UWP.Views
         {
             base.OnNavigatedTo(e);
 
-            DateTimeTask = UpdateDateAndTimeAsync();
+            UpdateDateAndTimeAsync();
         }
 
         private async Task UpdateDateAndTimeAsync()
