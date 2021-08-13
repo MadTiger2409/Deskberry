@@ -9,7 +9,7 @@ namespace Deskberry.Tests.Resources.Helpers
     {
         public static bool CheckTime<T>(T model, DateTime testStartTime) where T : ModelBase
         {
-            return (model.CreatedAt != default) && (model.CreatedAt.Ticks >= testStartTime.Ticks);
+            return (model.CreatedAt != default(DateTime)) && (model.CreatedAt.Ticks >= testStartTime.Ticks);
         }
     }
 }

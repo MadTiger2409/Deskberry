@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.IO;
+using System.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Storage;
@@ -45,10 +46,9 @@ namespace Deskberry.UWP
         {
             var localPath = ApplicationData.Current.LocalFolder.Path + @"\deskberry.db";
             var fInfo = new FileInfo(localPath);
-            if (!fInfo.Exists)
-            {
+
+            if (!fInfo.Exists || db.Database.GetPendingMigrations().Any())
                 db.Database.Migrate();
-            }
         }
 
         /// <summary>

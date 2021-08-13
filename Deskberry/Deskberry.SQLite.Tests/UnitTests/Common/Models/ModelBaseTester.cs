@@ -20,7 +20,7 @@ namespace Deskberry.Tests.UnitTests.Common.Models
             model = new ModelBase();
 
             // Assert
-            Assert.NotEqual(default, model.CreatedAt);
+            Assert.NotEqual(default(DateTime), model.CreatedAt);
             Assert.True(model.CreatedAt.Ticks > startDate.Ticks);
         }
     }
